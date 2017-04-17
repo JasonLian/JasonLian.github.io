@@ -1,0 +1,1292 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="yCkhQBi4EMUao1k6fRadod76QXXMCY2Cbu9rqCy5n54" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="1PsQQDqYWD" />
+
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0dd5ec4c19208d4c2a8a0358fb07f567";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Prediction Accuracy,Model Selection," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Data Mania" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文总结讨论了模型（主要针对二分类问题）评估与选择常用方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模型评估与选择概述">
+<meta property="og:url" content="http://jasonlian.tech/2017/04/12/ML4-Prediction-Accuracy-2/index.html">
+<meta property="og:site_name" content="Data Mania">
+<meta property="og:description" content="本文总结讨论了模型（主要针对二分类问题）评估与选择常用方法">
+<meta property="og:image" content="http://omsiwk8es.bkt.clouddn.com/10%20%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="http://omsiwk8es.bkt.clouddn.com/%E5%88%86%E7%B1%BB%E7%BB%93%E6%9E%9C%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5.png">
+<meta property="og:image" content="http://omsiwk8es.bkt.clouddn.com/P-R%20%E6%9B%B2%E7%BA%BF%E4%B8%8E%E5%B9%B3%E8%A1%A1%E7%82%B9%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="http://omsiwk8es.bkt.clouddn.com/ROC%20%E6%9B%B2%E7%BA%BF%E4%B8%8E%20AUC.png">
+<meta property="og:image" content="http://omsiwk8es.bkt.clouddn.com/%E6%B3%9B%E5%8C%96%E8%AF%AF%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE%E3%80%81%E5%81%8F%E5%B7%AE%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:updated_time" content="2017-04-17T08:50:23.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模型评估与选择概述">
+<meta name="twitter:description" content="本文总结讨论了模型（主要针对二分类问题）评估与选择常用方法">
+<meta name="twitter:image" content="http://omsiwk8es.bkt.clouddn.com/10%20%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'N2N28G9V4H',
+      apiKey: 'e5abe4942c09d4f633aee35a77d1ecef',
+      indexName: 'Data Mania',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jasonlian.tech/2017/04/12/ML4-Prediction-Accuracy-2/"/>
+
+
+
+
+
+  <title> 模型评估与选择概述 | Data Mania </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c546841c720b63201893e1244ae2872";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Data Mania</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jasonlian.tech/2017/04/12/ML4-Prediction-Accuracy-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Lian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Data Mania">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                模型评估与选择概述
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Created</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-12T20:15:16+08:00">
+                2017-04-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2017-04-17T16:50:23+08:00">
+                2017-04-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/04/12/ML4-Prediction-Accuracy-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/12/ML4-Prediction-Accuracy-2/" class="leancloud_visitors" data-flag-title="模型评估与选择概述">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count</span>
+                
+                <span title="Words count">
+                  2,569
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>本文总结讨论了模型（主要针对二分类问题）评估与选择常用方法</center>
+
+<a id="more"></a>
+<h3 id="Hold-out-Method"><a href="#Hold-out-Method" class="headerlink" title="Hold-out Method"></a><font color="#C70039">Hold-out Method</font></h3><p><strong>留出法</strong>直接将数据集 D 分为两个互斥的集合，其中一个作为训练集（<strong>Training Set</strong>） S，另一个作为测试集(<strong>Testing Set</strong>) T。在 S 上训练模型后，用 T 来评估其预测误差，作为对泛化误差的估计</p>
+<ul>
+<li>训练集和测试集的划分要尽量保持数据分布的一致性，比如采用分层采样</li>
+<li><strong>单次使用留出法得到的结果往往不够稳定可靠，一般采用若干次随机划分、重复进行实验评估后取平均值作为留出法的评估结果，同时可以得到估计结果的标准差</strong></li>
+<li>常用的做法是将大约 <strong>2/3~4/5</strong> 的样本用于训练，剩余样本用于测试</li>
+</ul>
+<hr>
+<h3 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross Validation"></a><font color="#C70039">Cross Validation</font></h3><p><strong>交叉验证法</strong>先将数据集划分为 k 个大小相似的互斥子集，每个子集尽可能保持数据分布的一致性。然后，每次用 k-1 个子集进行训练，余下的那个子集作为测试集，从而可以进行 k 次训练和测试，<strong>最终返回这 k 个测试结果的均值</strong></p>
+<ul>
+<li>交叉验证结果的稳定性很大程度上取决于 k 的取值，k 通常取值 10、5、20</li>
+<li>k 折交叉验证通常要随机使用不同的划分重复 p 次，最终评价结果是这 p 次 k 折交叉验证结果的均值，例如“10次10折交叉验证”</li>
+<li>假定数据集 D 中有 m 个样本，若 k=m，则得到交叉验证的一个特例：“留一法”，留一法不受样本随机划分的影响，但是计算开销较大。</li>
+</ul>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/10%20%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></center>
+
+<hr>
+<h3 id="Parameter-Tuning"><a href="#Parameter-Tuning" class="headerlink" title="Parameter Tuning"></a><font color="#C70039">Parameter Tuning</font></h3><p>机器学习中通常涉及两类参数：</p>
+<ul>
+<li><strong>算法的参数（“超参数”）</strong>：数目常在 10 以内，通常由人工设定多个参数候选值后产生模型</li>
+<li><strong>模型的参数</strong>：数目可能很多，例如深度学习模型甚至有上百亿个参数，一般通过学习来产生多个候选模型（例如神经网络在不同轮数停止训练）</li>
+</ul>
+<p><strong>Grid Search</strong>：对每个参数选定一个范围和变化步长，所有参数的组合数目即为所需训练的模型数，这是在计算开销和性能估计之间进行折中的结果。</p>
+<p>我们通常把学得模型在实际使用中遇到的数据称为 <strong>Testing Set</strong>，而模型评估与选择中用于评估测试的数据集通常被称为 <strong>Validation Set</strong>。例如，<strong>用测试集上的判别效果来估计模型在实际使用时的泛化性能，而把训练集数据另外划分为训练集和验证集，基于验证集上的性能来进行模型选择和调参</strong></p>
+<hr>
+<h3 id="Precision-Recall-F1"><a href="#Precision-Recall-F1" class="headerlink" title="Precision / Recall / F1"></a><font color="#C70039">Precision / Recall / F1</font></h3><p>以二分类问题为例，可以将样例根据其真实类别与分类算法预测类别的组合划分为：</p>
+<ul>
+<li>TP: true positive</li>
+<li>FP: false positive</li>
+<li>TN: true negative</li>
+<li>FN: false negetive</li>
+</ul>
+<h4 id="Confusion-Matrix"><a href="#Confusion-Matrix" class="headerlink" title="Confusion Matrix"></a><font color="#2874A6">Confusion Matrix</font></h4><p>分类结果的“混淆矩阵”（<strong>Confusion Matrix</strong>）如下：</p>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/%E5%88%86%E7%B1%BB%E7%BB%93%E6%9E%9C%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5.png" alt=""></center>
+
+<h4 id="Precision-amp-Recall"><a href="#Precision-amp-Recall" class="headerlink" title="Precision &amp; Recall"></a><font color="#2874A6">Precision &amp; Recall</font></h4><p>根据混淆矩阵定义 <strong>Accuracy, Precision, Recall</strong> 如下：</p>
+<p>$$Accuracy=\frac{TP+TN}{TP+FP+TN+FN}$$<br>$$Precision=\frac{TP}{TP+FP}$$<br>$$Recall=\frac{TP}{TP+FN}$$</p>
+<h4 id="P-R-Curve"><a href="#P-R-Curve" class="headerlink" title="P-R Curve"></a><font color="#2874A6">P-R Curve</font></h4><p>查准率（Precision，也叫“准确率”）和查全率（Recall，也叫“召回率”）是一对矛盾的度量，通常在一些简单的任务中，才可能同时使查准率和查全率都很高。</p>
+<p>在很多情形下，我们可以根据预测结果对样例进行排序，排在最前面的是有可能是正例的样本，排在最后的是最不可能是正例的样本，<strong>按此顺序逐个把样本作为正例进行预测</strong>，则每次均可计算出一对 Precision 和 Recall，分别以 Precision 和 Recall 为纵轴和横轴，就可以得到“P-R 曲线”</p>
+<ul>
+<li>如果一个学习器的 P-R 曲线被另一个学习器的 P-R 曲线完全包住（比如 C 被 B 完全包住），则可以判定后者的性能优于前者</li>
+<li>如果两个学习器的 P-R 曲线发生交叉（比如 A 与 B 发生交叉），则难以断言二者孰优孰劣，只能在具体的情况下进行比较</li>
+<li>然而在很多情况下，如果仍然希望将学习器 A 和 B 比个高低，这是一个比较合理的判据是 <strong>P-R 曲线下面积的大小 (AUC-PR)</strong>，但这个面积不太容易估算，所以就需要一个综合 Precision 和 Recall 的指标</li>
+</ul>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/P-R%20%E6%9B%B2%E7%BA%BF%E4%B8%8E%E5%B9%B3%E8%A1%A1%E7%82%B9%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></center>
+
+<h4 id="F1-Score"><a href="#F1-Score" class="headerlink" title="F1 Score"></a><font color="#2874A6">F1 Score</font></h4><p>平衡点（Break-Even Point）是 Precision = Recall 时的取值，但 BEP 还是过于简化了些，更常用的是 <strong>F1 度量</strong></p>
+<p>$$F1=\frac{2 \times Precision \times Recall}{Precision+Recall}=\frac{2 \times TP}{样例总数+TP-TN}$$</p>
+<p>在不同的应用中，<strong>对 Precision 和 Recall 的重视程度可能有所不同</strong>。例如在商品推荐中，为了尽可能减少对用户的打扰，Precision 更重要；而在逃犯检索系统中，为了尽可能不漏掉逃犯，Recall 更重要</p>
+<p>实际上，<strong>F1 是基于 Precision 和 Recall 的调和平均（harmonic mean）来定义的</strong></p>
+<p>$$\frac{1}{F1}=\frac{1}{2}.(\frac{1}{P}+\frac{1}{R})$$</p>
+<p><strong>F1 更一般的形式是加权调和平均，它能让我们表达出对 Precision/Recall 的不同偏好</strong>，其中 $\beta&gt;0$ 度量了 <strong>Recall 对 Precision</strong> 的相对重要性</p>
+<ul>
+<li>$\beta=1$ 时，退化为标准的 F1</li>
+<li>$\beta&gt;1$ 时，Recall 有更大影响</li>
+<li>$\beta&lt;1$ 时，Precision 有更大影响</li>
+</ul>
+<p>$$\frac{1}{F_{\beta}}=\frac{1}{1+\beta^2}.(\frac{1}{P}+\frac{\beta^2}{R})$$</p>
+<p>$$F_\beta = \frac{(1+\beta^2) \times P \times R}{(\beta^2 \times P)+R}$$</p>
+<h4 id="Macro-amp-Micro-Measure"><a href="#Macro-amp-Micro-Measure" class="headerlink" title="Macro &amp; Micro Measure"></a><font color="#2874A6">Macro &amp; Micro Measure</font></h4><p>很多时候我们有多个二分类混淆矩阵，例如进行多次训练或者在多个数据集上进行训练，此时我们希望计算出全局性能，综合考虑 n 个混淆矩阵上的 Precision 和 Recall</p>
+<ul>
+<li><strong>方法 1</strong>：先在各混淆矩阵上分别计算 P 和 R，在计算平均值，这样就得到 macro-P、macro-R 和 macro-F1</li>
+<li><strong>方法 2</strong>：先将各混淆矩阵的对应元素进行平均，再基于这些平均值计算得到 micro-P、micro-R 和 micro-F1</li>
+</ul>
+<hr>
+<h3 id="ROC-AUC-ROC"><a href="#ROC-AUC-ROC" class="headerlink" title="ROC / AUC-ROC"></a><font color="#C70039">ROC / AUC-ROC</font></h3><h4 id="ROC-Curve"><a href="#ROC-Curve" class="headerlink" title="ROC Curve"></a><font color="#2874A6">ROC Curve</font></h4><ul>
+<li>很多学习器是为测试样本产生一个实质或概率预测，然后将这个预测值与一个分类阈值进行比较，若大于阈值则分为正类，否则为反类。这样分类过程就相当于在概率值排序中以某个截断点（cut point）将样本分为两部分，前一部分作为正例，后一部分作为反例。</li>
+<li>在不同的任务中，我们可以根据任务需求的不同采用不同的截断点，若更重视 Precision，则应选择排序靠前的位置进行截断；如果更重视 Recall，则应选择排序靠后的位置进行截断。</li>
+<li>因此，排序本身的质量好坏，体现了综合考虑学习器在不同任务下“期望泛化性能”的好坏，ROC 曲线就是从这个角度研究学习器泛化性能的有力工具。</li>
+</ul>
+<p><strong>ROC 的全称是 “受试者工作特征”（Reveiver Operating Characteristic）曲线</strong>，源自二战中用于敌机检测的雷达信号分析技术</p>
+<ul>
+<li>与 P-R 曲线相似，首先，我们根据学习器的预测结果对样例排序</li>
+<li>然后，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要的值，分别作为横纵轴，就得到 ROC 曲线</li>
+<li>ROC 曲线的纵轴是“真正例率”（True Positive Rate, TPR），横轴是“假正例率”（False Positive Rate, FPR）</li>
+</ul>
+<p>$$TPR=\frac{TP}{TP+FN}=Sensitivity$$<br>$$FPR=\frac{FP}{TN+FP}=1-Specificity=1-\frac{TN}{TN+FP}$$</p>
+<p>ROC 曲线的对角线对应于 <strong>随机猜测</strong> 模型，而点 （0,1） 对应于将所有正例排在所有反例之前的 <strong>理想模型</strong></p>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/ROC%20%E6%9B%B2%E7%BA%BF%E4%B8%8E%20AUC.png" alt=""></center>
+
+<p>现实任务中通常是利用有限个样例来绘制 ROC 图，无法产生光滑的 ROC 曲线，只能绘制出 (b) 中的近似 ROC 曲线</p>
+<h4 id="AUC-ROC"><a href="#AUC-ROC" class="headerlink" title="AUC-ROC"></a><font color="#2874A6">AUC-ROC</font></h4><ul>
+<li>进行学习器的比较时，与 P-R 图类似，若一个学习器的曲线被另一个完全包住，则可断定后者优于前者</li>
+<li>若两个学习器的曲线发生交叉，则较为合理的判据为 ROC 曲线下的面积，即 <strong>AUC-ROC（Area Under ROC Curve）</strong></li>
+<li>实际应用中，划分正例和负例的最优阈值为 <strong>ROC 曲线上最接近（0,1）的点</strong></li>
+</ul>
+<hr>
+<h3 id="Bias-Variance-Dilemma"><a href="#Bias-Variance-Dilemma" class="headerlink" title="Bias-Variance Dilemma"></a><font color="#C70039">Bias-Variance Dilemma</font></h3><p><strong>“偏差-方差分解”是解释学习算法泛化性能的一种重要工具</strong>，泛化误差可以分解为偏差、方差和噪声之和。</p>
+<ul>
+<li><strong>偏差</strong>：度量学习算法的期望预测与真实结果的偏离程度，即刻画了学习算法本身的拟合能力</li>
+<li><strong>方差</strong>：度量了同样大小的训练集的变动所导致的的学习性能的变化，即刻画了数据扰动所造成的影响</li>
+<li><strong>噪声</strong>：表达了当前任务中任何学习算法所能达到的期望泛化误差的下限，即刻画了学习问题本身的难度</li>
+</ul>
+<p>偏差-方差分解说明，泛化性能是由<strong>学习算法本身的能力、数据的充分性以及学习任务本身的难度</strong>共同决定的。一般来说，偏差与方差是相互矛盾的。</p>
+<ul>
+<li>在训练不足时，学习器的拟合能力不够强，训练数据的扰动不足以使学习器产生显著变化，此时偏差主导了泛化错误率</li>
+<li>随着训练程度的加深，学习器的拟合能力逐渐增强，训练数据发生的扰动逐渐被学习器学到，方差逐渐主导泛化错误率</li>
+<li>在训练程度充足后，学习器的拟合能力非常强，训练数据发生轻微扰动都会导致学习器发生显著变化，若训练数据自身、非全局的特性也被学习到，则将发生过拟合</li>
+</ul>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/%E6%B3%9B%E5%8C%96%E8%AF%AF%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE%E3%80%81%E5%81%8F%E5%B7%AE%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></center>
+
+
+<hr>
+<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li>周志华. (2016). 机器学习 : = Machine learning. 清华大学出版社.</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Prediction-Accuracy/" rel="tag"># Prediction Accuracy</a>
+          
+            <a href="/tags/Model-Selection/" rel="tag"># Model Selection</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/03/ML3-Prediction-Accuracy-1/" rel="next" title="连续型变量的预测误差度量方法">
+                <i class="fa fa-chevron-left"></i> 连续型变量的预测误差度量方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Lian" />
+          <p class="site-author-name" itemprop="name">Jason Lian</p>
+           
+              <p class="site-description motion-element" itemprop="description">享受简单而专注的快乐</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JasonLian" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/331889888/home?topnav=1&wvr=5" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:shlian16@fudan.edu.cn" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/08/Navi1-Machine-Learning/" title="Machine Learning" target="_blank">Machine Learning</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/14/Navi2-R-Manual/" title="R Manual" target="_blank">R Manual</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/16/Navi3-Visualization/" title="Visualization" target="_blank">Visualization</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/04/01/Tech3-Git-Command/" title="Git" target="_blank">Git</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hold-out-Method"><span class="nav-number">1.</span> <span class="nav-text">Hold-out Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cross-Validation"><span class="nav-number">2.</span> <span class="nav-text">Cross Validation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameter-Tuning"><span class="nav-number">3.</span> <span class="nav-text">Parameter Tuning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Precision-Recall-F1"><span class="nav-number">4.</span> <span class="nav-text">Precision / Recall / F1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Confusion-Matrix"><span class="nav-number">4.1.</span> <span class="nav-text">Confusion Matrix</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Precision-amp-Recall"><span class="nav-number">4.2.</span> <span class="nav-text">Precision & Recall</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P-R-Curve"><span class="nav-number">4.3.</span> <span class="nav-text">P-R Curve</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#F1-Score"><span class="nav-number">4.4.</span> <span class="nav-text">F1 Score</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Macro-amp-Micro-Measure"><span class="nav-number">4.5.</span> <span class="nav-text">Macro & Micro Measure</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROC-AUC-ROC"><span class="nav-number">5.</span> <span class="nav-text">ROC / AUC-ROC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ROC-Curve"><span class="nav-number">5.1.</span> <span class="nav-text">ROC Curve</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AUC-ROC"><span class="nav-number">5.2.</span> <span class="nav-text">AUC-ROC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bias-Variance-Dilemma"><span class="nav-number">6.</span> <span class="nav-text">Bias-Variance Dilemma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-mortar-board"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Lian</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"> 您是第</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"> 总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "66b93912b152403a8848ceb2242428ff",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("TFMC9GSLvmlfR2vWv6EtvQyX-gzGzoHsz", "RS3BaosNcBvBVMJKLSqWRCmm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

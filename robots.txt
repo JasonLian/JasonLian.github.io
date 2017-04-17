@@ -1,0 +1,18 @@
+# hexo robots.txt
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /tags/
+Allow: /2017/
+
+# Disallow: /vendors/
+# Disallow: /js/
+# Disallow: /css/
+# Disallow: /fonts/
+
+Sitemap: http://jasonlian.github.io/sitemap.xml
+Sitemap: http://jasonlian.github.io/baidusitemap.xml
+Sitemap: http://jasonlian.coding.me/sitemap.xml
+Sitemap: http://jasonlian.coding.me/baidusitemap.xml
+Sitemap: http://jasonlian.tech/sitemap.xml
+Sitemap: http://jasonlian.tech/baidusitemap.xml

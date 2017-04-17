@@ -1,0 +1,1653 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Data Mania</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://jasonlian.tech/"/>
+  <updated>2017-04-17T08:50:23.032Z</updated>
+  <id>http://jasonlian.tech/</id>
+  
+  <author>
+    <name>Jason Lian</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模型评估与选择概述</title>
+    <link href="http://jasonlian.tech/2017/04/12/ML4-Prediction-Accuracy-2/"/>
+    <id>http://jasonlian.tech/2017/04/12/ML4-Prediction-Accuracy-2/</id>
+    <published>2017-04-12T12:15:16.000Z</published>
+    <updated>2017-04-17T08:50:23.032Z</updated>
+    
+    <content type="html"><![CDATA[<center>本文总结讨论了模型（主要针对二分类问题）评估与选择常用方法</center>
+
+<a id="more"></a>
+<h3 id="Hold-out-Method"><a href="#Hold-out-Method" class="headerlink" title="Hold-out Method"></a><font color="#C70039">Hold-out Method</font></h3><p><strong>留出法</strong>直接将数据集 D 分为两个互斥的集合，其中一个作为训练集（<strong>Training Set</strong>） S，另一个作为测试集(<strong>Testing Set</strong>) T。在 S 上训练模型后，用 T 来评估其预测误差，作为对泛化误差的估计</p>
+<ul>
+<li>训练集和测试集的划分要尽量保持数据分布的一致性，比如采用分层采样</li>
+<li><strong>单次使用留出法得到的结果往往不够稳定可靠，一般采用若干次随机划分、重复进行实验评估后取平均值作为留出法的评估结果，同时可以得到估计结果的标准差</strong></li>
+<li>常用的做法是将大约 <strong>2/3~4/5</strong> 的样本用于训练，剩余样本用于测试</li>
+</ul>
+<hr>
+<h3 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross Validation"></a><font color="#C70039">Cross Validation</font></h3><p><strong>交叉验证法</strong>先将数据集划分为 k 个大小相似的互斥子集，每个子集尽可能保持数据分布的一致性。然后，每次用 k-1 个子集进行训练，余下的那个子集作为测试集，从而可以进行 k 次训练和测试，<strong>最终返回这 k 个测试结果的均值</strong></p>
+<ul>
+<li>交叉验证结果的稳定性很大程度上取决于 k 的取值，k 通常取值 10、5、20</li>
+<li>k 折交叉验证通常要随机使用不同的划分重复 p 次，最终评价结果是这 p 次 k 折交叉验证结果的均值，例如“10次10折交叉验证”</li>
+<li>假定数据集 D 中有 m 个样本，若 k=m，则得到交叉验证的一个特例：“留一法”，留一法不受样本随机划分的影响，但是计算开销较大。</li>
+</ul>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/10%20%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></center>
+
+<hr>
+<h3 id="Parameter-Tuning"><a href="#Parameter-Tuning" class="headerlink" title="Parameter Tuning"></a><font color="#C70039">Parameter Tuning</font></h3><p>机器学习中通常涉及两类参数：</p>
+<ul>
+<li><strong>算法的参数（“超参数”）</strong>：数目常在 10 以内，通常由人工设定多个参数候选值后产生模型</li>
+<li><strong>模型的参数</strong>：数目可能很多，例如深度学习模型甚至有上百亿个参数，一般通过学习来产生多个候选模型（例如神经网络在不同轮数停止训练）</li>
+</ul>
+<p><strong>Grid Search</strong>：对每个参数选定一个范围和变化步长，所有参数的组合数目即为所需训练的模型数，这是在计算开销和性能估计之间进行折中的结果。</p>
+<p>我们通常把学得模型在实际使用中遇到的数据称为 <strong>Testing Set</strong>，而模型评估与选择中用于评估测试的数据集通常被称为 <strong>Validation Set</strong>。例如，<strong>用测试集上的判别效果来估计模型在实际使用时的泛化性能，而把训练集数据另外划分为训练集和验证集，基于验证集上的性能来进行模型选择和调参</strong></p>
+<hr>
+<h3 id="Precision-Recall-F1"><a href="#Precision-Recall-F1" class="headerlink" title="Precision / Recall / F1"></a><font color="#C70039">Precision / Recall / F1</font></h3><p>以二分类问题为例，可以将样例根据其真实类别与分类算法预测类别的组合划分为：</p>
+<ul>
+<li>TP: true positive</li>
+<li>FP: false positive</li>
+<li>TN: true negative</li>
+<li>FN: false negetive</li>
+</ul>
+<h4 id="Confusion-Matrix"><a href="#Confusion-Matrix" class="headerlink" title="Confusion Matrix"></a><font color="#2874A6">Confusion Matrix</font></h4><p>分类结果的“混淆矩阵”（<strong>Confusion Matrix</strong>）如下：</p>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/%E5%88%86%E7%B1%BB%E7%BB%93%E6%9E%9C%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5.png" alt=""></center>
+
+<h4 id="Precision-amp-Recall"><a href="#Precision-amp-Recall" class="headerlink" title="Precision &amp; Recall"></a><font color="#2874A6">Precision &amp; Recall</font></h4><p>根据混淆矩阵定义 <strong>Accuracy, Precision, Recall</strong> 如下：</p>
+<p>$$Accuracy=\frac{TP+TN}{TP+FP+TN+FN}$$<br>$$Precision=\frac{TP}{TP+FP}$$<br>$$Recall=\frac{TP}{TP+FN}$$</p>
+<h4 id="P-R-Curve"><a href="#P-R-Curve" class="headerlink" title="P-R Curve"></a><font color="#2874A6">P-R Curve</font></h4><p>查准率（Precision，也叫“准确率”）和查全率（Recall，也叫“召回率”）是一对矛盾的度量，通常在一些简单的任务中，才可能同时使查准率和查全率都很高。</p>
+<p>在很多情形下，我们可以根据预测结果对样例进行排序，排在最前面的是有可能是正例的样本，排在最后的是最不可能是正例的样本，<strong>按此顺序逐个把样本作为正例进行预测</strong>，则每次均可计算出一对 Precision 和 Recall，分别以 Precision 和 Recall 为纵轴和横轴，就可以得到“P-R 曲线”</p>
+<ul>
+<li>如果一个学习器的 P-R 曲线被另一个学习器的 P-R 曲线完全包住（比如 C 被 B 完全包住），则可以判定后者的性能优于前者</li>
+<li>如果两个学习器的 P-R 曲线发生交叉（比如 A 与 B 发生交叉），则难以断言二者孰优孰劣，只能在具体的情况下进行比较</li>
+<li>然而在很多情况下，如果仍然希望将学习器 A 和 B 比个高低，这是一个比较合理的判据是 <strong>P-R 曲线下面积的大小 (AUC-PR)</strong>，但这个面积不太容易估算，所以就需要一个综合 Precision 和 Recall 的指标</li>
+</ul>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/P-R%20%E6%9B%B2%E7%BA%BF%E4%B8%8E%E5%B9%B3%E8%A1%A1%E7%82%B9%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></center>
+
+<h4 id="F1-Score"><a href="#F1-Score" class="headerlink" title="F1 Score"></a><font color="#2874A6">F1 Score</font></h4><p>平衡点（Break-Even Point）是 Precision = Recall 时的取值，但 BEP 还是过于简化了些，更常用的是 <strong>F1 度量</strong></p>
+<p>$$F1=\frac{2 \times Precision \times Recall}{Precision+Recall}=\frac{2 \times TP}{样例总数+TP-TN}$$</p>
+<p>在不同的应用中，<strong>对 Precision 和 Recall 的重视程度可能有所不同</strong>。例如在商品推荐中，为了尽可能减少对用户的打扰，Precision 更重要；而在逃犯检索系统中，为了尽可能不漏掉逃犯，Recall 更重要</p>
+<p>实际上，<strong>F1 是基于 Precision 和 Recall 的调和平均（harmonic mean）来定义的</strong></p>
+<p>$$\frac{1}{F1}=\frac{1}{2}.(\frac{1}{P}+\frac{1}{R})$$</p>
+<p><strong>F1 更一般的形式是加权调和平均，它能让我们表达出对 Precision/Recall 的不同偏好</strong>，其中 $\beta&gt;0$ 度量了 <strong>Recall 对 Precision</strong> 的相对重要性</p>
+<ul>
+<li>$\beta=1$ 时，退化为标准的 F1</li>
+<li>$\beta&gt;1$ 时，Recall 有更大影响</li>
+<li>$\beta&lt;1$ 时，Precision 有更大影响</li>
+</ul>
+<p>$$\frac{1}{F_{\beta}}=\frac{1}{1+\beta^2}.(\frac{1}{P}+\frac{\beta^2}{R})$$</p>
+<p>$$F_\beta = \frac{(1+\beta^2) \times P \times R}{(\beta^2 \times P)+R}$$</p>
+<h4 id="Macro-amp-Micro-Measure"><a href="#Macro-amp-Micro-Measure" class="headerlink" title="Macro &amp; Micro Measure"></a><font color="#2874A6">Macro &amp; Micro Measure</font></h4><p>很多时候我们有多个二分类混淆矩阵，例如进行多次训练或者在多个数据集上进行训练，此时我们希望计算出全局性能，综合考虑 n 个混淆矩阵上的 Precision 和 Recall</p>
+<ul>
+<li><strong>方法 1</strong>：先在各混淆矩阵上分别计算 P 和 R，在计算平均值，这样就得到 macro-P、macro-R 和 macro-F1</li>
+<li><strong>方法 2</strong>：先将各混淆矩阵的对应元素进行平均，再基于这些平均值计算得到 micro-P、micro-R 和 micro-F1</li>
+</ul>
+<hr>
+<h3 id="ROC-AUC-ROC"><a href="#ROC-AUC-ROC" class="headerlink" title="ROC / AUC-ROC"></a><font color="#C70039">ROC / AUC-ROC</font></h3><h4 id="ROC-Curve"><a href="#ROC-Curve" class="headerlink" title="ROC Curve"></a><font color="#2874A6">ROC Curve</font></h4><ul>
+<li>很多学习器是为测试样本产生一个实质或概率预测，然后将这个预测值与一个分类阈值进行比较，若大于阈值则分为正类，否则为反类。这样分类过程就相当于在概率值排序中以某个截断点（cut point）将样本分为两部分，前一部分作为正例，后一部分作为反例。</li>
+<li>在不同的任务中，我们可以根据任务需求的不同采用不同的截断点，若更重视 Precision，则应选择排序靠前的位置进行截断；如果更重视 Recall，则应选择排序靠后的位置进行截断。</li>
+<li>因此，排序本身的质量好坏，体现了综合考虑学习器在不同任务下“期望泛化性能”的好坏，ROC 曲线就是从这个角度研究学习器泛化性能的有力工具。</li>
+</ul>
+<p><strong>ROC 的全称是 “受试者工作特征”（Reveiver Operating Characteristic）曲线</strong>，源自二战中用于敌机检测的雷达信号分析技术</p>
+<ul>
+<li>与 P-R 曲线相似，首先，我们根据学习器的预测结果对样例排序</li>
+<li>然后，按此顺序逐个把样本作为正例进行预测，每次计算出两个重要的值，分别作为横纵轴，就得到 ROC 曲线</li>
+<li>ROC 曲线的纵轴是“真正例率”（True Positive Rate, TPR），横轴是“假正例率”（False Positive Rate, FPR）</li>
+</ul>
+<p>$$TPR=\frac{TP}{TP+FN}=Sensitivity$$<br>$$FPR=\frac{FP}{TN+FP}=1-Specificity=1-\frac{TN}{TN+FP}$$</p>
+<p>ROC 曲线的对角线对应于 <strong>随机猜测</strong> 模型，而点 （0,1） 对应于将所有正例排在所有反例之前的 <strong>理想模型</strong></p>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/ROC%20%E6%9B%B2%E7%BA%BF%E4%B8%8E%20AUC.png" alt=""></center>
+
+<p>现实任务中通常是利用有限个样例来绘制 ROC 图，无法产生光滑的 ROC 曲线，只能绘制出 (b) 中的近似 ROC 曲线</p>
+<h4 id="AUC-ROC"><a href="#AUC-ROC" class="headerlink" title="AUC-ROC"></a><font color="#2874A6">AUC-ROC</font></h4><ul>
+<li>进行学习器的比较时，与 P-R 图类似，若一个学习器的曲线被另一个完全包住，则可断定后者优于前者</li>
+<li>若两个学习器的曲线发生交叉，则较为合理的判据为 ROC 曲线下的面积，即 <strong>AUC-ROC（Area Under ROC Curve）</strong></li>
+<li>实际应用中，划分正例和负例的最优阈值为 <strong>ROC 曲线上最接近（0,1）的点</strong></li>
+</ul>
+<hr>
+<h3 id="Bias-Variance-Dilemma"><a href="#Bias-Variance-Dilemma" class="headerlink" title="Bias-Variance Dilemma"></a><font color="#C70039">Bias-Variance Dilemma</font></h3><p><strong>“偏差-方差分解”是解释学习算法泛化性能的一种重要工具</strong>，泛化误差可以分解为偏差、方差和噪声之和。</p>
+<ul>
+<li><strong>偏差</strong>：度量学习算法的期望预测与真实结果的偏离程度，即刻画了学习算法本身的拟合能力</li>
+<li><strong>方差</strong>：度量了同样大小的训练集的变动所导致的的学习性能的变化，即刻画了数据扰动所造成的影响</li>
+<li><strong>噪声</strong>：表达了当前任务中任何学习算法所能达到的期望泛化误差的下限，即刻画了学习问题本身的难度</li>
+</ul>
+<p>偏差-方差分解说明，泛化性能是由<strong>学习算法本身的能力、数据的充分性以及学习任务本身的难度</strong>共同决定的。一般来说，偏差与方差是相互矛盾的。</p>
+<ul>
+<li>在训练不足时，学习器的拟合能力不够强，训练数据的扰动不足以使学习器产生显著变化，此时偏差主导了泛化错误率</li>
+<li>随着训练程度的加深，学习器的拟合能力逐渐增强，训练数据发生的扰动逐渐被学习器学到，方差逐渐主导泛化错误率</li>
+<li>在训练程度充足后，学习器的拟合能力非常强，训练数据发生轻微扰动都会导致学习器发生显著变化，若训练数据自身、非全局的特性也被学习到，则将发生过拟合</li>
+</ul>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/%E6%B3%9B%E5%8C%96%E8%AF%AF%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE%E3%80%81%E5%81%8F%E5%B7%AE%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></center>
+
+
+<hr>
+<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li>周志华. (2016). 机器学习 : = Machine learning. 清华大学出版社.</li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;本文总结讨论了模型（主要针对二分类问题）评估与选择常用方法&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/categories/Machine-Learning/"/>
+    
+    
+      <category term="Prediction Accuracy" scheme="http://jasonlian.tech/tags/Prediction-Accuracy/"/>
+    
+      <category term="Model Selection" scheme="http://jasonlian.tech/tags/Model-Selection/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>连续型变量的预测误差度量方法</title>
+    <link href="http://jasonlian.tech/2017/04/03/ML3-Prediction-Accuracy-1/"/>
+    <id>http://jasonlian.tech/2017/04/03/ML3-Prediction-Accuracy-1/</id>
+    <published>2017-04-03T04:15:16.000Z</published>
+    <updated>2017-04-17T08:50:23.026Z</updated>
+    
+    <content type="html"><![CDATA[<center>本文总结讨论了针对连续型、单变量的预测误差度量方法</center>
+
+<a id="more"></a>
+<hr>
+<p>Let $Y_t$ denote the observation at time $t$ and $F_t$ denote the forecast of $Y_t$. Then define the forecast error $e_t=Y_t-F_t$.</p>
+<h3 id="Scale-Dependent-Measures"><a href="#Scale-Dependent-Measures" class="headerlink" title="Scale-Dependent Measures"></a><font color="#C70039">Scale-Dependent Measures</font></h3><ul>
+<li>These are useful when comparing different methods applied to the same set of data, but should not be used.</li>
+</ul>
+<style>
+table th:nth-of-type(2) {
+    width: 100px;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Measure</th>
+<th style="text-align:center">Acronym</th>
+<th style="text-align:center">Definition</th>
+<th style="text-align:left">Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Mean Square Error</td>
+<td style="text-align:center"><strong>MSE</strong></td>
+<td style="text-align:center">$mean(e_t^2)$</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Root Mean Square Error</td>
+<td style="text-align:center"><strong>RMSE</strong></td>
+<td style="text-align:center">$\sqrt{MSE}$</td>
+<td style="text-align:left">Often, the RMSE is preferred to the MSE as it is on the same scale as the data</td>
+</tr>
+<tr>
+<td style="text-align:center">Mean Absolute Error</td>
+<td style="text-align:center"><strong>MAE</strong></td>
+<td style="text-align:center">$mean(abs(e_t))$</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">Median Absolute Error</td>
+<td style="text-align:center"><strong>MdAE</strong></td>
+<td style="text-align:center">$median(e_t)$</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="Measures-Based-on-Percentage-Errors"><a href="#Measures-Based-on-Percentage-Errors" class="headerlink" title="Measures Based on Percentage Errors"></a><font color="#C70039">Measures Based on Percentage Errors</font></h3><ul>
+<li>The percentage error is given by $p_t=100e_t/Y_t$. Percentage errors have the advantage of being scale-independent, and so are frequently used to compare forecast performance across different data sets.</li>
+<li>These measures have the disadvantage of being infinite or undefined if $Y_t=0$ for any $t$ in the period of interest, and having an extremely skewed distribution when any value of $Y_t$ is close to zero.</li>
+</ul>
+<style>
+table th:nth-of-type(2) {
+    width: 100px;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Measure</th>
+<th style="text-align:center">Acronym</th>
+<th style="text-align:center">Definition</th>
+<th style="text-align:center">Feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Mean Absolute Percentage Error</td>
+<td style="text-align:center"><strong>MAPE</strong></td>
+<td style="text-align:center">$mean(abs(p_t))$</td>
+<td style="text-align:center">MAPE is often substantially larger than the MdAPE due to the skewed distribution when $Y_t$ is close to zero</td>
+</tr>
+<tr>
+<td style="text-align:center">Median Absolute Percentage Error</td>
+<td style="text-align:center"><strong>MdAPE</strong></td>
+<td style="text-align:center">$median(abs(p_t))$</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Root Mean Square Percentage Error</td>
+<td style="text-align:center"><strong>RMSPE</strong></td>
+<td style="text-align:center">$\sqrt{mean(p_t^2)}$</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Root Median Square Percentage Error</td>
+<td style="text-align:center"><strong>RMdSPE</strong></td>
+<td style="text-align:center">$\sqrt{median(p_t^2)}$</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The MAPE and MdAPE also have the disadvantage that they put a heavier penalty on positive errors than on negative errors. This observation led to the use of the so-called <strong>symmetric measures</strong>.</li>
+<li>The problems arising from small values of $Y_t$ may be less severe for sMAPE and sMdAPE. However, even there if $Y_t$ is close to zero, $F_t$ is also likely to be close to zero.</li>
+<li><strong>Measures based on percentage errors are often highly skewed</strong>, and therefore transformations (such as logarithms) can make them more stable.</li>
+</ul>
+<style>
+table th:nth-of-type(2) {
+    width: 100px;
+}
+</style>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Measure</th>
+<th style="text-align:center">Acronym</th>
+<th style="text-align:center">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Symmetric Mean Absolute Percentage Error</td>
+<td style="text-align:center"><strong>sMAPE</strong></td>
+<td style="text-align:center">$mean(200*abs(Y_t-F_t)/(Y_t+F_t))$</td>
+</tr>
+<tr>
+<td style="text-align:center">Symmetric Median Absolute Percentage Error</td>
+<td style="text-align:center"><strong>sMdAPE</strong></td>
+<td style="text-align:center">$median(200*abs(Y_t-F_t)/(Y_t+F_t))$</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="Measures-Based-on-Relative-Errors"><a href="#Measures-Based-on-Relative-Errors" class="headerlink" title="Measures Based on Relative Errors"></a><font color="#C70039">Measures Based on Relative Errors</font></h3><ul>
+<li>An alternative way of scaling is to divide each error by the error obtained using another standard method of forecasting.</li>
+<li>Let $r_t = e_t / e_t^*$ denote the relative error.</li>
+<li>where $e_t^*$ is the forecast error obtained from the benchmark method.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Measure</th>
+<th style="text-align:center">Acronym</th>
+<th style="text-align:center">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Mean Relative Absolute Error</td>
+<td style="text-align:center"><strong>MRAE</strong></td>
+<td style="text-align:center">$mean(abs(r_t))$</td>
+</tr>
+<tr>
+<td style="text-align:center">Median Relative Absolute Error</td>
+<td style="text-align:center"><strong>MdRAE</strong></td>
+<td style="text-align:center">$median(abs(r_t))$</td>
+</tr>
+<tr>
+<td style="text-align:center">Geometric Mean Relative Absoluate Error</td>
+<td style="text-align:center"><strong>GMRAE</strong></td>
+<td style="text-align:center">$gmean(abs(r_t))$</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="Relative-Measures"><a href="#Relative-Measures" class="headerlink" title="Relative Measures"></a><font color="#C70039">Relative Measures</font></h3><ul>
+<li>Rather than use relative errors, one can use relative measures.</li>
+<li>For example, let $MAE_b$ denote the MAE from the benchmark method.</li>
+<li>Then, a relative $MAE$ is given by $RelMAE = MAE/MAE_b$. Similar measures can be defined using RMSEs, MdAEs, MAPEs, etc.</li>
+<li>When $RelMAE &lt; 1$, the proposed method is better than the benchmark method, and when $RelMAE &gt; 1$, the proposed method is worse than the benchmark method.</li>
+</ul>
+<hr>
+<h3 id="Percent-Better"><a href="#Percent-Better" class="headerlink" title="Percent Better"></a><font color="#2874A6">Percent Better</font></h3><ul>
+<li><strong>A related approach is to use the percentage of forecasts for which a given method is more accurate than the benchmark method</strong>. This is often known as <em>Percent Better</em> and can be expressed as $PB(MAE)=100mean(I(MAE&lt;MAE_b))$</li>
+</ul>
+<hr>
+<h3 id="Weighted-Measures"><a href="#Weighted-Measures" class="headerlink" title="Weighted Measures"></a><font color="#2874A6">Weighted Measures</font></h3><p><strong>It is reasonable to assume that every prediction should not be treated equally.</strong></p>
+<ul>
+<li>For instance, we can assign weights in a way that the higher the weight, the higher importance we are placing on more recent data.</li>
+<li>The <strong>weighted Mean Absolute Error</strong> for a recommender system can be computed as following, where <ul>
+<li>$U$ represents the number of users; </li>
+<li>$N_i$ , the number of items predicted for the $i^{th}$ user;</li>
+<li>$r_{i,j}$, the rating given by the $i^{th}$ user to the item $I_j$;</li>
+<li>$p_{i,j}$, the rating predicted by the model;</li>
+<li>$w_{i,j}$ represents the weight associated to this prediction.</li>
+</ul>
+</li>
+</ul>
+<center><img src="http://i65.tinypic.com/2rxcrc5.png" alt=""></center>
+
+<p><strong>There Is Also Another Error Metric ?</strong><br>$$WAPE = 100 \times \frac{sum(abs(Y_t-F_t))}{sum(Y_t)}$$</p>
+<hr>
+<h3 id="Scaled-Errors"><a href="#Scaled-Errors" class="headerlink" title="Scaled Errors"></a><font color="#2874A6">Scaled Errors</font></h3><ul>
+<li><strong>By scaling the error based on the in-sample MAE from the naive (random walk) forecast method. Thus, a scaled error is defined as following</strong>, which is clearly independent of the scale of the data.</li>
+</ul>
+<center><img src="http://i65.tinypic.com/2mzb1o1.png" alt=""></center>
+
+<ul>
+<li>A scaled error is less than one if it arises from a better forecast than the average one-step naive forecast computed in-sample. Conversely, it is greater than one if the forecast is worse than the average one-step naive forecast computed in-sample. </li>
+<li><p>The <strong>Mean Absolute Scaled Error</strong> is simply<br>$$MASE=mean(|q_t|)$$</p>
+</li>
+<li><p>Related measures such as Root Mean Squared Scaled Error (RMSSE) and Median Absolute Scaled<br>Error (MdASE) can be defined analogously.</p>
+</li>
+<li>Of these measures, we prefer MASE as it is less sensitive to outliers and more easily interpreted than RMSSE, and less variable on small samples than MdASE.</li>
+</ul>
+<hr>
+<h3 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a><font color="#C70039">Appendix</font></h3><ul>
+<li><p>MAPE: <a href="https://www.wikiwand.com/en/Mean_absolute_percentage_error" target="_blank" rel="external">Mean Absolute Percentage Error</a>, where $A$ is actual value and $F$ is forecast value.<br>$$MAPE = \frac{100}{n}\sum_{t=1}^n \left | \frac{A_t-F_t}{A_t} \right |$$</p>
+</li>
+<li><p>RMSPE: Root Mean Square Percentage Error<br>$$RMSPE = \sqrt {\frac{1}{n}\sum_{t=1}^n (\frac{A_t-F_t}{A_t})^2}$$</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li>Hyndman, R. J., &amp; Koehler, A. B. (2006). Another look at measures of forecast accuracy. International journal of forecasting, 22(4), 679-688.</li>
+<li>Cleger-Tamayo, S., Fernández-Luna, J. M., &amp; Huete, J. F. (2012, September). <a href="http://ir.ii.uam.es/rue2012/papers/rue2012-cleger-tamayo.pdf" target="_blank" rel="external">On the Use of Weighted Mean Absolute Error in Recommender Systems</a>. In RUE@ RecSys (pp. 24-26).</li>
+<li>WMAPE?, W. (2017). What’s the gaps for the forecast error metrics: MAPE and WMAPE?. Stackoverflow.com. Retrieved 3 April 2017, from <a href="http://stackoverflow.com/questions/12994929/whats-the-gaps-for-the-forecast-error-metrics-mape-and-wmape" target="_blank" rel="external">http://stackoverflow.com/questions/12994929/whats-the-gaps-for-the-forecast-error-metrics-mape-and-wmape</a></li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;本文总结讨论了针对连续型、单变量的预测误差度量方法&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/categories/Machine-Learning/"/>
+    
+    
+      <category term="Prediction Accuracy" scheme="http://jasonlian.tech/tags/Prediction-Accuracy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git 版本控制系统常用命令汇总</title>
+    <link href="http://jasonlian.tech/2017/04/01/Tech3-Git-Command/"/>
+    <id>http://jasonlian.tech/2017/04/01/Tech3-Git-Command/</id>
+    <published>2017-04-01T07:28:53.000Z</published>
+    <updated>2017-04-17T08:50:23.071Z</updated>
+    
+    <content type="html"><![CDATA[<center><img src="http://omsiwk8es.bkt.clouddn.com/Git.jpg" alt=""></center>
+
+<center>Git是目前世界上最先进的分布式版本控制系统（没有之一）</center>
+
+<a id="more"></a>
+<h3 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a><font color="#C70039">创建版本库</font></h3><ul>
+<li>创建版本库：<code>git init</code></li>
+<li>把文件添加到仓库：<code>git add &lt;file&gt;</code></li>
+<li>把文件提交到仓库：<code>git commit -m &lt;message&gt;</code>，-m 是本次提交的说明</li>
+</ul>
+<hr>
+<h3 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a><font color="#C70039">版本管理</font></h3><ul>
+<li>查看仓库状态：<code>git status</code></li>
+<li>查看具体修改内容：<code>git diff &lt;file&gt;</code></li>
+</ul>
+<h4 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a><font color="#2874A6">版本回退</font></h4><p><strong>HEAD 表示当前版本，HEAD^  表示上一个版本，HEAD^^上上一个版本，HEAD~100前100个版本</strong></p>
+<ul>
+<li>查看历史提交记录：<code>git log</code> / <code>git log --pretty=oneline</code></li>
+<li>版本回退：<code>git reset --hard HEAD</code></li>
+<li>退回到上一个版本<code>git reset --hard HEAD^</code>之后运行<code>git log</code>，已经看不到最新版本的记录了</li>
+<li>从新回到最新版本：<code>git reset --hard</code>加上最新版本号的前几位就可以了</li>
+<li>显示每一次命令的id：<code>git reflog</code>，方便在任何时间回到任意一个版本</li>
+<li>强行将旧版本推送并覆盖远程库：<code>git push -f origin master</code></li>
+</ul>
+<h4 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a><font color="#2874A6">工作区和暂存区</font></h4><ul>
+<li>工作区：working directory 项目工作的目录</li>
+<li>版本库：repository 工作区的<code>.git</code>隐藏目录不算工作区，而是 git 的版本库</li>
+<li>git add 命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行git commit就可以一次性把暂存区的所有修改提交到分支。没有 git add 之前，文件不会被追踪，也就是不会出现在 git status 中</li>
+</ul>
+<h4 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a><font color="#2874A6">管理修改</font></h4><ul>
+<li>Git 跟踪管理的是修改，而不是文件</li>
+<li><code>第一次修改 -&gt; git add -&gt; 第二次修改 -&gt; git commit</code>：当你用git add命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，<strong>git commit只负责把暂存区的修改提交了</strong>，也就是第一次的修改被提交了，第二次的修改不会被提交</li>
+<li>查看工作区和版本库里面最新版本的区别：<code>git diff HEAD --readme.txt</code></li>
+<li>撤销提交到暂存区的内容，重新放回工作区：<code>git rm --cache filename</code>，如果是文件夹再加上 <code>-r</code></li>
+</ul>
+<h4 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a><font color="#2874A6">撤销修改</font></h4><ul>
+<li>丢弃<strong>工作区</strong>的修改（add之前）：<code>git checkout -- readme.txt</code></li>
+<li>丢弃<strong>暂存区</strong>的修改（add之后，commit之前）：<code>git reset HEAD readme.txt</code> 回到add之前的状态</li>
+<li><strong>git reset 命令既可以回退版本，也可以把暂存区的修改回退到工作区</strong></li>
+<li><strong>修改撤销总结</strong><ul>
+<li>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令 <code>git checkout -- file</code></li>
+<li>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，<strong>第一步用命令 <code>git reset HEAD file</code>，就回到了场景1，第二步按场景1操作</strong>。</li>
+<li>场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退2.1节，不过前提是没有推送到远程库</li>
+</ul>
+</li>
+</ul>
+<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a><font color="#2874A6">删除文件</font></h4><ul>
+<li>在 git 中，删除也是一个修改操作<ul>
+<li>确实要从版本库中删除该文件，那就用命令<code>git rm file</code>删掉，并且git commit</li>
+<li>如果删错了，因为版本库里还有，所以可以很轻松地把误删的文件恢复到最新版本：<code>git checkout -- test.txt</code>。<strong>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以一键还原</strong>。</li>
+</ul>
+</li>
+<li>批量删除文件：<code>git add --all</code>，然后 commit</li>
+</ul>
+<hr>
+<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a><font color="#C70039">远程仓库</font></h3><ul>
+<li><p>由于你的本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以，需要一点设置：</p>
+<ul>
+<li>创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有<code>id_rsa</code>和<code>id_rsa.pub</code>这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：<strong><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code></strong>，你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。如果一切顺利的话，可以在用户主目录里找到<code>.ssh</code>目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</li>
+<li>登陆GitHub，打开“Account settings”，“SSH Keys”页面：然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容，点“Add Key”，你就应该看到已经添加的Key：</li>
+</ul>
+</li>
+<li><p>为什么GitHub需要SSH Key呢？因为GitHub需要识别出你推送的提交确实是你推送的，而不是别人冒充的，而Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送。当然，GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
+</li>
+</ul>
+<h4 id="添加、删除远程库"><a href="#添加、删除远程库" class="headerlink" title="添加、删除远程库"></a><font color="#2874A6">添加、删除远程库</font></h4><ul>
+<li>登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库</li>
+<li>关联本地仓库与远程仓库：<strong><code>git remote add origin git@github.com:jasonlian/learngit.git</code></strong>。添加后，<strong>远程库的名字就是origin，这是Git默认的叫法，也可以改成别的</strong>，但是origin这个名字一看就知道是远程库</li>
+<li><strong>把本地库的内容推送到远程库</strong>：<code>git push -u origin master</code>，<strong>第一次推送加上<code>-u</code>，以后就不用加了，直接用</strong><code>git push  origin master</code>**</li>
+<li>把本地分支推送到远程库：<strong><code>git push origin &lt;local branch name&gt;:&lt;remote branch name&gt;</code></strong></li>
+<li>删除远程库：<code>git remote rm origin</code></li>
+</ul>
+<h4 id="从远程库克隆"><a href="#从远程库克隆" class="headerlink" title="从远程库克隆"></a><font color="#2874A6">从远程库克隆</font></h4><ul>
+<li>远程库克隆到本地：<code>git clone git@github.com:jasonlian/gitskills.git</code> 或者 <code>https://github.com/jasonlian/gitskills.git</code></li>
+<li>使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https</li>
+</ul>
+<h4 id="从远程仓库获取更新到本地仓库"><a href="#从远程仓库获取更新到本地仓库" class="headerlink" title="从远程仓库获取更新到本地仓库"></a><font color="#2874A6">从远程仓库获取更新到本地仓库</font></h4><ul>
+<li>查看远程仓库：<code>git remote -v</code></li>
+<li>下载远程库的最新版本到本地新建一个 temp 分支：<code>git fetch origin master:temp</code></li>
+<li>比较本地仓库与分支的差异：<code>git diff temp</code></li>
+<li>合并 temp 分支到本地的 master 分支：<code>git merge temp</code></li>
+<li>删除 temp 分支：<code>git branch -d temp</code></li>
+<li><strong>注意</strong>：由于本地仓库可能已经被修改，因此合并远程库的过程中可能会报错，此时有两种处理方法<ul>
+<li>如果要保留本地修改：直接 commit；或者 <code>git stash</code> + <code>git merge temp</code> + <code>git stash pop</code>，含义就是先将本地修改备份，然后合并，然后再将备份恢复，但是这样做修改内容和远程更新可能会存在冲突生成一系列 bug！</li>
+<li>如果想放弃本地修改：<code>git reset --hard</code> + <code>git merge temp</code></li>
+</ul>
+</li>
+<li>另外，fetch 命令和 pull 命令的区别是：<code>pull = fetch + merge</code></li>
+</ul>
+<h4 id="提交到多个远程仓库"><a href="#提交到多个远程仓库" class="headerlink" title="提交到多个远程仓库"></a><font color="#2874A6">提交到多个远程仓库</font></h4><ul>
+<li>在每个远程仓库设置公钥之后，直接在本地的 .git 文件夹下的 config 文件中添加远程仓库的地址：<ul>
+<li><code>[remote &quot;all&quot;]  
+url = https://github.com/abel533/Mapper.git  
+url = https://git.oschina.net/free/Mapper.git</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a><font color="#C70039">分支管理</font></h3><h4 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a><font color="#2874A6">创建与合并分支</font></h4><ul>
+<li>查看分支：<code>git branch</code></li>
+<li>创建分支：<code>git branch &lt;name&gt;</code></li>
+<li>切换分支：<code>git checkout &lt;name&gt;</code></li>
+<li>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></li>
+<li>合并某分支到当前分支：<code>git merge &lt;被合并分支名 name&gt;</code></li>
+<li>删除分支：<code>git branch -d &lt;name&gt;</code></li>
+</ul>
+<h4 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a><font color="#2874A6">解决冲突</font></h4><ul>
+<li>当Git无法自动合并分支时（通常是因为在多个分支上同时有修改），就必须首先解决冲突。解决冲突后，再提交，合并完成。</li>
+<li>用 <code>git log --graph</code> 命令可以看到分支合并图。</li>
+</ul>
+<h4 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a><font color="#2874A6">分支管理策略</font></h4><ul>
+<li>合并分支时，加上–no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并</li>
+<li><code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></li>
+<li>查看分支历史：<code>git log --graph --pretty=oneline --abbrev-commit</code></li>
+<li>创建分支会造成本地查看文件的时候只能同时查看一个分支的文件，不太方便，因此还是使用一个分支吧 </li>
+</ul>
+<h4 id="Bug-分支"><a href="#Bug-分支" class="headerlink" title="Bug 分支"></a><font color="#2874A6">Bug 分支</font></h4><ul>
+<li>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除</li>
+<li>当手头工作没有完成时，先把工作现场 <strong><code>git stash一下</code></strong>，然后去修复bug，修复后，再<strong><code>git stash pop</code></strong>，回到工作现场</li>
+<li>查看 stash：<code>git stash list</code></li>
+<li>恢复指定的 stash：<code>git stash apply stash@{0}</code></li>
+<li><strong>丢弃一个没有被合并过的分支</strong>：<code>git branch -D &lt;name&gt;</code></li>
+</ul>
+<h4 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a><font color="#2874A6"><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013760174128707b935b0be6fc4fc6ace66c4f15618f8d000" target="_blank" rel="external">多人协作</a></font></h4><ul>
+<li>查看远程库信息，使用 <code>git remote -v</code>；</li>
+<li>本地新建的分支如果不推送到远程，对其他人就是不可见的；</li>
+<li>从本地推送分支，使用<code>git push origin branch-name</code>，如果推送失败，先用git pull抓取远程的新提交；</li>
+<li>在本地创建和远程分支对应的分支，使用<code>git checkout -b branch-name origin/branch-name</code>，本地和远程分支的名称最好一致；</li>
+<li>建立本地分支和远程分支的关联，使用<code>git branch --set-upstream branch-name origin/branch-name</code>；</li>
+<li>从远程抓取分支，使用<code>git pull</code>，如果有冲突，要先处理冲突。</li>
+</ul>
+<hr>
+<h3 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a><font color="#C70039">标签管理</font></h3><ul>
+<li><strong>发布一个版本时，我们通常先在版本库中打一个标签（tag）</strong>，这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针</li>
+</ul>
+<h4 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a><font color="#2874A6">创建标签</font></h4><ul>
+<li>命令<code>git tag &lt;name&gt;</code>用于新建一个标签，默认为HEAD，也可以指定一个<strong>commit id</strong>，通过git log查看</li>
+<li><code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息；</li>
+<li>命令<code>git tag</code>可以查看所有标签</li>
+<li>查看标签详细信息：<code>git show &lt;tagname&gt;</code></li>
+</ul>
+<h4 id="操作标签"><a href="#操作标签" class="headerlink" title="操作标签"></a><font color="#2874A6">操作标签</font></h4><ul>
+<li>删除一个本地标签：<code>git tag -d &lt;tagname&gt;</code></li>
+<li>推送一个本地标签：<code>git push origin &lt;tagname&gt;</code></li>
+<li>推送全部未推送过的本地标签：<code>git push origin --tags</code></li>
+<li>删除一个远程标签：<code>git push origin :refs/tags/&lt;tagname&gt;</code></li>
+</ul>
+<hr>
+<h4 id="使用-Github"><a href="#使用-Github" class="headerlink" title="使用 Github"></a><font color="#2874A6">使用 Github</font></h4><ul>
+<li>在GitHub上，可以任意Fork开源仓库；</li>
+<li>自己拥有Fork后的仓库的读写权限；</li>
+<li>可以推送pull request给官方仓库来贡献代码。</li>
+</ul>
+<hr>
+<h3 id="自定义-Git"><a href="#自定义-Git" class="headerlink" title="自定义 Git"></a><font color="#C70039">自定义 Git</font></h3><h4 id="忽略特殊文件"><a href="#忽略特殊文件" class="headerlink" title="忽略特殊文件"></a><font color="#2874A6">忽略特殊文件</font></h4><ul>
+<li>在Git工作区的根目录下创建一个特殊的.gitignore文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件。</li>
+<li>不需要从头写.gitignore文件，GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了。所有配置文件可以直接在线浏览：<a href="https://github.com/github/gitignore" target="_blank" rel="external">https://github.com/github/gitignore</a></li>
+<li>忽略文件的原则是：<ul>
+<li>忽略操作系统自动生成的文件，比如缩略图等；</li>
+<li>忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的.class文件；</li>
+<li>忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件。</li>
+</ul>
+</li>
+<li>忽略某些文件时，需要编写<strong>.gitignore</strong>；</li>
+<li>.gitignore 文件本身要放到版本库里，并且可以对.gitignore做版本管理！</li>
+</ul>
+<h4 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a><font color="#2874A6">配置别名</font></h4><ul>
+<li>用st代替status：<code>git config --global alias.st status</code></li>
+<li>也可以在 <code>.git/config</code> 文件中直接修改</li>
+</ul>
+<hr>
+<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank" rel="external">Github - Git Cheet Sheet</a></li>
+<li><a href="http://iissnan.com/progit/" target="_blank" rel="external">Pro Git 简体中文版. (2017). Iissnan.com. Retrieved 1 April 2017</a></li>
+<li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">Git教程. (2017). Liaoxuefeng.com. Retrieved 1 April 2017</a></li>
+<li><a href="https://git-scm.com/doc" target="_blank" rel="external">Git - Documentation. (2017). Git-scm.com. Retrieved 1 April 2017</a></li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;&lt;img src=&quot;http://omsiwk8es.bkt.clouddn.com/Git.jpg&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;center&gt;Git是目前世界上最先进的分布式版本控制系统（没有之一）&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Technical Tutorial" scheme="http://jasonlian.tech/categories/Technical-Tutorial/"/>
+    
+    
+      <category term="Git" scheme="http://jasonlian.tech/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习中的特征选择方法概述</title>
+    <link href="http://jasonlian.tech/2017/03/13/ML2-Feature-Selection/"/>
+    <id>http://jasonlian.tech/2017/03/13/ML2-Feature-Selection/</id>
+    <published>2017-03-13T08:58:48.000Z</published>
+    <updated>2017-04-17T08:50:23.025Z</updated>
+    
+    <content type="html"><![CDATA[<center><img src="http://omsiwk8es.bkt.clouddn.com/Feature%20Selection.png" alt=""></center>
+
+<center>Feature Selection 是在模型构建过程中选择最相关、最有利于提高预测效果的特征子集的过程</center>
+
+<a id="more"></a>
+<h3 id="什么是特征选择"><a href="#什么是特征选择" class="headerlink" title="什么是特征选择"></a><font color="#C70039">什么是特征选择</font></h3><ul>
+<li>机器学习中的特征选择（Feature Selection）也被称为 Variable Selection 或 Attribute Selection</li>
+<li>虽然特征选择和降维（dimensionality reduction）都是为了减少特征的数量，但是特征选择不同于降维<ul>
+<li>降维是创造特征的新组合，比如 PCA 和 SVD</li>
+<li>特征选择则只是从原有特征中进行选择或排除，不涉及原有特征的转变</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="为什么需要特征选择"><a href="#为什么需要特征选择" class="headerlink" title="为什么需要特征选择"></a><font color="#C70039">为什么需要特征选择</font></h3><ul>
+<li>在训练机器学习模型之前，特征选择是一个很重要的预处理过程，之所以进行特征选择，有以下几点很重要的原因<ul>
+<li>现实任务中经常遇到维数灾难问题，如果能选择出重要特征，再进行后续学习过程，则维数灾难可以大为减轻</li>
+<li>去除不相关的特征往往会降低学习任务的难度，使模型更易理解（比如，使决策树的规则变得更加清晰）</li>
+<li>去除不相关的变量还可以尽量减少过拟合的风险，尤其是在使用人工神经网络或者回归分析等方法时，额外的输入变量会增加模型本身的额外自由度，这些额外的自由度对于模型记住某些细节信息会有所帮助，但对于创建一个稳定性良好、泛化性能强的模型却没有好处，也就是说增加额外的不相关变量会增大过拟合的风险（决策树技术是不存在过拟合风险的一个例子，因为标准的决策树一次只选取一个变量）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="特征选择的两个关键环节"><a href="#特征选择的两个关键环节" class="headerlink" title="特征选择的两个关键环节"></a><font color="#C70039">特征选择的两个关键环节</font></h3><ul>
+<li>想要从初始的特征集合中选取一个包含所有重要信息的特征子集，若没有任何先验知识，则只能遍历所有可能的子集，然而这样在计算上显然不可能，尤其是在特征个数很多的情况下</li>
+<li>可行的方法是：产生一个候选子集，评价它的好坏，基于评价结果产生下一个候选子集，再对其进行评价……持续这一过程，直到找不到更好的子集为止</li>
+<li>这一过程涉及到两个关键环节：如何根据评价结果获取下一个特征子集？如何评价候选特征子集的好坏？</li>
+</ul>
+<h4 id="环节一：子集搜索问题"><a href="#环节一：子集搜索问题" class="headerlink" title="环节一：子集搜索问题"></a><font color="#2874A6">环节一：子集搜索问题</font></h4><ul>
+<li><strong>前向搜索</strong>：第一个环节是“子集搜索”问题，给定特征集合 ${a_1,a_2,…,a_n}$，首先选择一个最优的单特征子集（比如 ${a_2}$）作为第一轮选定集，然后在此基础上加入一个特征，构建包含两个特征的候选子集，选择最优的双特征子集作为第二轮选定子集，依次类推，直到找不到更优的特征子集才停止，这样逐渐增加相关特征的策略成为前向（forward）搜索</li>
+<li><strong>后向搜索</strong>：类似的，如果从完整的特征集合开始，每次尝试去掉一个无关特征，这样逐渐减少特征的策略称为后向（backward）搜索</li>
+<li><strong>双向搜索</strong>：前向后向搜索结合起来，每一轮逐渐增加选定相关特征（这些特征在后续轮中确定不会被去除），同时减少无关特征，这样的策略被称为双向（bidirectional）搜索</li>
+</ul>
+<blockquote>
+<p>上述策略都是贪心策略，仅考虑本轮选定集最优，但若不进行穷举，这样的问题就无法避免</p>
+</blockquote>
+<h4 id="环节二：子集评价问题"><a href="#环节二：子集评价问题" class="headerlink" title="环节二：子集评价问题"></a><font color="#2874A6">环节二：子集评价问题</font></h4><ul>
+<li>确定了搜索策略，接下来就需要对特征子集进行评价，以<strong>离散型属性</strong>的信息增益为例</li>
+<li>给定数据集 $D$，假定 $D$ 中第 $i$ 类样本的比例为 $p_i (i=1,2,…,n)$，则信息熵的定义为:</li>
+</ul>
+<p>$$Ent(D)=-\sum_{i=1}^n p_k log_2 p_k$$</p>
+<ul>
+<li>对于属性子集 $A$，假定根据其取值将 $D$ 分成了 $V$ 个子集 ${D^1,D^2,…,D^V}$，每个子集的样本在 $A$ 上取值相同，于是我们可以计算属性子集 $A$ 的信息增益为：<br>$$Gain(A)=Ent(D) - \sum_{v=1}^V \frac{|D^v|}{|D|} Ent(D^v)$$</li>
+<li>信息增益越大，意味着特征子集 $A$ 包含的有助于分类的信息越多。于是，对于每个特征子集，我们可以基于训练集 $D$ 来计算其信息增益，以此作为评价标准</li>
+<li>主要的 特征/特征子集 评价方法（Selection）如下<center><img src="http://i65.tinypic.com/11ucdo5.png" alt=""></center>
+
+</li>
+</ul>
+<blockquote>
+<p>特征子集搜索机制和子集评价机制相结合，就可以得到特征选择方法。例如，将前向搜索和信息熵相结合就和决策树算法非常相似（不同之处是从第二步开始，决策树是在每个孩子节点的数据集上评价特征，而前向搜索依然是在整个数据集上评价特征）。事实上决策树本身就是一种特征选择的方法，树节点的划分属性组成的集合就是选择出的特征子集！</p>
+</blockquote>
+<hr>
+<h3 id="常见的特征选择方法"><a href="#常见的特征选择方法" class="headerlink" title="常见的特征选择方法"></a><font color="#C70039">常见的特征选择方法</font></h3><ul>
+<li>常用的特征选择方法大致可以分为三类：过滤式（filter）、包裹式（wrapper）和嵌入式（embedding）</li>
+</ul>
+<h4 id="Filter-Method"><a href="#Filter-Method" class="headerlink" title="Filter Method"></a><font color="#2874A6">Filter Method</font></h4><ul>
+<li>过滤式方法<strong>先对数据集进行特征选择，然后再训练模型</strong>，特征选择过程与后续模型训练无关<center><img src="http://i66.tinypic.com/jzf7g9.png" alt=""></center></li>
+<li>Filter 方法常用的特征子集评价标准包括：相关系数、互信息、信息增益等<ul>
+<li>更多方法参见 <a href="https://mlr-org.github.io/mlr-tutorial/devel/html/filter_methods/index.html" target="_blank" rel="external">mlr 包支持的所有 Filter 方法</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="Wrapper-Method"><a href="#Wrapper-Method" class="headerlink" title="Wrapper Method"></a><font color="#2874A6">Wrapper Method</font></h4><ul>
+<li>与过滤式特征选择不考虑后续学习器不同，包裹式特征选择<strong>直接把最终将要使用的模型的性能作为特征子集的评价标准</strong>，也就是说，包裹式特征选择的目的就是为给定的模型选择最有利于其性能的特征子集</li>
+<li>从最终模型的性能来看，包裹式特征选择比过滤式特征选择更好，但需要多次训练模型，因此计算开销较大<center><img src="http://i68.tinypic.com/27ysr38.png" alt=""></center></li>
+<li>Filter 和 Wrapper 方法的区别如下<center><img src="http://i66.tinypic.com/2jsbkk.png" alt=""></center>
+
+</li>
+</ul>
+<h4 id="Embedding-Method"><a href="#Embedding-Method" class="headerlink" title="Embedding Method"></a><font color="#2874A6">Embedding Method</font></h4><ul>
+<li>在前两种特征选择方法中，特征选择过程和模型训练过程是有明显分别的两个过程</li>
+<li>而嵌入式特征选择是<strong>将特征选择过程与模型训练过程融为一体</strong>，两者在同一个优化过程中完成，即在模型训练的过程中自动进行特征选择，嵌入式选择的实例是 LASSO 和 Ridge Regression</li>
+<li>由于决策树算法在构建树的同时也可以看作进行了特征选择，因此嵌入式方法可以追溯到 ID3 算法</li>
+</ul>
+<h3 id="在-R-中实现特征选择"><a href="#在-R-中实现特征选择" class="headerlink" title="在 R 中实现特征选择"></a><font color="#C70039">在 R 中实现特征选择</font></h3><ul>
+<li>R 中的具体实现参见 <a href="https://mlr-org.github.io/mlr-tutorial/devel/html/feature_selection/index.html#filter-methods" target="_blank" rel="external">Filter &amp; Wrapper Method in mlr Package</a></li>
+<li><a href="https://shiring.github.io/machine_learning/2017/01/15/rfe_ga_post?" target="_blank" rel="external">PCA / Feature Important / Correlation / Recursive Feature Elimination / Genetic Algorithm</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>Reference</p>
+<ul>
+<li>周志华. (2016). 机器学习 : = Machine learning. 清华大学出版社.</li>
+<li>Gordon S. Linoff, &amp; Michael J.A. Berry. (2013). 数据挖掘技术. 清华大学出版社.</li>
+<li><a href="http://www.cost-ic0702.org/summercourse/files/feature_selection.pdf" target="_blank" rel="external">A short tutorial on Feature Selection</a></li>
+<li><a href="http://machinelearningmastery.com/an-introduction-to-feature-selection/" target="_blank" rel="external">An Introduction to Feature Selection</a></li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;&lt;img src=&quot;http://omsiwk8es.bkt.clouddn.com/Feature%20Selection.png&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;center&gt;Feature Selection 是在模型构建过程中选择最相关、最有利于提高预测效果的特征子集的过程&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/categories/Machine-Learning/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
+    
+      <category term="Feature Selection" scheme="http://jasonlian.tech/tags/Feature-Selection/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用高斯过程回归进行时间序列预测</title>
+    <link href="http://jasonlian.tech/2017/03/08/ML1-GPR-for-Prediction/"/>
+    <id>http://jasonlian.tech/2017/03/08/ML1-GPR-for-Prediction/</id>
+    <published>2017-03-08T14:12:46.000Z</published>
+    <updated>2017-04-17T08:50:23.023Z</updated>
+    
+    <content type="html"><![CDATA[<center><img src="http://omsiwk8es.bkt.clouddn.com/GPR.png" alt=""></center>
+
+<center>本文介绍了高斯回归的基本概念，并在 R 中利用高斯回归实现对时间序列的预测</center>
+
+<a id="more"></a>
+<h3 id="为什么要用高斯过程回归"><a href="#为什么要用高斯过程回归" class="headerlink" title="为什么要用高斯过程回归"></a><font color="#C70039">为什么要用高斯过程回归</font></h3><ul>
+<li>现实生活中，我们遇到的一个典型问题就是选择合适的模型拟合训练集中自变量 $X$ 与因变量 $y$ 之间的关系，并根据新的自变量 $x$ 来预测对应的因变量 $f$<br>$$p(f|x,X,y)$$</li>
+<li>如果关系足够简单，那么线性回归就能实现很好的预测，但现实情况往往十分复杂，此时，高斯过程回归就为我们提供了拟合复杂关系（quadratic, cubic, or even nonpolynomial）的绝佳方法<center><br>  <img src="http://i68.tinypic.com/25jvbt5.png" alt=""><br></center>
+
+</li>
+</ul>
+<hr>
+<h3 id="什么是高斯过程回归"><a href="#什么是高斯过程回归" class="headerlink" title="什么是高斯过程回归"></a><font color="#C70039">什么是高斯过程回归</font></h3><ul>
+<li>高斯过程可以看做是多维高斯分布向无限维的扩展，我们可以将 $y={y_1,y_2,…,y_n}$ 看作是从 $n$ 维高斯分布中随机抽取的一个点</li>
+<li>对高斯过程的刻画，如同高斯分布一样，也是用均值和方差来刻画。通常在应用高斯过程 $f \sim GP(m,K)$ 的方法中，都是假设均值 $m$ 为零，而协方差函数 $K$ 则是根据具体应用而定</li>
+<li>高斯回归的本质其实就是通过一个映射把自变量从低维空间映射到高维空间（类似于支持向量机中的核函数将低维线性不可分映射为高维线性可分），只需找到合适的核函数，就可以知道 $p(f|x,X,y)$ 的分布，最常用的就是高斯核函数</li>
+</ul>
+<hr>
+<h3 id="高斯过程回归的基本流程"><a href="#高斯过程回归的基本流程" class="headerlink" title="高斯过程回归的基本流程"></a><font color="#C70039">高斯过程回归的基本流程</font></h3><ul>
+<li>再利用高斯过程回归时，不需要指明 $f(x)$ 的具体形式，如线性 $f(x)=mx+c$，或者二次 $f(x)=ax^2+bx+c$ 等具体形式，n 个训练集的观测值 ${y_1,y_2,…,y_n}$ 会被看做多维（n 维）高斯分布中采样出来的一个点</li>
+<li>现在给定训练集 ${x_1,x_2,…,x_n}$ 与对应的观测值 ${y_1,y_2,…,y_n}$，由于观测通常是带噪声的，所以将每个观测 $y$ 建模为某个隐函数 $f(x)$ 加上一个高斯噪声，即<br>$$y=f(x)+N(0,\sigma_n^2)$$</li>
+<li>其中，$f(x)$ 被假定给予一个高斯过程先验，即<br>$$f(x) \sim GP(0,K)$$</li>
+<li>其中协方差函数 $k(x,x’)$ 可以选择不同的单一形式，也可以采用协方差函数的组合形式，由于假设均值为零，因此最后结果的好坏很大程度上取决于协方差函数的选择。不同的协方差函数形式参见<a href="http://www.gaussianprocess.org/gpml/chapters/RW4.pdf" target="_blank" rel="external">这篇文章</a>对 Covariance Functions 的详细介绍。常见的协方差函数如下，参见 <a href="https://www.wikiwand.com/en/Gaussian_process" target="_blank" rel="external">Wikipedia-Gaussian Process</a></li>
+</ul>
+<center><img src="http://i64.tinypic.com/zk0adg.png" alt=""></center>
+
+<ul>
+<li>根据高斯分布的性质以及测试集和训练集数据来自同一分布的特点，可以得到训练数据与测试数据的联合分布为高维的高斯分布，有了联合分布就可以比较容易地求出预测数据 $y^\ast$ 的条件分布 $p(y^\ast|y)$，对 $y^\ast$ 的估计，我们就用分布的均值来作为其估计值，具体推导参见 Reference</li>
+</ul>
+<hr>
+<h3 id="利用高斯过程进行时间序列预测"><a href="#利用高斯过程进行时间序列预测" class="headerlink" title="利用高斯过程进行时间序列预测"></a><font color="#C70039">利用高斯过程进行时间序列预测</font></h3><ul>
+<li>R 中 <code>kernlab</code> 包的 <code>gausspr</code> 函数可以进行高斯回归，并实现预测，以下面这个包含 46 个月的时间序列 ts7 为例</li>
+</ul>
+<center><img src="http://i66.tinypic.com/rtfiuq.png" alt=""></center>
+
+<h4 id="利用趋势回归并进行预测"><a href="#利用趋势回归并进行预测" class="headerlink" title="利用趋势回归并进行预测"></a><font color="#2874A6">利用趋势回归并进行预测</font></h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(kernlab)</span></span></div><div class="line"><span class="function"><span class="title">library</span><span class="params">(ggplot2)</span></span></div><div class="line"><span class="function"><span class="title">library</span><span class="params">(gplots)</span></span></div><div class="line"><span class="function"><span class="title">library</span><span class="params">(forecast)</span></span></div><div class="line"><span class="function"><span class="title">library</span><span class="params">(data.table)</span></span></div><div class="line"><span class="function"><span class="title">library</span><span class="params">(tidyr)</span></span></div><div class="line"><span class="function"><span class="title">library</span><span class="params">(plotly)</span></span></div><div class="line"></div><div class="line">temp &lt;- data.table(ts7)</div><div class="line">fit &lt;- gausspr(demand~t, data=temp)</div><div class="line">temp<span class="variable">$fitted</span> &lt;- predict(fit, temp[,.(t)])</div><div class="line"><span class="function"><span class="title">ggplot</span><span class="params">(temp, aes(x=year_month, group=<span class="number">1</span>)</span></span>) </div><div class="line">    + geom_line(aes(y=demand, col=<span class="string">"demand"</span>), size=<span class="number">1</span>) </div><div class="line">    + geom_line(aes(y=fitted, col=<span class="string">"fitted"</span>), size=<span class="number">1</span>) </div><div class="line">    + theme_bw() + theme(axis<span class="selector-class">.text</span><span class="selector-class">.x</span>=element_text(angle=<span class="number">45</span>,hjust=<span class="number">1</span>,vjust=<span class="number">1</span>)) </div><div class="line">    + scale_x_discrete(breaks=temp<span class="variable">$year_month</span>[seq(<span class="number">2</span>,<span class="number">44</span>,<span class="number">3</span>)])</div></pre></td></tr></table></figure>
+<ul>
+<li><p>只利用趋势项进行高斯回归的拟合效果如下</p>
+<center><img src="http://i67.tinypic.com/2v2ceas.png" alt=""></center>
+</li>
+<li><p>然后用过去三年的时间序列作为训练集对未来一个月的需求进行循环预测</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="title">temp1</span> &lt;- <span class="class"><span class="keyword">data</span>.table(<span class="title">ts7</span>, <span class="title">fitted</span>=0)</span></div><div class="line"><span class="title">for</span> (k <span class="keyword">in</span> <span class="number">0</span>:<span class="number">9</span>)&#123;</div><div class="line">  train &lt;- temp1[(<span class="number">1</span>+k):(<span class="number">36</span>+k),<span class="number">3</span>:<span class="number">4</span>]</div><div class="line">  fit &lt;- gausspr(demand~t, <span class="class"><span class="keyword">data</span>=train)</span></div><div class="line">  temp1[(<span class="number">37</span>+k), <span class="string">"fitted"</span>] &lt;- predict(fit, temp1[(<span class="number">37</span>+k),.(t)])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="利用趋势-季节回归并进行预测"><a href="#利用趋势-季节回归并进行预测" class="headerlink" title="利用趋势+季节回归并进行预测"></a><font color="#2874A6">利用趋势+季节回归并进行预测</font></h4><ul>
+<li>首先，去除趋势之后，检查去趋势之后的时间序列是否具有明显的季节性，并找出 CV 最小的前三个季节<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">temp$demand_detrend <span class="tag">&lt;<span class="name">-</span> <span class="attr">temp</span>$<span class="attr">demand</span> <span class="attr">-</span> <span class="attr">temp</span>$<span class="attr">fitted</span></span></div><div class="line"><span class="attr">ggplot</span>(<span class="attr">temp</span>, <span class="attr">aes</span>(<span class="attr">x</span>=<span class="string">year_month,</span> <span class="attr">group</span>=<span class="string">1))</span> + <span class="attr">geom_line</span>(<span class="attr">aes</span>(<span class="attr">y</span>=<span class="string">demand,</span> <span class="attr">col</span>=<span class="string">"demand"</span>), <span class="attr">size</span>=<span class="string">1)</span> + <span class="attr">geom_line</span>(<span class="attr">aes</span>(<span class="attr">y</span>=<span class="string">fitted,</span> <span class="attr">col</span>=<span class="string">"fitted"</span>), <span class="attr">size</span>=<span class="string">1)</span> + <span class="attr">geom_line</span>(<span class="attr">aes</span>(<span class="attr">y</span>=<span class="string">demand_detrend,</span> <span class="attr">col</span>=<span class="string">"demand_detrend"</span>)) + <span class="attr">theme_bw</span>() + <span class="attr">theme</span>(<span class="attr">axis.text.x</span>=<span class="string">element_text(angle</span>=<span class="string">45,hjust</span>=<span class="string">1,vjust</span>=<span class="string">1))</span> + <span class="attr">scale_x_discrete</span>(<span class="attr">breaks</span>=<span class="string">temp$year_month[seq(2,44,3)])</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<center><img src="http://i67.tinypic.com/2z6v395.png" alt=""></center>
+
+<ul>
+<li>季节性雷达图<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ggseasonplot(<span class="name">temp</span>$demand_detrend, polar=TRUE) + ggtitle(<span class="string">"Seasonal Plot"</span>) + geom_line(<span class="name">size=1</span>) + theme_bw()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<center><img src="http://i63.tinypic.com/fu0wtv.png" alt=""></center>
+
+<ul>
+<li>季节性箱形图<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ggplot(<span class="name">temp</span>, aes(<span class="name">x=month</span>, y=demand_detrend)) + geom_boxplot() + theme_bw()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<center><img src="http://i67.tinypic.com/zu5vgk.png" alt=""></center>
+
+<ul>
+<li><p>获取季节 cv 最小的前 3 个季节分别是12月、2月、10月</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">as.numeric(temp[<span class="string">, .(cv=sd(demand_detrend)/mean(abs(demand_detrend))), by=month</span>][<span class="symbol">order(cv)</span>][<span class="string">1:3,month</span>])</div><div class="line"><span class="section"># [1] 12  2 10</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>加入全部 12 个月作为季节性之后，再对最后的 10 个月进行循环预测</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="title">temp2</span> &lt;- <span class="class"><span class="keyword">data</span>.table(<span class="title">ts7</span>, <span class="title">fitted</span>=0)</span></div><div class="line"><span class="title">for</span> (k <span class="keyword">in</span> <span class="number">0</span>:<span class="number">9</span>)&#123;</div><div class="line">  train &lt;- temp2[(<span class="number">1</span>+k):(<span class="number">36</span>+k),<span class="number">3</span>:<span class="number">15</span>]</div><div class="line">  fit &lt;- gausspr(demand~., <span class="class"><span class="keyword">data</span>=train)</span></div><div class="line">  temp2[(<span class="number">37</span>+k), <span class="string">"fitted"</span>] &lt;- predict(fit, temp2[(<span class="number">37</span>+k),<span class="number">4</span>:<span class="number">15</span>])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="预测结果比较"><a href="#预测结果比较" class="headerlink" title="预测结果比较"></a><font color="#2874A6">预测结果比较</font></h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">temp &lt;- data.frame(temp1[,c(<span class="number">1</span>:<span class="number">3</span>,<span class="number">16</span>)], temp2[,<span class="number">16</span>])</div><div class="line"><span class="function"><span class="title">colnames</span><span class="params">(temp)</span></span>[<span class="number">3</span>:<span class="number">5</span>] &lt;- c(<span class="string">"Actual_demand"</span>,<span class="string">"Predict_trend"</span>,<span class="string">"Predict_trend+seasonal"</span>)</div><div class="line">temp[<span class="number">4</span>:<span class="number">5</span>] &lt;- round(temp[<span class="number">4</span>:<span class="number">5</span>], <span class="number">2</span>)</div><div class="line">temp[temp==<span class="number">0</span>] &lt;- NA</div><div class="line"></div><div class="line">temp &lt;- gather(temp[,-<span class="number">2</span>], key=<span class="string">"Series"</span>, value=<span class="string">"value"</span>, -year_month)</div><div class="line"></div><div class="line"><span class="selector-tag">p</span> &lt;- ggplot(temp, aes(x=year_month, y=value, group=Series, col=Series)) </div><div class="line">    + geom_line(size=<span class="number">1</span>) + geom_point() + theme_bw() </div><div class="line">    + theme(axis<span class="selector-class">.text</span><span class="selector-class">.x</span>=element_text(angle=<span class="number">45</span>,hjust=<span class="number">1</span>,vjust=<span class="number">1</span>)) </div><div class="line">    + scale_x_discrete(breaks=temp<span class="variable">$year_month</span>[seq(<span class="number">2</span>,<span class="number">44</span>,<span class="number">3</span>)])</div><div class="line"></div><div class="line">postlink &lt;- plotly_POST(<span class="selector-tag">p</span>, filename = <span class="string">"GPR Prediction Example"</span>)</div><div class="line">postlink</div></pre></td></tr></table></figure>
+<center><br>  <iframe width="900" height="500" frameborder="0" scrolling="no" src="//plot.ly/~JasonLian/11.embed"></iframe><br></center>
+
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><font color="#C70039">总结</font></h3><ul>
+<li>当随机变量呈现明显的非线性趋势时，高斯过程回归能够很好地预测线性预测的不足</li>
+<li>季节性并不一定能够提高预测效果，当某些月份的需求变动幅度很大时，加入季节虚拟变量反而会增大预测误差</li>
+<li>高斯过程不仅能用于回归预测，还能用于解决分类问题，有兴趣的读者请自行探究</li>
+</ul>
+<hr>
+<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a href="https://www.robots.ox.ac.uk/~mebden/reports/GPtutorial.pdf" target="_blank" rel="external">Gaussian Process for Regression_A quick introduction</a></li>
+<li><a href="http://www.cs.toronto.edu/~hinton/csc2515/notes/gp_slides_fall08.pdf" target="_blank" rel="external">Introduction to Gaussian Processes</a></li>
+<li><a href="http://www.gaussianprocess.org/" target="_blank" rel="external">The Gaussian Processes Web Site</a></li>
+<li><a href="https://rdrr.io/cran/kernlab/man/gausspr.html" target="_blank" rel="external">gausspr: Gaussian processes for regression and classification</a></li>
+<li><a href="https://rdrr.io/cran/kernlab/man/predict.gausspr.html" target="_blank" rel="external">predict.gausspr: predict method for Gaussian Processes object</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/24388992" target="_blank" rel="external">高斯过程回归？效果意想不到的好</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_5033f3b40102vts4.html" target="_blank" rel="external">高斯过程回归简介_学习笔记</a></li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;&lt;img src=&quot;http://omsiwk8es.bkt.clouddn.com/GPR.png&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;center&gt;本文介绍了高斯回归的基本概念，并在 R 中利用高斯回归实现对时间序列的预测&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/categories/Machine-Learning/"/>
+    
+    
+      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
+    
+      <category term="Prediction" scheme="http://jasonlian.tech/tags/Prediction/"/>
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
+    
+      <category term="Gaussian Regression" scheme="http://jasonlian.tech/tags/Gaussian-Regression/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 R 中使用 Plotly 创建交互式动态图表</title>
+    <link href="http://jasonlian.tech/2017/03/06/Data1-Plotly/"/>
+    <id>http://jasonlian.tech/2017/03/06/Data1-Plotly/</id>
+    <published>2017-03-06T11:19:34.000Z</published>
+    <updated>2017-04-17T08:50:23.017Z</updated>
+    
+    <content type="html"><![CDATA[<center><img src="http://omsiwk8es.bkt.clouddn.com/Plotly.png" alt=""></center>
+
+<center><a href="https://plot.ly/" target="_blank" rel="external">Plotly</a> 是一款在线分析和数据可视化工具，并为 Python、R、MATLAB 等主流编程语言提供 API 接口</center>
+
+<a id="more"></a>
+<h3 id="在-R-中安装-Plotly"><a href="#在-R-中安装-Plotly" class="headerlink" title="在 R 中安装 Plotly"></a><font color="#C70039">在 R 中安装 Plotly</font></h3><ul>
+<li>通过 CRAN 安装：<code>install.packages(&quot;plotly&quot;)</code></li>
+<li>通过 Github 安装最新版本：<code>devtools::install_github(&quot;ropensci/plotly&quot;)</code></li>
+</ul>
+<hr>
+<h3 id="用-plot-ly-绘制离线图表"><a href="#用-plot-ly-绘制离线图表" class="headerlink" title="用 plot_ly 绘制离线图表"></a><font color="#C70039">用 plot_ly 绘制离线图表</font></h3><ul>
+<li>通过 plot_ly() 函数直接绘制离线动态图表，然后在 Rstudio Viewer 中查看<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(plotly)</span></span></div><div class="line"><span class="function"><span class="title">plot_ly</span><span class="params">(midwest, x = ~percollege, color = ~state, type = <span class="string">"box"</span>)</span></span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="生成在线动态图表"><a href="#生成在线动态图表" class="headerlink" title="生成在线动态图表"></a><font color="#C70039">生成在线动态图表</font></h3><ul>
+<li>在 <a href="https://plot.ly/" target="_blank" rel="external">Plotly</a> 的官网注册一个账号</li>
+<li><p>在<a href="https://plot.ly/settings/api" target="_blank" rel="external">设置</a>中生成一个 API Key，并在 R 中进行如下设置</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">Sys</span><span class="selector-class">.setenv</span>(<span class="string">"plotly_username"</span>=<span class="string">"your_plotly_username"</span>)</div><div class="line"><span class="selector-tag">Sys</span><span class="selector-class">.setenv</span>(<span class="string">"plotly_api_key"</span>=<span class="string">"your_api_key"</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>为了避免每次打开一个 R Session 都要重新进行以上配置，可以<strong>将这两行代码添加到 R 安装目录的 <code>\etc\Rprofile.site</code> 文件中</strong>，这样每次开启 R 就会自动进行配置</p>
+</li>
+<li>设置好之后，通过 <code>plotly_POST</code> 命令将绘图上传至 Plotly 网站，效果参见此<a href="https://plot.ly/~JasonLian/7#plot" target="_blank" rel="external">链接</a><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span> &lt;- plot_ly(midwest, x = ~percollege, <span class="attribute">color</span> = ~state, type = <span class="string">"box"</span>)</div><div class="line"><span class="function"><span class="title">plotly_POST</span><span class="params">(p, filename = <span class="string">"midwest-boxplots"</span>)</span></span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="将-Plotly-嵌入-Html-中"><a href="#将-Plotly-嵌入-Html-中" class="headerlink" title="将 Plotly 嵌入 Html 中"></a><font color="#C70039">将 Plotly 嵌入 Html 中</font></h3><ul>
+<li>点击 Plotly 图表上的分享按钮，复制 Embed 下的 iframe 或 Html 代码，嵌入网页源码即可，或者直接写入 markdown 中</li>
+<li>居中图片使用 <code>&lt;center&gt;</code> 标签，宽度和高度也可以在 iframe 中直接设置，效果如下<center><br><iframe width="800" height="500" frameborder="0" scrolling="no" src="//plot.ly/~JasonLian/7.embed"></iframe><br></center></li>
+<li>iframe 的配置参数如下表<br><img src="http://help.plot.ly/static/images/embed-plotly-graphs/Options.png" alt=""></li>
+</ul>
+<hr>
+<h3 id="将-ggplot2-的绘图转换成-Plotly"><a href="#将-ggplot2-的绘图转换成-Plotly" class="headerlink" title="将 ggplot2 的绘图转换成  Plotly"></a><font color="#C70039">将 ggplot2 的绘图转换成  Plotly</font></h3><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">library(ggplot2)</div><div class="line">library(plotly)</div><div class="line"></div><div class="line">set.seed(<span class="number">100</span>)</div><div class="line">d &lt;- diamonds[sample(nrow(diamonds), <span class="number">1000</span>), ]</div><div class="line"></div><div class="line">p &lt;- ggplot(<span class="attr">data</span> = d, aes(<span class="attr">x</span> = carat, <span class="attr">y</span> = price)) +</div><div class="line">  geom_point(aes(<span class="attr">text</span> = paste(<span class="string">"Clarity:"</span>, clarity)), <span class="attr">size</span> = .<span class="number">5</span>) +</div><div class="line">  geom_smooth(aes(<span class="attr">colour</span> = cut, <span class="attr">fill</span> = cut)) + facet_wrap(~ cut)</div><div class="line"></div><div class="line">p &lt;- ggplotly(p)</div><div class="line"></div><div class="line"><span class="comment"># Create a shareable link to your chart</span></div><div class="line"><span class="attr">chart_link</span> = plotly_POST(p, <span class="attr">filename="ggplot2-plotly-example")</span></div><div class="line">chart_link</div></pre></td></tr></table></figure>
+<p><center><br>  <iframe width="800" height="500" frameborder="0" scrolling="no" src="//plot.ly/~JasonLian/9.embed"></iframe><br></center>&gt;</p>
+<hr>
+<h3 id="将-Plotly-D3-js-插入-Powerpoint-Excel"><a href="#将-Plotly-D3-js-插入-Powerpoint-Excel" class="headerlink" title="将 Plotly D3.js 插入 Powerpoint/Excel"></a><font color="#C70039">将 Plotly D3.js 插入 Powerpoint/Excel</font></h3><ul>
+<li>通过 Office 应用商店安装 <a href="https://store.office.com/zh-cn/app.aspx?assetid=WA104379485&amp;ui=zh-CN&amp;rs=zh-CN&amp;ad=CN&amp;appredirect=false" target="_blank" rel="external">Plotly D3.js</a> 插件</li>
+<li>在 Powerpoint/Excel 中通过加载项插入 Plotly 图标的 https 分享链接即可</li>
+</ul>
+<hr>
+<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a href="https://plot.ly/r/getting-started/#getting-started-with-plotly-for-r" target="_blank" rel="external">Get started with plotly for R</a></li>
+<li><a href="http://help.plot.ly/embed-graphs-in-websites/" target="_blank" rel="external">How to Embed Graphs in a Blog or Website</a></li>
+<li><a href="https://plot.ly/ggplot2/#basic-charts" target="_blank" rel="external">Plotly ggplot2 Library</a></li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;&lt;img src=&quot;http://omsiwk8es.bkt.clouddn.com/Plotly.png&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;center&gt;&lt;a href=&quot;https://plot.ly/&quot;&gt;Plotly&lt;/a&gt; 是一款在线分析和数据可视化工具，并为 Python、R、MATLAB 等主流编程语言提供 API 接口&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Data Science" scheme="http://jasonlian.tech/categories/Data-Science/"/>
+    
+    
+      <category term="Plotly" scheme="http://jasonlian.tech/tags/Plotly/"/>
+    
+      <category term="Visualization" scheme="http://jasonlian.tech/tags/Visualization/"/>
+    
+      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
+    
+      <category term="ggplot2" scheme="http://jasonlian.tech/tags/ggplot2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo 博客的 Next 主题配置</title>
+    <link href="http://jasonlian.tech/2017/02/22/Tech2-Windows-Hexo2/"/>
+    <id>http://jasonlian.tech/2017/02/22/Tech2-Windows-Hexo2/</id>
+    <published>2017-02-22T04:45:30.000Z</published>
+    <updated>2017-04-17T08:50:23.064Z</updated>
+    
+    <content type="html"><![CDATA[<center><img src="http://omsiwk8es.bkt.clouddn.com/Next.png" alt=""></center>
+
+<center>NexT 主题拥有丰富而简单的配置，结合第三方服务，可以方便快捷地打造个性化的 Hexo 博客</center>
+
+<a id="more"></a>
+<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a><font color="#C70039">更换主题</font></h3><ul>
+<li>下载 Github 上的主题：<code>git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</code></li>
+<li>修改配置文件：通过修改 <code>_config.yml</code> 文件中的 <code>theme: yilia</code> 更改主题</li>
+<li>查看主题效果：<code>hexo server</code>，注意每次更改预览之前必须先使用 <code>hexo generate</code> 生成网页</li>
+</ul>
+<hr>
+<h3 id="设置阅读全文"><a href="#设置阅读全文" class="headerlink" title="设置阅读全文"></a><font color="#C70039">设置阅读全文</font></h3><ul>
+<li>推荐方法：通过在文章中手动添加 <code>&lt;!-- more --&gt;</code> 来进行截断</li>
+<li>也可以在主题配置文件中通入如下代码自动生成摘要<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">auto_excerpt:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">false</span></div><div class="line"><span class="attr">  length:</span> <span class="number">150</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="添加统计功能"><a href="#添加统计功能" class="headerlink" title="添加统计功能"></a><font color="#C70039">添加统计功能</font></h3><ul>
+<li><p>添加文章阅读量统计</p>
+<ul>
+<li>在 <a href="https://leancloud.cn/dashboard/applist.html#/apps" target="_blank" rel="external">LeanCloud</a> 中创建名为 Counter 的应用</li>
+<li>然后将应用的 App ID 和 App Key 填入主题配置文件中，重新生成部署即可</li>
+<li>注意一定要将自己的网址添加到：设置-安全中心-<strong>安全域名</strong></li>
+</ul>
+</li>
+<li><p>添加站点浏览量统计: 将主题设置文件中的 <code>busuanzi_count</code> 设置为 <code>enable: true</code>，然后分别进行以下配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="attr">busuanzi_count:</span></div><div class="line"><span class="comment"># count values only if the other configs are false</span></div><div class="line"><span class="attr">enable:</span> <span class="literal">true</span></div><div class="line"><span class="comment"># custom uv span for the whole site</span></div><div class="line"><span class="attr">site_uv:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  site_uv_header:</span> &lt;i class=<span class="string">"fa fa-user"</span>&gt; 本站访客数&lt;/i<span class="string">&gt;</span></div><div class="line"><span class="attr">  site_uv_footer:</span> 人次</div><div class="line"><span class="comment"># custom pv span for the whole site</span></div><div class="line"><span class="attr">site_pv:</span> <span class="literal">true</span></div><div class="line"><span class="attr">  site_pv_header:</span> &lt;i class=<span class="string">"fa fa-eye"</span>&gt; 本站总访问量&lt;/i<span class="string">&gt;</span></div><div class="line"><span class="attr">  site_pv_footer:</span> 次</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="自定义站点内容搜索"><a href="#自定义站点内容搜索" class="headerlink" title="自定义站点内容搜索"></a><font color="#C70039">自定义站点内容搜索</font></h3><ul>
+<li>首先在博客根目录安装插件 <code>npm install hexo-generator-searchdb --save</code></li>
+<li><p>然后在站点配置文件添加如下代码</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">search:</span></div><div class="line"><span class="symbol">  path:</span> search.xml</div><div class="line"><span class="symbol">  field:</span> post</div><div class="line"><span class="symbol">  format:</span> html</div><div class="line"><span class="symbol">  limit:</span> <span class="number">10000</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>最后，编辑主题配置文件，启动本地搜索功能</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Local search</span></div><div class="line"><span class="attr">local_search:</span></div><div class="line"><span class="attr">  enable:</span> <span class="literal">true</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="设置-RSS"><a href="#设置-RSS" class="headerlink" title="设置 RSS"></a><font color="#C70039">设置 RSS</font></h3><ul>
+<li>首先安装插件 <code>npm install hexo-generator-feed --save</code></li>
+<li>然后在主题配置文件中插入如下代码<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">feed:</span></div><div class="line"><span class="symbol">  type:</span> atom</div><div class="line"><span class="symbol">  path:</span> atom.xml</div><div class="line"><span class="symbol">  limit:</span> <span class="number">20</span></div><div class="line"><span class="symbol">  hub:</span></div><div class="line"><span class="symbol">  content:</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="搜索引擎优化"><a href="#搜索引擎优化" class="headerlink" title="搜索引擎优化"></a><font color="#C70039">搜索引擎优化</font></h3><ul>
+<li>Google Webmaster Tools<ul>
+<li>登陆<a href="https://www.google.com/webmasters/tools/" target="_blank" rel="external">Google 的站点管理工具</a>，导航到验证方法，选择 HTML Tag，将会获取一段代码 <code>&lt;meta  name=&quot;google-site-verification&quot;  content=&quot;XXXXXXXXXXXXXXXXXXXXXXX&quot; /&gt;</code></li>
+<li>将 content 里面的内容复制出来，并在主题配置文件中新增字段 <code>google_site_verification: XXXXXXXXXXXXXXXXXXXXXXX</code>，重新编译发布后，到 Google 站点管理工具进行验证即可</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>百度站长工具<ul>
+<li>进入<a href="http://zhanzhang.baidu.com/dashboard/index" target="_blank" rel="external">百度站长工具</a>——官网保护——添加网站</li>
+<li>然后获取 HTML 标签，参加 Google Webmaster 将相关标签加入主题配置文件中 <code>baidu_site_verification: XXXXXX</code></li>
+<li>如果网站验证出现 301 错误，这是因为 https 加密导致重定向失败，此时必须使用 CNAME 验证解析，具体方法是在万网中添加解析，记录类型选择 CNAME，主机记录为百度验证码加域名，记录值为 zz.baidu.com，然后提交即可</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="为文章添加阴影效果"><a href="#为文章添加阴影效果" class="headerlink" title="为文章添加阴影效果"></a><font color="#C70039">为文章添加阴影效果</font></h3><ul>
+<li>将 <code>themes/next/source/css/_schemes/Mist/_posts-expanded.styl</code> 文件中的 <code>.post{}</code> 修改为：<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.posts-expand</span> &#123;</div><div class="line">  ...</div><div class="line">  <span class="selector-class">.post</span> &#123;</div><div class="line">    <span class="attribute">margin-top</span>: <span class="number">60px</span>;</div><div class="line">    <span class="attribute">margin-bottom</span>: <span class="number">60px</span>;</div><div class="line">    <span class="attribute">padding</span>: <span class="number">25px</span>;</div><div class="line">    -webkit-<span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> rgba(<span class="number">202</span>, <span class="number">203</span>, <span class="number">203</span>, .<span class="number">8</span>);</div><div class="line">    -moz-<span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> rgba(<span class="number">202</span>, <span class="number">203</span>, <span class="number">204</span>, .<span class="number">8</span>);</div><div class="line">   &#125;</div><div class="line">   ...   </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="内置标签"><a href="#内置标签" class="headerlink" title="内置标签"></a><font color="#C70039">内置标签</font></h3><h4 id="文本居中的引用"><a href="#文本居中的引用" class="headerlink" title="文本居中的引用"></a><font color="#2874A6">文本居中的引用</font></h4><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --&gt;</span></span></div><div class="line"><span class="comment">&lt;!-- 其中 class="blockquote-center" 是必须的 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">"blockquote-center"</span>&gt;</span>blah blah blah<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 标签 方式，要求版本在0.4.5或以上 --&gt;</span></div><div class="line"><span class="template-tag">&#123;% <span class="name">centerquote</span> %&#125;</span><span class="xml">blah blah blah</span><span class="template-tag">&#123;% <span class="name">endcenterquote</span> %&#125;</span><span class="xml"></span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 标签别名 --&gt;</span></div><div class="line"><span class="template-tag">&#123;% <span class="name">cq</span> %&#125;</span><span class="xml"> blah blah blah </span><span class="template-tag">&#123;% <span class="name">endcq</span> %&#125;</span><span class="xml"></span></div></pre></td></tr></table></figure>
+<center><img src="http://theme-next.iissnan.com/uploads/tags/blockquote-center.png" alt=""></center>
+
+<h4 id="突破容器宽度限制的图片"><a href="#突破容器宽度限制的图片" class="headerlink" title="突破容器宽度限制的图片"></a><font color="#2874A6">突破容器宽度限制的图片</font></h4><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="comment">&lt;!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --&gt;</span></span></div><div class="line"><span class="comment">&lt;!-- 其中 class="full-image" 是必须的 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/image-url"</span> <span class="attr">class</span>=<span class="string">"full-image"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 标签 方式，要求版本在0.4.5或以上 --&gt;</span></div><div class="line"><span class="template-tag">&#123;% <span class="name">fullimage</span> /image-url, alt, title %&#125;</span><span class="xml"></span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 别名 --&gt;</span></div><div class="line"><span class="template-tag">&#123;% <span class="name">fi</span> /image-url, alt, title %&#125;</span><span class="xml"></span></div></pre></td></tr></table></figure>
+<p><img src="http://theme-next.iissnan.com/uploads/tags/full-image.jpg" class="full-image"></p>
+<h4 id="Bootstrap-Callout"><a href="#Bootstrap-Callout" class="headerlink" title="Bootstrap Callout"></a><font color="#2874A6">Bootstrap Callout</font></h4><p>class_name 可以是如下几种:<br><figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"></span><span class="template-tag">&#123;% <span class="name">note</span> class_name %&#125;</span><span class="xml"> Content </span><span class="template-tag">&#123;% <span class="name">endnote</span> %&#125;</span><span class="xml"></span></div></pre></td></tr></table></figure></p>
+<div class="note default"><p>default </p>
+</div>
+<div class="note primary"><p>primary </p>
+</div>
+<div class="note success"><p>success </p>
+</div>
+<div class="note info"><p>info </p>
+</div>
+<div class="note warning"><p>warning </p>
+</div>
+<div class="note danger"><p>danger </p>
+</div>
+<hr>
+<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><strong>Reference</strong></h3><ul>
+<li><strong><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">Next 主题官网</a></strong></li>
+<li><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">Next 主题 Github 主页</a></li>
+<li><a href="https://www.zhihu.com/question/24422335" target="_blank" rel="external">Hexo 主题推荐 知乎</a></li>
+<li><a href="http://www.imooc.com/article/9707?block_id=tuijian_wz" target="_blank" rel="external">Hexo 多终端同步管理</a></li>
+<li><a href="https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="external">利用 Leancloud 添加文章阅读量统计功能</a></li>
+<li><a href="http://www.cylong.com/blog/2016/04/25/hexo-next-duoshuo/" target="_blank" rel="external">Hexo 集成多说评论 + 多说分享 + 美化多说</a></li>
+<li><a href="http://jinfang.life/posts/90b55d7a/" target="_blank" rel="external">为文章添加阴影效果</a></li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;&lt;img src=&quot;http://omsiwk8es.bkt.clouddn.com/Next.png&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;center&gt;NexT 主题拥有丰富而简单的配置，结合第三方服务，可以方便快捷地打造个性化的 Hexo 博客&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Technical Tutorial" scheme="http://jasonlian.tech/categories/Technical-Tutorial/"/>
+    
+    
+      <category term="Hexo" scheme="http://jasonlian.tech/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 Windows 上利用 Github Page 快速搭建 Hexo 博客</title>
+    <link href="http://jasonlian.tech/2017/02/18/Tech1-Windows-Hexo1/"/>
+    <id>http://jasonlian.tech/2017/02/18/Tech1-Windows-Hexo1/</id>
+    <published>2017-02-17T16:04:30.000Z</published>
+    <updated>2017-02-18T16:10:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<center><img src="http://omsiwk8es.bkt.clouddn.com/Hexo.png" alt=""></center>
+
+<p><center> Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上 <center></center></center></p>
+<a id="more"></a>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a><font color="#C70039">准备工作</font></h3><ul>
+<li>安装 Node.js：到 <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a> 的官网下载最新版本并安装</li>
+<li>安装 Git：到 <a href="https://git-scm.com/downloads" target="_blank" rel="external">Git</a> 官网下载最新版本安装，然后配置本地 Github 的账户密码并生成密钥</li>
+<li>安装 Hexo：在命令行使用 <code>npm install -g hexo</code> 命令安装 Hexo，然后运行 <code>hexo -v</code>，如果输出版本号即为安装成功</li>
+<li>在 Github 上创建用于托管博客的仓库：<code>JasonLian.github.io</code></li>
+</ul>
+<hr>
+<h3 id="初始化并生成静态页面"><a href="#初始化并生成静态页面" class="headerlink" title="初始化并生成静态页面"></a><font color="#C70039">初始化并生成静态页面</font></h3><ul>
+<li>初始化：在本地新建一个项目文件夹（比如 Blog），进入 Blog 目录，运行 <code>hexo init</code> 进行初始化</li>
+<li>生成静态页面：运行 <code>hexo generate</code> 将文章编译为静态页面</li>
+<li>本地启动：运行 <code>hexo server</code>，然后在浏览器中输入 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 查看生成的页面效果</li>
+</ul>
+<hr>
+<h3 id="部署到-Github"><a href="#部署到-Github" class="headerlink" title="部署到 Github"></a><font color="#C70039">部署到 Github</font></h3><ul>
+<li><p>部署之前先修改配置文件</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">    <span class="attribute">type</span>: git</div><div class="line">    <span class="attribute">repository</span>:git<span class="variable">@github</span>.<span class="attribute">com</span>:JasonLian/JasonLian.github.io.git</div><div class="line">    <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后，通过 <code>npm install hexo-deployer-git --save</code> 安装部署插件，并进行部署 <code>hexo deploy</code></p>
+</li>
+<li>部署成功之后，稍等片刻就能通过 <a href="http://jasonlian.github.io" target="_blank" rel="external">jasonlian.github.io</a> 查看博客了，效果和本地预览相同</li>
+</ul>
+<hr>
+<h3 id="多终端同步管理"><a href="#多终端同步管理" class="headerlink" title="多终端同步管理"></a><font color="#C70039">多终端同步管理</font></h3><ul>
+<li>在一台新终端上建立 Blog 文件夹并初始化 Hexo （init &amp; generate）</li>
+<li><p>在 Blog 下新建 <code>.deploy_git</code> 文件夹，进入并运行</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git remote add origin git@github<span class="selector-class">.com</span>:JasonLian/JasonLian<span class="selector-class">.github</span><span class="selector-class">.io</span><span class="selector-class">.git</span></div><div class="line">git fetch --all</div><div class="line">git reset --hard origin/master</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>一种更简单的方式是：直接使用  Resilio Sync 等同步工具将整个 Blog 文件夹在不同终端之间备份即可</strong></p>
+</li>
+</ul>
+<hr>
+<h3 id="发表文章并添加分类和标签"><a href="#发表文章并添加分类和标签" class="headerlink" title="发表文章并添加分类和标签"></a><font color="#C70039">发表文章并添加分类和标签</font></h3><ul>
+<li>新建一篇文章：运行 <code>hexo new &quot;title&quot;</code>，然后就可以在 source/_post 文件夹下看到新建的 markdown 文件</li>
+<li>发布一篇文章：编辑新建的 md 文件后，generate + deploy 即可</li>
+<li><strong>添加标签页面</strong>：<code>hexo new page tags</code> 新建标签页面，在标签 md 文件中添加 <code>type: &quot;tags&quot;</code>，然后在主题配置文件的 menu 下添加 <code>tags: /tags</code></li>
+<li><strong>添加分类页面</strong>：<code>hexo new page categories</code> 新建标签页面，在标签 md 文件中添加 <code>type: &quot;categories&quot;</code>，然后在主题配置文件的 menu 下添加 <code>categories: /categories</code></li>
+<li><strong>为文章添加分类和标签</strong>：在文章的 front-matter 中添加如下代码，注意 Hexo 中每篇文章可以指定多个标签，但是只能指定一个分类，如果需要关闭评论功能，可以将 <code>comments</code> 设置为 false<figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">categories: Diary</div><div class="line"><span class="keyword">tags:</span></div><div class="line">  - PS3</div><div class="line">  - Games</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="将-Hexo-同时托管到-Github-和-Coding"><a href="#将-Hexo-同时托管到-Github-和-Coding" class="headerlink" title="将 Hexo 同时托管到 Github 和 Coding"></a><font color="#C70039">将 Hexo 同时托管到 Github 和 Coding</font></h3><ul>
+<li>Github 在国内的访问速度有时会很慢，甚至出现打不开的情况，而且受 Github 屏蔽百度爬虫所限，托管在 Github Page 的博客在百度上是搜索不到的，除非想百度手动推送你的链接，很是麻烦</li>
+<li>因此，可以考虑将 Hexo 托管到 <a href="https://coding.net/user" target="_blank" rel="external">Coding Page</a> 上，步骤和 Github 大致相同，在 Coding 上部署公钥，然后在 Git Bash 中输入命令 <code>ssh -T git@git.coding.net</code> 即可</li>
+<li>更进一步，如果想同时托管到 Github Page 和 Coding Page，只需要在<a href="https://wanwang.aliyun.com/" target="_blank" rel="external">万网</a>买一个域名，同时绑定两个网址，并设置国内 ip 指向 Coding，国际 ip 指向 Github 即可，详细步骤参见 Reference</li>
+</ul>
+<hr>
+<h3 id="实现简单的文章加密访问"><a href="#实现简单的文章加密访问" class="headerlink" title="实现简单的文章加密访问"></a><font color="#C70039">实现简单的文章加密访问</font></h3><ul>
+<li><p>如果使用 next 主题，则找到 <code>themes-&gt;next-&gt;layout-&gt;_partials-&gt;head.swig</code> 文件，在文件末尾加入以下代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">    (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>,<span class="string">''</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">                alert(<span class="string">'密码错误！'</span>);</div><div class="line">                history.back();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)();</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>加入上述代码后，只需在需要加密的文章头部添加 password 变量即可，变量值设置为自己设定的密码</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">title: Hexo文章简单加密访问</div><div class="line">date: 2016<span class="string">-12</span><span class="string">-01</span> 10:45:29</div><div class="line"><span class="keyword">tags:</span> hexo</div><div class="line">categories: 博客</div><div class="line">keywords:</div><div class="line">    - Hexo</div><div class="line">    - 加密</div><div class="line">description: 阅读本文，请输入密码</div><div class="line">password: youpassword</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果你开启了 RSS 订阅功能，或者本地搜索功能，那么在执行 <code>Hexo generate</code> 之后，加密文章的内容也会自动写入 public 文件夹下的 search.xml 文件和 atom.xml 文件中</p>
+</li>
+<li>为了去除这些文件中的敏感内容，在博客根目录新建一个 rm_secret.py 文件，添加如下代码，在每次 generate 和 deploy 之间，将加密文章名添加到 delete_article_names 数组中，然后执行即可<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf8</span></div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="comment"># 设置需要去除的文章名</span></div><div class="line">delete_article_names = [<span class="string">"article1"</span>, <span class="string">"article2"</span>]</div><div class="line">delete_files = [<span class="string">'./public/atom.xml'</span>, <span class="string">'./public/search.xml'</span>]</div><div class="line"></div><div class="line"><span class="keyword">for</span> delete_file <span class="keyword">in</span> delete_files:</div><div class="line">    fr = open(delete_file)</div><div class="line">    content = fr.read()</div><div class="line">    <span class="comment"># print content</span></div><div class="line">    fr.close()</div><div class="line"></div><div class="line">    checks = re.findall(<span class="string">r'&lt;entry&gt;(.*?)&lt;/entry&gt;'</span>, content, re.S) </div><div class="line">    <span class="keyword">for</span> check <span class="keyword">in</span> checks:</div><div class="line">        delete = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> delete_article_name <span class="keyword">in</span> delete_article_names:</div><div class="line">            <span class="keyword">if</span> delete_article_name <span class="keyword">in</span> check:</div><div class="line">                delete = <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> delete==<span class="number">1</span>:</div><div class="line">            content = content.replace(<span class="string">'&lt;entry&gt;'</span> + check + <span class="string">'&lt;/entry&gt;'</span>, <span class="string">''</span>)</div><div class="line"></div><div class="line">    fw = open(delete_file, <span class="string">'w'</span>)</div><div class="line">    fw.write(content)</div><div class="line">    fw.close()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="常见错误及解决方案"><a href="#常见错误及解决方案" class="headerlink" title="常见错误及解决方案"></a><font color="#C70039">常见错误及解决方案</font></h3><h4 id="hexo-deploy-部署失败"><a href="#hexo-deploy-部署失败" class="headerlink" title="hexo deploy 部署失败"></a><font color="#2874A6">hexo deploy 部署失败</font></h4><ul>
+<li>部署时提示如下错误，解决方法为<strong>删除 .deploy_git 文件夹后重新部署</strong><figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">error: </span>bad signature</div><div class="line">fatal: index file corrupt</div><div class="line">FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</div><div class="line"><span class="keyword">Error: </span>error: bad signature</div><div class="line">fatal: index file corrupt</div><div class="line"></div><div class="line">    at ChildProcess.&lt;anonymous&gt; (C:\Users\Lian\Blog\node_modules\hexo-util\lib\spawn.js:37:17)</div><div class="line">    at emitTwo (events.js:106:13)</div><div class="line">    at ChildProcess.emit (events.js:191:7)</div><div class="line">    at ChildProcess.cp.emit (C:\Users\Lian\Blog\node_modules\cross-spawn\lib\enoent.js:40:29)</div><div class="line">    at maybeClose (internal/child_process.js:877:16)</div><div class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><strong><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo 官网</a></strong></li>
+<li><a href="http://blog.csdn.net/scythe666/article/details/51956821" target="_blank" rel="external">Hexo vs. Jekyll：配置 Hexo</a></li>
+<li><a href="http://www.jianshu.com/p/e99ed60390a8" target="_blank" rel="external">20 分钟教你使用 hexo 搭建 github 博客：配置 + 发布文章</a></li>
+<li><a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more" target="_blank" rel="external">Github Page + Hexo 搭建博客</a></li>
+<li><a href="http://www.cnblogs.com/tengj/p/5352572.html" target="_blank" rel="external">将hexo博客同时托管到github和coding</a></li>
+<li><a href="https://lancelot_lewis.coding.me/2016/12/01/blog/hexo-password/" target="_blank" rel="external">Hexo 文章简单加密访问</a></li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;&lt;img src=&quot;http://omsiwk8es.bkt.clouddn.com/Hexo.png&quot; alt=&quot;&quot;&gt;&lt;/center&gt;
+
+&lt;p&gt;&lt;center&gt; Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上 &lt;center&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Technical Tutorial" scheme="http://jasonlian.tech/categories/Technical-Tutorial/"/>
+    
+    
+      <category term="Hexo" scheme="http://jasonlian.tech/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>常用的可视化资源导航</title>
+    <link href="http://jasonlian.tech/2017/02/16/Navi3-Visualization/"/>
+    <id>http://jasonlian.tech/2017/02/16/Navi3-Visualization/</id>
+    <published>2017-02-16T13:50:13.000Z</published>
+    <updated>2017-04-17T08:50:23.051Z</updated>
+    
+    <content type="html"><![CDATA[<center>持续更新：R 中常用的可视化资源</center>
+
+<a id="more"></a>
+<h3 id="Awesome-Website"><a href="#Awesome-Website" class="headerlink" title="Awesome Website"></a><font color="#C70039">Awesome Website</font></h3><ul>
+<li><a href="http://ggplot.yhathq.com/docs/index.html" title="ggplot Docs" target="_blank" rel="external">ggplot2 Docs</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf" target="_blank" rel="external">ggplot2 Cheatsheet</a></li>
+</ul>
+<hr>
+<h3 id="ggplot2"><a href="#ggplot2" class="headerlink" title="ggplot2"></a><font color="#C70039"><a href="http://docs.ggplot2.org/current/" target="_blank" rel="external">ggplot2</a></font></h3><ul>
+<li><font color="orange"><code>Rmd:</code></font> <a href="/Rmarkdown/Tutorial_for_ggplot2.html">A Tutorial for R ggplot2</a></li>
+</ul>
+<h4 id="ggplot2-Plotting-System"><a href="#ggplot2-Plotting-System" class="headerlink" title="ggplot2 Plotting System"></a><font color="#2874A6">ggplot2 Plotting System</font></h4><ul>
+<li><code>ggplot()</code> 中控制的是总体设置，比如 <code>ggplot()</code> 中的 <code>color</code> 决定了所有 <code>geom</code> 的颜色，而 <code>geom</code> 中的设置只是针对各个图</li>
+<li>凡是涉及到与变量相关的设置，必须用 <code>aes()</code></li>
+</ul>
+<h4 id="Geoms"><a href="#Geoms" class="headerlink" title="Geoms"></a><font color="#2874A6">Geoms</font></h4><h5 id="geom-bar-x-is-discrete"><a href="#geom-bar-x-is-discrete" class="headerlink" title="geom_bar (x is discrete)"></a>geom_bar (x is discrete)</h5><ul>
+<li><a href="http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2" target="_blank" rel="external">Bar and Line Graph_Cookbook for R</a>/)</li>
+<li><a href="http://docs.ggplot2.org/0.9.3.1/geom_bar.html" target="_blank" rel="external">Bars, rectangles with bases on x-axis</a></li>
+<li><a href="http://mp.weixin.qq.com/s/hutcLQBi7mnDvr9BsIlKCw" target="_blank" rel="external">使用 ggplot2 绘制条形图</a></li>
+<li>按照y轴<strong>从大到小的顺序排列bar</strong>的分布：<code>aes(x=reorder(x_name, -value), y=value, fill=name</code></li>
+<li><code>geom_bar(stat=&quot;identity&quot;, position=position_dodge(0.7))</code> 默认的 position 是堆叠 <code>stack</code>，百分比堆叠是 <code>position=&quot;fill&quot;</code>, 而按政府值区分开是 <code>position=&quot;identity&quot;</code></li>
+<li>使用明细数据计数之后绘制条形图：<code>ggplot(data, aes(x=gender)) + geom_bar(stat=&quot;count&quot;, width=.3, col=&quot;orange&quot;)</code> stat 的默认值是 count</li>
+<li>对于汇总好的数据：<code>geom_bar(stat = &quot;identity&quot;)</code></li>
+<li>添加标签：<code>geom_text(stat=&#39;count&#39;, aes(label=..count..), vjust=-0.5, hjust=0.5, size=3, colour=&quot;orange&quot;)</code> 如果是堆叠式，则加入 <code>position=position_stack()</code></li>
+</ul>
+<h5 id="geom-histogram-x-is-continuous"><a href="#geom-histogram-x-is-continuous" class="headerlink" title="geom_histogram (x is continuous)"></a>geom_histogram (x is continuous)</h5><ul>
+<li><a href="https://www.datacamp.com/community/tutorials/make-histogram-ggplot2#gs.9szdFt0" target="_blank" rel="external">Make a histogram with ggplot2</a></li>
+<li><code>qplot(chol$AGE, geom=&quot;histogram&quot;, binwidth = 5, main = &quot;Histogram for Age&quot;, xlab = &quot;Age&quot;, fill=I(&quot;blue&quot;), col=I(&quot;red&quot;), alpha=I(.2), xlim=c(20,50))</code></li>
+<li><code>ggplot(data, aes(x=duration)) + geom_histogram(binwidth=60)</code></li>
+<li><a href="https://www.datacamp.com/community/tutorials/make-histogram-ggplot2" target="_blank" rel="external">How to make a histogram</a></li>
+<li>添加计数的标签：<code>+ stat_bin(binwidth=0.5, geom=&quot;text&quot;, aes(label=..count..), vjust=-0.5, size=3)</code></li>
+</ul>
+<h5 id="geom-density"><a href="#geom-density" class="headerlink" title="geom_density"></a>geom_density</h5><h5 id="geom-line"><a href="#geom-line" class="headerlink" title="geom_line"></a>geom_line</h5><h5 id="geom-point"><a href="#geom-point" class="headerlink" title="geom_point"></a>geom_point</h5><ul>
+<li><a href="http://mp.weixin.qq.com/s/Q4U1Sr1-MvQDTFiCchKKkg" target="_blank" rel="external">使用 ggplot2 绘制散点图</a></li>
+<li>使用GGally包中的ggpairs()函数绘制散点图矩阵：<code>library(GGally) ggpairs(tips[, 1:3])</code></li>
+</ul>
+<h5 id="geom-boxplot"><a href="#geom-boxplot" class="headerlink" title="geom_boxplot"></a>geom_boxplot</h5><ul>
+<li>画箱形图，x 为分组变量，y 为值：<code>ggplot(result_all, aes(x=factor(cluster), y=WAPE_min)) + geom_boxplot()</code></li>
+<li>添加均值：<code>stat_summary(fun.y=mean, colour=&quot;blue&quot;, geom=&quot;point&quot;, size=2) + stat_summary(fun.y=mean, colour=&quot;red&quot;, geom=&quot;text&quot;, vjust=0.3, hjust=-0.5, size=3, aes( label=round(..y.., digits=2)))</code></li>
+</ul>
+<h5 id="geom-text"><a href="#geom-text" class="headerlink" title="geom_text"></a>geom_text</h5><ul>
+<li>添加标签，避免文字重叠：<code>geom_text(aes(label=value), position=position_dodge(width=0.9), vjust=-0.25)</code></li>
+<li><code>geom_text(aes(label = Frequency), size = 3, hjust = 0.5, vjust = 3, position = &quot;stack&quot;)</code> stack 表示堆叠显示</li>
+</ul>
+<h5 id="geom-vline"><a href="#geom-vline" class="headerlink" title="geom_vline"></a>geom_vline</h5><ul>
+<li>添加一条垂直线：<code>geom_vline(xintercept=as.numeric(as.Date(&quot;1959-12-01&quot;)), linetype=2)</code></li>
+</ul>
+<h5 id="geom-hline"><a href="#geom-hline" class="headerlink" title="geom_hline"></a>geom_hline</h5><ul>
+<li>添加一条水平线：<code>geom_hline(yintercept=200)</code></li>
+</ul>
+<h5 id="geom-ribbon"><a href="#geom-ribbon" class="headerlink" title="geom_ribbon"></a>geom_ribbon</h5><ul>
+<li>作缎带图：<code>geom_ribbon(aes(ymin=LL, ymax=UL), fill=&quot;grey&quot;, alpha=0.5)</code></li>
+</ul>
+<h5 id="geom-rug"><a href="#geom-rug" class="headerlink" title="geom_rug"></a>geom_rug</h5><ul>
+<li>向散点图添加坐标轴边际地毯：<code>geom_rug(position = &#39;jitter&#39;, size = 0.1)</code></li>
+</ul>
+<h5 id="geom-label-repel-amp-amp-geom-text-repel"><a href="#geom-label-repel-amp-amp-geom-text-repel" class="headerlink" title="geom_label_repel &amp;&amp; geom_text_repel"></a>geom_label_repel &amp;&amp; geom_text_repel</h5><ul>
+<li>来自 ggrepel 包，添加标签，<code>geom_label_repel(aes(label=method),size=3)</code></li>
+</ul>
+<h5 id="geom-dl"><a href="#geom-dl" class="headerlink" title="geom_dl"></a>geom_dl</h5><ul>
+<li>来自 directlabels 包，在线的两端标注分类名称，<code>geom_dl(aes(label = method), method = list(dl.combine(&quot;first.points&quot;, &quot;last.points&quot;), cex = 0.8))</code></li>
+<li>自动选择最优位置标注：<code>method=&quot;smart.grid&quot;</code></li>
+</ul>
+<h5 id="annotate"><a href="#annotate" class="headerlink" title="annotate"></a><a href="http://docs.ggplot2.org/0.9.3/annotate.html" target="_blank" rel="external">annotate</a></h5><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加文字</span></div><div class="line">annotate(<span class="string">"text"</span>, <span class="attr">x</span> = <span class="number">4</span>, <span class="attr">y</span> = <span class="number">25</span>, <span class="attr">label</span> = <span class="string">"Some text"</span>)</div><div class="line">annotate(<span class="string">"text"</span>, <span class="attr">x</span> = <span class="number">2</span>:<span class="number">5</span>, <span class="attr">y</span> = <span class="number">25</span>, <span class="attr">label</span> = <span class="string">"Some text"</span>)</div><div class="line">annotate(<span class="string">"text"</span>, <span class="attr">x</span> = <span class="number">2</span>:<span class="number">3</span>, <span class="attr">y</span> = <span class="number">20</span>:<span class="number">21</span>, <span class="attr">label</span> = c(<span class="string">"my label"</span>, <span class="string">"label 2"</span>))</div><div class="line"></div><div class="line"><span class="comment"># 添加矩形框</span></div><div class="line">annotate(<span class="string">"rect"</span>, <span class="attr">xmin</span> = <span class="number">3</span>, <span class="attr">xmax</span> = <span class="number">4.2</span>, <span class="attr">ymin</span> = <span class="number">12</span>, <span class="attr">ymax</span> = <span class="number">21</span>, <span class="attr">alpha</span> = .<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment"># 根据起始点画直线</span></div><div class="line">annotate(<span class="string">"segment"</span>, <span class="attr">x</span> = <span class="number">2.5</span>, <span class="attr">xend</span> = <span class="number">4</span>, <span class="attr">y</span> = <span class="number">15</span>, <span class="attr">yend</span> = <span class="number">25</span>, <span class="attr">colour</span> = <span class="string">"blue"</span>)</div></pre></td></tr></table></figure>
+<h4 id="Stats"><a href="#Stats" class="headerlink" title="Stats"></a><font color="#2874A6">Stats</font></h4><h5 id="stat-smooth"><a href="#stat-smooth" class="headerlink" title="stat_smooth"></a>stat_smooth</h5><ul>
+<li>向散点图添加拟合线：<code>stat_smooth(method=&quot;lm / loess&quot;)</code></li>
+</ul>
+<h4 id="Facets"><a href="#Facets" class="headerlink" title="Facets"></a><font color="#2874A6">Facets</font></h4><h5 id="facet-wrap"><a href="#facet-wrap" class="headerlink" title="facet_wrap"></a>facet_wrap</h5><ul>
+<li><code>facet_wrap(~group_variable，scales=&#39;free&#39;, nrow=2)</code><ul>
+<li><code>scales=&#39;free&#39;</code> 表示允许不同的 facet 有不同的 x/y axis limit，如果只允许 x axis，则 <code>scale=‘free_x’</code></li>
+<li>nrow 设置 plot 的行数</li>
+</ul>
+</li>
+</ul>
+<h5 id="facet-grid"><a href="#facet-grid" class="headerlink" title="facet_grid"></a>facet_grid</h5><ul>
+<li>在同一个 facet 上作不同类型的图形：<code>ggplot() + geom_line(data=temp[measure %in% c(&quot;MAPE_in&quot;,&quot;MAPE_out&quot;,&quot;CV&quot;)], aes(x=atc_class,y=value,group=measure,color=measure), size=1) + geom_bar(data=temp[measure==&quot;volume&quot;],aes(atc_class,value),stat=&quot;identity&quot;) + facet_grid(group~.,scales=&quot;free_y&quot;)</code></li>
+</ul>
+<h4 id="Scales"><a href="#Scales" class="headerlink" title="Scales"></a><font color="#2874A6">Scales</font></h4><ul>
+<li>Aesthetic mapping (i.e., with aes()) only says that a variable should be mapped to an aesthetic. It doesn’t say how that should happen.<h5 id="scale-fill-brewer-amp-scale-fill-manual"><a href="#scale-fill-brewer-amp-scale-fill-manual" class="headerlink" title="scale_fill_brewer &amp; scale_fill_manual"></a>scale_fill_brewer &amp; scale_fill_manual</h5></li>
+<li><a href="http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2" target="_blank" rel="external">颜色填充</a>/)<ul>
+<li><code>scale_fill_brewer(palette=&quot;Set1&quot;)</code></li>
+<li><code>scale_fill_manual(values=c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="scale-shape-manual"><a href="#scale-shape-manual" class="headerlink" title="scale_shape_manual"></a>scale_shape_manual</h5><ul>
+<li>自动指定点形状的上限是6，超过则需要手动指定点的形状：<code>scale_shape_manual(values=1:10)</code></li>
+</ul>
+<h5 id="scale-color-brewer-amp-scale-color-manual"><a href="#scale-color-brewer-amp-scale-color-manual" class="headerlink" title="scale_color_brewer &amp; scale_color_manual"></a>scale_color_brewer &amp; scale_color_manual</h5><ul>
+<li>设置连续颜色变化：<code>scale_colour_gradient(low = &#39;lightblue&#39;, high = &#39;darkblue&#39;)</code></li>
+</ul>
+<h5 id="scale-size"><a href="#scale-size" class="headerlink" title="scale_size"></a>scale_size</h5><ul>
+<li><code>scale_size_continuous(breaks = c(100,150,200,300,350,400), guide = guide_legend())</code></li>
+<li>连续变量的大小与形状的大小成比例：<code>scale_size_area(max_size = 10)</code></li>
+</ul>
+<h5 id="scale-x-continuous"><a href="#scale-x-continuous" class="headerlink" title="scale_x_continuous"></a>scale_x_continuous</h5><ul>
+<li>改变X轴的坐标间隔：<code>scale_x_continuous(breaks=seq(0, max(abc$cum_volume), by=max(abc$cum_volume)/5))</code></li>
+</ul>
+<h5 id="scale-size-manual"><a href="#scale-size-manual" class="headerlink" title="scale_size_manual"></a>scale_size_manual</h5><ul>
+<li>将大小分成两组，并手动改变线条粗细：<code>geom_line(aes(col=method, size=(method==&quot;volume&quot;))) + scale_size_manual(values = c(1, 2), name = &quot;&quot;, labels = c())</code></li>
+</ul>
+<h5 id="Point-Shape"><a href="#Point-Shape" class="headerlink" title="Point Shape"></a>Point Shape</h5><center><img src="http://omsiwk8es.bkt.clouddn.com/ggplot2-shape-identity.png" alt=""></center>
+
+<h5 id="Color-Names"><a href="#Color-Names" class="headerlink" title="Color Names"></a><a href="http://omsiwk8es.bkt.clouddn.com/ggplot2-colour-names.png" target="_blank" rel="external">Color Names</a></h5><h4 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a><font color="#2874A6">Themes</font></h4><ul>
+<li>更改 facet 中坐标轴 label 文字的大小：<code>theme(strip.text.y = element_text(size=8))</code></li>
+<li>文字竖向：<code>theme(axis.text.x=element_text(angle=45,hjust=1,vjust=1))</code></li>
+<li>标题：labs(list(title = “Cluster Result”, x = “Clustering Variables”, y = “Centroid”))</li>
+<li>标题居中：<code>theme(plot.title = element_text(hjust = 0.5))</code></li>
+<li><p>将 Theme 的各元素设置为空：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">theme</span><span class="params">(axis.line=element_blank()</span></span>,</div><div class="line">      axis<span class="selector-class">.text</span><span class="selector-class">.x</span>=element_blank(),</div><div class="line">      axis<span class="selector-class">.text</span><span class="selector-class">.y</span>=element_blank(),</div><div class="line">      axis.ticks=element_blank(),</div><div class="line">      axis<span class="selector-class">.title</span><span class="selector-class">.x</span>=element_blank(),</div><div class="line">      axis<span class="selector-class">.title</span><span class="selector-class">.y</span>=element_blank(),</div><div class="line">      <span class="selector-tag">legend</span>.<span class="attribute">position</span>=<span class="string">"none"</span>,</div><div class="line">      panel.<span class="attribute">background</span>=element_blank(),</div><div class="line">      panel.<span class="attribute">border</span>=element_blank(),</div><div class="line">      panel<span class="selector-class">.grid</span><span class="selector-class">.major</span>=element_blank(),</div><div class="line">      panel<span class="selector-class">.grid</span><span class="selector-class">.minor</span>=element_blank(),</div><div class="line">      plot.<span class="attribute">background</span>=element_blank())</div></pre></td></tr></table></figure>
+</li>
+<li><p>白色背景：<code>theme_bw()</code></p>
+</li>
+<li>设置图标题：<code>ggtitle(paste0(&quot;BSTS Holdout MAPE = &quot;, round(100*MAPE,2), &quot;%&quot;))</code></li>
+<li>更改标题文字大小：<code>theme(plot.title = element_text(size=10))</code></li>
+<li>转换坐标轴：<code>coord_flip()</code></li>
+</ul>
+<h4 id="Other"><a href="#Other" class="headerlink" title="Other"></a><font color="#2874A6">Other</font></h4><h5 id="Legend"><a href="#Legend" class="headerlink" title="Legend"></a>Legend</h5><ul>
+<li><a href="http://docs.ggplot2.org/0.9.3.1/guide_legend.html" target="_blank" rel="external">Legend Guide</a></li>
+<li><a href="http://docs.ggplot2.org/0.9.3.1/guides.html" target="_blank" rel="external">Guide</a>：legend 文字更改或者<strong>分类维数合并</strong>参见 guide</li>
+<li>Legend 中的分类变量排序：<code>ts$category &lt;- factor(ts$category, levels=c(&quot;vegetable&quot;,&quot;fruit&quot;,&quot;meat&quot;,&quot;total&quot;))</code></li>
+<li>修改 legend 的标题：<code>scale_color_discrete(guide = guide_legend(title = &quot;Cluster&quot;))</code>，注意 scale 要对应 legend 的维度！比如 aes(color= ) 的 legend 要对应 scale_color_discrete！</li>
+</ul>
+<h5 id="Save-plot-to-disk"><a href="#Save-plot-to-disk" class="headerlink" title="Save plot to disk"></a>Save plot to disk</h5><ul>
+<li>注意 for 循环内的 plot 要加上 print() 才能输出<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">png</span><span class="params">(filename=paste(<span class="string">'./png/'</span>,i,<span class="string">'.png'</span>,sep=<span class="string">''</span>)</span></span>)</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(qplot(na.omit(result_boot[,i])</span></span>, geom=<span class="string">'histogram'</span>, binwidth=<span class="number">0.1</span>, xlim=c(-<span class="number">20</span>,<span class="number">20</span>), col=<span class="string">'red'</span>))</div><div class="line">dev.off()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="ggfortify"><a href="#ggfortify" class="headerlink" title="ggfortify"></a><font color="#C70039">ggfortify</font></h3><ul>
+<li>Define fortify and autoplot functions to allow ggplot2 to handle some popular R packages.</li>
+<li><a href="https://github.com/sinhrks/ggfortify" target="_blank" rel="external">github</a></li>
+<li><a href="https://github.com/sinhrks/ggfortify/blob/master/vignettes/intro_Chinese.Rmd" target="_blank" rel="external">Chinese introducton</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxNzcyMTk5NA==&amp;mid=2654042393&amp;idx=1&amp;sn=c6ce8f23aeaa91a7ab7b74c0a97d0fbc&amp;chksm=8024e6fcb7536fea6828d779106cb811be8d51b12066074c188f5c80ef5464d3966550ccdefd&amp;scene=0#wechat_redirect" target="_blank" rel="external">wechat introduction article</a></li>
+</ul>
+<hr>
+<h3 id="corrplot"><a href="#corrplot" class="headerlink" title="corrplot"></a><font color="#C70039">corrplot</font></h3><ul>
+<li><a href="http://rstudio-pubs-static.s3.amazonaws.com/2107_4eb1adc1e4d44b93b6fde7eb801519fe.html" target="_blank" rel="external">An Introduction to Corrplot Package</a></li>
+<li><code>corrplot(cor(dataframe), method = &quot;pie&quot;, type = &quot;lower&quot;, tl.col=&quot;black&quot;, tl.cex=0.7, tl.srt = 20, order=&#39;hclust&#39;)</code></li>
+</ul>
+<hr>
+<h3 id="Time-Series-Plot"><a href="#Time-Series-Plot" class="headerlink" title="Time Series Plot"></a><font color="#C70039">Time Series Plot</font></h3><ul>
+<li><code>plot.ts()</code>：时序图</li>
+<li><code>ts.plot()</code>：在同一张图上作多个时序图，<code>ts.plot(ts,train_fit,test_fit, gpars = list(col=c(&quot;black&quot;, &quot;blue&quot;, &quot;red&quot;)))</code></li>
+<li><strong>forecast package</strong><ul>
+<li><code>tsdisplay()</code> ：时序图+ACF+PACF</li>
+<li><code>plot.forecast()</code>：作预测图</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Table-Plot"><a href="#Table-Plot" class="headerlink" title="Table Plot"></a><font color="#C70039"><a href="ftp://cran.r-project.org/pub/R/web/packages/gridExtra/vignettes/tableGrob.html" target="_blank" rel="external">Table Plot</a></font></h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(gridExtra)</span></span></div><div class="line"><span class="function"><span class="title">library</span><span class="params">(grid)</span></span></div><div class="line">d &lt;- head(iris[,<span class="number">1</span>:<span class="number">3</span>])</div><div class="line">grid.table(d)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="Plotly"><a href="#Plotly" class="headerlink" title="Plotly"></a><font color="#C70039"><a href="https://plot.ly/" target="_blank" rel="external">Plotly</a></font></h3><ul>
+<li><font color="blue"><code>Blog:</code></font> <a href="/2017/03/06/Data1-Plotly/">Use Plotly to Create Interactive Graph in R</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;持续更新：R 中常用的可视化资源&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Resource Navigation" scheme="http://jasonlian.tech/categories/Resource-Navigation/"/>
+    
+    
+      <category term="Plotly" scheme="http://jasonlian.tech/tags/Plotly/"/>
+    
+      <category term="Visualization" scheme="http://jasonlian.tech/tags/Visualization/"/>
+    
+      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
+    
+      <category term="ggplot2" scheme="http://jasonlian.tech/tags/ggplot2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R 语言实用语法和常用资源速查手册</title>
+    <link href="http://jasonlian.tech/2017/02/14/Navi2-R-Manual/"/>
+    <id>http://jasonlian.tech/2017/02/14/Navi2-R-Manual/</id>
+    <published>2017-02-14T02:05:48.000Z</published>
+    <updated>2017-04-17T08:50:23.044Z</updated>
+    
+    <content type="html"><![CDATA[<center>持续更新：R 语言的实用语法和常用资源</center>
+
+<a id="more"></a>
+<h3 id="Awesome-Website"><a href="#Awesome-Website" class="headerlink" title="Awesome Website"></a><font color="#C70039">Awesome Website</font></h3><ul>
+<li><a href="https://awesome-r.com/index.html" target="_blank" rel="external">Awesome R: A list of awesome R packages and tools</a></li>
+<li><a href="https://www.r-pkg.org/" target="_blank" rel="external">METACRAN: Search and browse all CRAN/R packages</a></li>
+<li><a href="https://www.rdocumentation.org/trends" target="_blank" rel="external">RDocumentation: Search all CRAN, BioConductor and Github packages</a></li>
+<li><a href="https://rdrr.io/" target="_blank" rel="external">R Packages: A comprehensive index of R packages and documentation</a></li>
+<li><a href="https://cran.r-project.org/web/views/" target="_blank" rel="external">CRAN Task Views</a></li>
+</ul>
+<h3 id="Useful-Command"><a href="#Useful-Command" class="headerlink" title="Useful Command"></a><font color="#C70039">Useful Command</font></h3><ul>
+<li>搜索某个包下的指定函数：<code>?proxy::dist</code></li>
+<li>查看包的帮助手册：<code>browseVignettes(package = &quot;dplyr&quot;)</code></li>
+<li>读取文件夹下的所有指定类型的文件：<code>list.files(&quot;../data_survey/&quot;, pattern=&quot;*.xls&quot;)</code></li>
+<li>打开新窗口用于存储新图形：<code>dev.new()</code></li>
+<li>查看变量类型：<code>mode()</code></li>
+<li>查看变量的种类个数：<code>table()</code></li>
+<li>变量 0-1 标准化：<code>scale()</code></li>
+<li>删除所有包含 temp 的对象：<code>rm(list=ls()[grepl(&#39;temp&#39;,ls())])</code></li>
+<li>查看和清空内存：<code>gc(reset=TRUE)</code></li>
+<li>分类汇总，根据 position 对 a1\a2\a3 分别求和：<code>aggregate(datos[,c(&quot;a1&quot;,&quot;a2&quot;,&quot;a3&quot;)], by=list(datos$Position), &quot;sum&quot;)</code></li>
+<li>根据多列取不重复的子集：<code>df[!duplicated(df[,1:2]),]</code></li>
+</ul>
+<h4 id="Array"><a href="#Array" class="headerlink" title="Array"></a><font color="#2874A6">Array</font></h4><ul>
+<li>去除数组两端的 0 值：<code>x[min(which(x!=0)) : max(which(x!=0))]</code></li>
+<li><strong>计算一个向量的累积求和或累积求积</strong><ul>
+<li><code>cumsum(c(1,2,3))</code> →<code>1,3,6</code></li>
+<li><code>cumprod(c(1,2,3))</code>→<code>1,2,6</code></li>
+</ul>
+</li>
+<li>比较两个向量是否完全相同：identical(vector1, vector2)</li>
+<li>自动产生向量的下标：<code>seq_along()</code></li>
+</ul>
+<h4 id="List"><a href="#List" class="headerlink" title="List"></a><font color="#2874A6">List</font></h4><ul>
+<li>选择列表的多个元素：<code>mylist[c(1,3,5)]</code>，而双中括号选择的是再下一层</li>
+<li><strong>R 中字典的概念</strong><ul>
+<li><code>list(a = 1,b = &quot;foo&quot;,c = 1:5)</code></li>
+<li><code>list[[&#39;a&#39;]]</code> 返回 1</li>
+</ul>
+</li>
+</ul>
+<h4 id="Data-Frame"><a href="#Data-Frame" class="headerlink" title="Data Frame"></a><font color="#2874A6">Data Frame</font></h4><ul>
+<li>将 data.frame 的所有 NA 替换为 0：<code>d[is.na(d)] &lt;- 0</code></li>
+<li>更改数据框或矩阵的列名：<code>colnames(dt)[1] &lt;- &quot;cn&quot;</code></li>
+<li>去除包含 NA 的行 / 去除某些列包含 NA 的行 / 去除头尾包含 NA 的行<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dt[<span class="built_in">complete</span>.cases(dt),]</div><div class="line">dt[<span class="built_in">complete</span>.cases(dt[,<span class="number">5</span>:<span class="number">6</span>]),]</div><div class="line"></div><div class="line"># 如果一定要用 <span class="keyword">is</span>.na()</div><div class="line">dt[rowSums(<span class="keyword">is</span>.na(dt[,<span class="number">5</span>:<span class="number">6</span>]))==<span class="number">0</span>,]</div><div class="line"></div><div class="line"># 去除头尾包含 NA 的行，中间行包含 NA 则不去除</div><div class="line">df[<span class="built_in">min</span>(which(<span class="built_in">complete</span>.cases(df)==<span class="number">1</span>)):<span class="built_in">max</span>(which(<span class="built_in">complete</span>.cases(df)==<span class="number">1</span>)) ,]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Factor"><a href="#Factor" class="headerlink" title="Factor"></a><font color="#2874A6">Factor</font></h4><ul>
+<li><a href="http://blog.csdn.net/jiluben/article/details/40222229" target="_blank" rel="external">Factor 转换为 numeric</a><ul>
+<li>as.numeric(as.character(factorname))</li>
+<li>as.numeric(levels(factorname)[factorname])</li>
+</ul>
+</li>
+</ul>
+<h4 id="Statistics"><a href="#Statistics" class="headerlink" title="Statistics"></a><font color="#2874A6">Statistics</font></h4><ul>
+<li>set.seed()：是用于产生随机数的，编号设定基本可以随意</li>
+<li>根据 t 值求 p 值：<code>p.value = 2*pt(-abs(t.value), df=length(data)-1)</code></li>
+<li>从模型中抽取 Log-Liklihood 值：<code>logLik(mylogit)</code></li>
+<li>抽取模型的拟合值：<code>fitted()</code></li>
+<li>创建两个分类的 Dummy：<code>as.numeric(gear_box==&quot;手自一体&quot;)</code></li>
+<li>计算四分位数间距：<code>IQR()</code></li>
+<li>计算百分位数：<code>quantile(x, probs=c(0.25, 0.75))</code></li>
+</ul>
+<hr>
+<h3 id="Advanced-Function"><a href="#Advanced-Function" class="headerlink" title="Advanced Function"></a><font color="#C70039">Advanced Function</font></h3><h4 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a><font color="#2874A6">Reduce</font></h4><ul>
+<li><code>Reduce</code> takes a binary function and a list of data items and successively applies the function to the list elements in a recursive fashion. For example:<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Reduce(<span class="built_in">intersect</span>,list(<span class="keyword">a</span>,b,c))` is <span class="keyword">the</span> same <span class="keyword">as</span> `<span class="built_in">intersect</span>((<span class="built_in">intersect</span>(<span class="keyword">a</span>,b),c)</div><div class="line">Reduce(<span class="function"><span class="keyword">function</span>(<span class="title">x</span>,<span class="title">y</span>) <span class="title">merge</span>(<span class="title">x</span>,<span class="title">y</span>,<span class="title">by</span>=<span class="string">"cust_no"</span>), <span class="title">list</span>(<span class="title">vege_loyal</span>,<span class="title">fruit_loyal</span>,<span class="title">meat_loyal</span>))</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Apply-Family"><a href="#Apply-Family" class="headerlink" title="Apply Family"></a><font color="#2874A6">Apply Family</font></h4><ul>
+<li><a href="https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.34X_W=4" target="_blank" rel="external">datacamp_tutorial</a></li>
+<li><strong>apply(x, margin, fun)</strong>：x is an <strong>array or matrix</strong>, margin = 1 for row / 2 for column, such as <code>apply(matrix, 2, sum)</code></li>
+<li><strong>lapply</strong>：和 apply 的不同是也可以应用于 <strong>dataframes, lists or vectors</strong>，并且 <strong>return list</strong><ul>
+<li><code>lapply(MyList,&quot;[&quot;, , 2)</code>：从列表的每一个矩阵中选取第二列元素，返回一个向量列表</li>
+<li>The <code>[</code> notation is the select operator</li>
+<li>The <code>[[ ]]</code> notation expresses the fact that the we are dealing with lists</li>
+</ul>
+</li>
+<li><strong>sapply</strong>：和 lapply 类似，但不同是 sapply 返回最基础的数据结构，而不是列表<ul>
+<li><code>sapply(MyList,&quot;[&quot;, 2, 1 )</code>:选取列表每一个矩阵中的第二行第一列的元素，返回一个向量</li>
+<li><code>unlist(lapply(MyList,&quot;[&quot;, 2, 1 ))</code>:lapply 的结果 <code>unlist</code> 之后才返回向量</li>
+</ul>
+</li>
+<li><code>rep()</code>: sapply 返回结果配合 rep 函数使用，比如 <code>rep(c(1,4,8),c(3,1,2))</code> 返回 <code>c(1,1,1,4,4,8)</code></li>
+<li><strong>mapply</strong>: applies a Function to Multiple List or multiple Vector Arguments, such as <code>mapply(rep,1:4,4)</code>，相当于 <code>rep(c(1,2,3,4),c(4,4,4,4))</code> 或者 <code>c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4))</code></li>
+<li><strong>sweep</strong>:比如矩阵每一列减去各列均值<code>data &lt;- sweep(data, 2, data_means,&quot;-&quot;)</code>，均值可以先通过 apply 求出</li>
+</ul>
+<h4 id="Eval-amp-Assign"><a href="#Eval-amp-Assign" class="headerlink" title="Eval &amp; Assign"></a><font color="#2874A6">Eval &amp; Assign</font></h4><ul>
+<li><code>Eval()</code> 函数可以将字符串转变为变量名<ul>
+<li>如果用字符串表示的变量无需被赋值，只是表示变量，则用 eval 函数转换：<code>var &lt;- eval ( parse ( text = &quot;string&quot; ) )</code> </li>
+</ul>
+</li>
+<li><code>Assign()</code> 函数可以为以字符串命名的变量赋值<ul>
+<li>如果用字符串表示的变量是被赋值对象，则使用 assign 函数 <code>assign(paste(str1,str2,sep=&quot;&quot;), value)</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="DateTime-Transfermation"><a href="#DateTime-Transfermation" class="headerlink" title="DateTime Transfermation"></a><font color="#C70039">DateTime Transfermation</font></h3><ul>
+<li><strong><a href="http://blog.mollietaylor.com/2013/08/date-formats-in-r.html" target="_blank" rel="external">将字符串转换为 Date 类型</a></strong><ul>
+<li><code>as.Date(&#39;20140325&#39;,&quot;%Y%m%d&quot;)</code></li>
+<li><code>strptime(&#39;2012-09-16 19:35:58&#39;,&quot;%Y-%m-%d %H:%M:%S&quot;)</code></li>
+</ul>
+</li>
+<li><strong><code>lubridate</code></strong><ul>
+<li>获取年份：<code>year(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+<li>获取月份：<code>month(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+<li>获取周数<ul>
+<li>从1月1日开始计算： <code>week(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+<li>从星期一开始计算：<code>isoweek()</code></li>
+</ul>
+</li>
+<li>获取该月第几天：<code>mday(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+<li>获取该年第几天：<code>yday(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+</ul>
+</li>
+<li><strong>将 Excel 中的数字型日期时间转换为日期</strong><ul>
+<li><code>as.Date(41310.11, origin = &quot;1899-12-30&quot;)</code>  41310 的单位是天</li>
+<li><code>as.POSIXct(41310*24*3600, origin = &quot;1899-12-30&quot;)</code> POSIXct 函数的单位是秒</li>
+</ul>
+</li>
+<li>求两个日期之间的差<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">difftime(<span class="keyword">as</span>.Date(<span class="keyword">as</span>.<span class="keyword">integer</span>(<span class="number">41310.12</span>), origin = <span class="string">"1899-12-30"</span>), <span class="keyword">as</span>.Date(<span class="string">'20130204'</span>,<span class="string">"%Y%m%d"</span>), units=<span class="string">'days'</span>)</div><div class="line"><span class="keyword">as</span>.<span class="keyword">integer</span>(difftime(<span class="built_in">max</span>(t1,t2,t3,t4), <span class="built_in">min</span>(t1,t2,t3,t4), units=<span class="string">"mins"</span>))</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="Time-Series"><a href="#Time-Series" class="headerlink" title="Time Series"></a><font color="#C70039">Time Series</font></h3><ul>
+<li>获取时间序列的日期：<code>as.Date(time(ts))</code></li>
+<li>获取时间序列的起止时间：<code>start(ts) end(ts)</code>，返回的都是 numeric 数组，通过下标获取年月</li>
+<li>根据起始时间产生连续的时间<code>seq.Date</code>，然后创建 zoo 对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from &lt;- as.Date(&quot;1974-01-01&quot;)</div><div class="line">to &lt;- as.Date(&quot;1989-12-31&quot;)</div><div class="line">months &lt;- seq.Date(from=from,to=to,by=&quot;month&quot;)</div><div class="line"></div><div class="line">values &lt;- rep.int(0,length(months))</div><div class="line">Zooserie &lt;- zoo(values, months)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="String-Processing"><a href="#String-Processing" class="headerlink" title="String Processing"></a><font color="#C70039">String Processing</font></h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># 分割字符串</span></div><div class="line">strsplit(<span class="string">'abc-ds'</span>,<span class="string">'-'</span>)[[<span class="number">1</span>]][<span class="number">2</span>]</div><div class="line"></div><div class="line"><span class="meta"># 判断一个字符串是否包含在另一个字符串中</span></div><div class="line">grepl(<span class="string">'-'</span>,<span class="string">'dadas-'</span>)</div><div class="line"></div><div class="line"><span class="meta"># 统计长度</span></div><div class="line">length() # 对象 object 的长度</div><div class="line">nchar() # 字符串的长度</div><div class="line"></div><div class="line"><span class="meta"># 获取一个字符串的子串</span></div><div class="line">substr(<span class="keyword">string</span>, start_index, end_index)</div><div class="line"></div><div class="line"><span class="meta"># 替换字符串中的字符</span></div><div class="line">gsub(<span class="string">'e'</span>, <span class="string">''</span>, <span class="string">'e123'</span>) # 返回 <span class="number">123</span></div><div class="line"></div><div class="line"><span class="meta"># 判断一个字符串的开头结尾是否为特定字符</span></div><div class="line">startsWith(<span class="string">"2013-01"</span>, <span class="string">"2013-"</span>)</div><div class="line">endsWith(<span class="string">"2013-11"</span>, <span class="string">"11"</span>)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="Set-Operation"><a href="#Set-Operation" class="headerlink" title="Set Operation"></a><font color="#C70039">Set Operation</font></h3><ul>
+<li><code>a &lt;- c(&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;)  b &lt;- c(&quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;)</code><ul>
+<li>交集：intersect(a,b) = d,e</li>
+<li>并集：union(a,b) = b,c,d,e,f,g</li>
+<li>差集：setdiff(a,b) = b,c / setdiff(b,a) = f,g</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="R-Packages"><a href="#R-Packages" class="headerlink" title="R Packages"></a><font color="#C70039">R Packages</font></h3><ul>
+<li><code>require()</code> 和 <code>library()</code> 最大的不同是前者返回一个 Logical Value，如果包不存在则继续运行<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!<span class="keyword">require</span>(<span class="string">"abc"</span>, character.only=<span class="literal">T</span>, quietly=<span class="literal">T</span>)) &#123;</div><div class="line">    install.packages(<span class="string">"abc"</span>)</div><div class="line">    <span class="keyword">library</span>(<span class="string">"abc, character.only=T)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Data-Manipulation-amp-Input-amp-Output"><a href="#Data-Manipulation-amp-Input-amp-Output" class="headerlink" title="Data Manipulation &amp; Input &amp; Output"></a><font color="#2874A6">Data Manipulation &amp; Input &amp; Output</font></h4><ul>
+<li>Excel File<ul>
+<li><strong>openxlsx</strong>: <code>data &lt;- read.xlsx(&quot;abc.xlsx&quot;, sheet = 1, startRow = 2, colNames = TRUE)</code> 只能读取 .xlsx</li>
+<li><strong>XLConnect</strong>:<code>wb = loadWorkbook(&quot;../data_survey/A1.xls&quot;)</code> <code>df = readWorksheet(wb, sheet = &quot;Sheet1&quot;, startRow = 2, header = FALSE)</code></li>
+</ul>
+</li>
+<li><strong><a href="http://garrettgman.github.io/tidying/" target="_blank" rel="external">tidyr</a></strong><ul>
+<li><code>gather()</code>：将除了 iteration 的所有列转变为 <strong>key-value</strong> 的形式：<code>recall &lt;- gather(recall_i, key=&#39;keyname&#39;, value=&#39;valuename&#39;, -iteration)</code></li>
+<li><code>spread()</code>：将 key:value 的形式重新转变为 column 的形式 <code>spread(recall,key,value)</code></li>
+<li><code>seperate()</code>：将一列通过分隔符分拆为多列</li>
+<li><code>unite()</code>：多列合并为一列</li>
+</ul>
+</li>
+<li><strong>dplyr</strong><ul>
+<li><code>window()</code>：比如截取时间序列 <code>window(ts, start=c(1949, 1), end=c(1959,12))</code></li>
+<li>Ranking functions:<code>min_rank() percent_rank() dense_rank()</code></li>
+<li><code>lead()</code> &amp; <code>lag()</code>：不同包的 lag 函数用法不同，必须指定 <code>dplyr::lag(ts,1)</code></li>
+</ul>
+</li>
+<li><strong>sqldf</strong>: <code>df &lt;- sqldf(&#39;select * from dataframe&#39;)</code></li>
+<li><strong>texreg</strong>：<a href="http://mirrors.ustc.edu.cn/CRAN/web/packages/texreg/index.html" target="_blank" rel="external">Conversion of R Regression Output to LaTeX or HTML Tables</a></li>
+<li><strong>stargazer</strong>：<a href="http://mirrors.ustc.edu.cn/CRAN/web/packages/stargazer/index.html" target="_blank" rel="external">Well-Formatted Regression and Summary Statistics Tables</a></li>
+<li><strong>formatR</strong>: <a href="https://cran.r-project.org/web/packages/formatR/" target="_blank" rel="external">Format R Code Automatically</a>、<a href="http://yihui.name/formatR/" target="_blank" rel="external">Introduction</a></li>
+<li><strong>gridExtra</strong>：<code>grid.table()</code> 将表格输出为图片</li>
+</ul>
+<h4 id="Big-Data-amp-Optimization"><a href="#Big-Data-amp-Optimization" class="headerlink" title="Big Data &amp; Optimization"></a><font color="#2874A6">Big Data &amp; Optimization</font></h4><ul>
+<li><strong>optim</strong>:<a href="http://www.magesblog.com/2013/03/how-to-use-optim-in-r.html" target="_blank" rel="external">How to use optim() in R</a></li>
+<li><strong>Rcpp</strong>: <a href="http://adv-r.had.co.nz/Rcpp.html" target="_blank" rel="external">High Performance Functions with Rcpp</a></li>
+<li><strong>data.table</strong><ul>
+<li><a href="https://github.com/Rdatatable/data.table/wiki/Getting-started" target="_blank" rel="external">Getting Started_Github Tutorial</a>  ， <a href="http://youngspring1.github.io/categories/data.table%E6%95%99%E7%A8%8B/" target="_blank" rel="external">中文教程</a></li>
+<li><strong>data.table 的计算语法规则</strong>：`DT[i, j, by] 使用 i 来 subset 行，然后计算 j ，最后用 by 分组</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># 计算指定行的变量均值：</span></div><div class="line">test[GROUP_ID==<span class="number">1</span> &amp; CLASS_ID==<span class="number">100</span>, .(m_qty=mean(QTY))]</div><div class="line"></div><div class="line"><span class="meta"># 统计各个分组满足条件的行数, .N 是一个内建的变量，它表示当前的分组中对象的数目</span></div><div class="line">test[GROUP_ID==<span class="number">1</span>, .N, by=group_id]</div><div class="line"></div><div class="line"><span class="meta"># 按照分组变量排序并计算平均值</span></div><div class="line">flights[carrier == <span class="string">"AA"</span>, .(mean(arr_delay), mean(dep_delay)),  keyby=.(origin, dest, month)]</div><div class="line"></div><div class="line"><span class="meta"># keyby 默认按升序排序，如果想改变排序</span></div><div class="line">flights[carrier == <span class="string">"AA"</span>, .N, by=.(origin, dest)][order(origin, -dest)]</div><div class="line"></div><div class="line"><span class="meta"># by 也可以指定表达式，比如计算起飞延误和到达延误的航班各有多少（生成4行）</span></div><div class="line">flights[, .N, .(dep_delay&gt;<span class="number">0</span>, arr_delay&gt;<span class="number">0</span>)]</div><div class="line"></div><div class="line"><span class="meta"># 同时对多列进行计算,.SD 包含了除分组变量之外的所有列</span></div><div class="line">DT[, lapply(.SD, mean), by=ID]</div><div class="line"><span class="meta"># 返回每个分组的前两行</span></div><div class="line">ans &lt;- flights[, head(.SD, <span class="number">2</span>), by=month]</div><div class="line"><span class="meta"># 根据 ID 连接某个变量的所有字符串</span></div><div class="line">dt[, lapply(.SD, paste0, collapse=<span class="string">" "</span>), by = ID]</div><div class="line"><span class="meta"># .SDcols 可以指定 .SD 中包含哪些列，而不是除分组变量之外的所有列</span></div><div class="line">flights[carrier == <span class="string">"AA"</span>, lapply(.SD, mean), by=.(origin, dest, month), .SDcols=c(<span class="string">"arr_delay"</span>, <span class="string">"dep_delay"</span>)]</div><div class="line"></div><div class="line"><span class="meta"># 快速读取大文件</span></div><div class="line">fread(<span class="string">'example.csv'</span>, sep=<span class="string">','</span>, header=TRUE, integer64=<span class="string">"character"</span>, encoding=<span class="string">'UTF-8'</span>)</div><div class="line"></div><div class="line"><span class="meta"># 数据选取：选取行</span></div><div class="line">flight[<span class="number">1</span>:<span class="number">10</span>]</div><div class="line"><span class="meta"># 数据选取：选取列（返回 vector）</span></div><div class="line">flight[, arr_delay]</div><div class="line"><span class="meta"># 数据选取：选取列（返回 data.table）,对 data.table 赋值时使用！</span></div><div class="line">flight[, list(arr_delay)]</div><div class="line">flights[, .(arr_delay, dep_delay)]</div><div class="line">flight[, <span class="string">"arr_delay"</span>]</div><div class="line"><span class="meta"># with=FALSE，myvector 才会被看做列名，并返回 data.table，否则返回向量</span></div><div class="line">mtcarsDT[, myVector, with=FALSE]</div><div class="line"></div><div class="line"><span class="meta"># := operator 添加新列/移除一列/更改指定行某一列的值</span></div><div class="line">DT[,new_colname:=<span class="number">42</span>]</div><div class="line">DT[,extant_colname:=NULL]</div><div class="line">trade[date==<span class="string">"2013-12-31"</span>, year_week := <span class="string">"2014-01"</span>]</div><div class="line"><span class="meta"># := operator 性能对比</span></div><div class="line">system.time(<span class="keyword">for</span> (i in <span class="number">1</span>:<span class="number">1000</span>) DF[i,<span class="number">1</span>] &lt;- i)  # Elapsed <span class="number">591</span></div><div class="line">system.time(<span class="keyword">for</span> (i in <span class="number">1</span>:<span class="number">1000</span>) DT[i,V1:=i])  # Elapsed <span class="number">1.158</span>  (<span class="number">511</span> times faster)</div></pre></td></tr></table></figure>
+<h4 id="Time-Series-1"><a href="#Time-Series-1" class="headerlink" title="Time Series"></a><font color="#2874A6">Time Series</font></h4><ul>
+<li><strong><a href="https://rdrr.io/cran/kernlab/man/gausspr.html" target="_blank" rel="external">kernlab</a></strong>：Gaussian Process Regression</li>
+<li><strong>bsts</strong>： Baayesian Structural Time Series</li>
+<li>tseries： Time Series Analysis and Computational Finance</li>
+<li><strong>fUnitRoots</strong>: Trends and Unit Roots</li>
+<li>urca: Unit root and cointegration tests for time series data</li>
+<li><strong>forecast</strong>： Forecasting Functions for Time Series and Linear Models<ul>
+<li><a href="http://robjhyndman.com/hyndsight/" target="_blank" rel="external">Plot Examples</a></li>
+<li><a href="http://robjhyndman.com/hyndsight/tscv/" target="_blank" rel="external">Cross validation example</a><br><img src="http://robjhyndman.com/hyndsight/files/2016/12/cv1-1.png" alt="cv1-1"></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">checkresiduals</span>(model)  # 模型残差正态性和纯随机性检验图</div><div class="line"><span class="selector-tag">gghistogram</span>(ts)  # 时间序列取值柱状图</div><div class="line"><span class="selector-tag">ggseasonplot</span>(ts, polar=TRUE)  # 时间序列季节性雷达图</div><div class="line"><span class="selector-tag">autoplot</span>(temp_ts, series=<span class="string">"Data"</span>) + <span class="selector-tag">autolayer</span>(forecast, series=<span class="string">"Forecast"</span>) + <span class="selector-tag">autolayer</span>(fitted(model), series=<span class="string">"Fitted"</span>)  # 真实值+拟合值+预测值 （当然也可以通过数据框存储数据然后自己作图）</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>WaveletComp</strong>：小波分析和时间序列重构，Wavelet analysis and reconstruction of time series, cross-wavelets and phase-difference (with filtering options), significance with simulation algorithms.</li>
+</ul>
+<h4 id="Algorithm-amp-Modeling"><a href="#Algorithm-amp-Modeling" class="headerlink" title="Algorithm &amp; Modeling"></a><font color="#2874A6">Algorithm &amp; Modeling</font></h4><ul>
+<li><strong>lmtest</strong>： <a href="http://mirrors.ustc.edu.cn/CRAN/web/packages/lmtest/index.html" target="_blank" rel="external">Testing Linear Regression Models</a></li>
+</ul>
+<hr>
+<h3 id="RStudio"><a href="#RStudio" class="headerlink" title="RStudio"></a><font color="#C70039">RStudio</font></h3><h4 id="Shortcut-Key-in-RStudio"><a href="#Shortcut-Key-in-RStudio" class="headerlink" title="Shortcut Key in RStudio"></a><font color="#2874A6"><a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts" target="_blank" rel="external">Shortcut Key in RStudio</a></font></h4><ul>
+<li>Clear console: <code>Ctrl + L</code></li>
+<li>Insert a chunk in Rmd: <code>Ctrl + Alt + I</code></li>
+<li>Add comment: <code>Ctrl + Shift + C</code></li>
+</ul>
+<h4 id="R-markdown"><a href="#R-markdown" class="headerlink" title="R markdown"></a><font color="#2874A6">R markdown</font></h4><ul>
+<li><strong><a href="http://rmarkdown.rstudio.com/html_document_format.html" target="_blank" rel="external">HTML Documents</a></strong></li>
+<li><a href="http://rmarkdown.rstudio.com/authoring_knitr_engines.html" target="_blank" rel="external">knitr language engines</a></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="attr">output:</span></div><div class="line"><span class="attr">  html_document:</span></div><div class="line"><span class="attr">    toc:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    toc_depth:</span> <span class="number">6</span></div><div class="line"><span class="attr">    number_sections:</span> <span class="literal">false</span></div><div class="line"><span class="attr">    toc_float:</span></div><div class="line"><span class="attr">      collapsed:</span> <span class="literal">false</span></div><div class="line"><span class="attr">      smooth_scroll:</span> <span class="literal">false</span></div><div class="line"><span class="attr">    theme:</span> readable</div><div class="line"><span class="attr">    highlight:</span> tango</div><div class="line"><span class="attr">    code_folding:</span> show</div><div class="line"><span class="attr">    df_print:</span> paged</div></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" target="_blank" rel="external">Cheet Sheet</a></li>
+<li>生成 HTML 时，如果找不到对象，先 <code>load(file=&quot;.RData&quot;)</code></li>
+<li>屏蔽代码提示和警告信息：<code>{r message=FALSE, warning=FALSE}</code></li>
+</ul>
+<hr>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a><font color="#C70039">Others</font></h3><h4 id="Run-R-in-CentOS"><a href="#Run-R-in-CentOS" class="headerlink" title="Run R in CentOS"></a><font color="#2874A6">Run R in CentOS</font></h4><ul>
+<li><p><a href="http://superuser.com/questions/841270/installing-r-on-rhel-7" target="_blank" rel="external"><strong>在 Centos 中安装 R</strong></a></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo yum <span class="keyword">install</span> -y epel-<span class="keyword">release</span> </div><div class="line">sudo yum <span class="keyword">update</span> -y </div><div class="line">sudo yum <span class="keyword">install</span> -y R</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行 R 脚本并输出信息到终端: <code>Rscript a.R</code></p>
+</li>
+<li><p>运行 R 脚本并输出到文件（默认 a.Rout）： <code>R CMD BATCH a.R</code></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">R <span class="keyword">CMD</span><span class="bash"> BATCH a.R</span></div><div class="line"><span class="comment"># Check the output</span></div><div class="line">cat a.Rout</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>断开终端后离线运行 R 脚本</strong></p>
+<ul>
+<li>安装 screen：<code>yum install screen</code></li>
+<li>新建一个会话：<code>screen -S lnmp</code> (lnmp为会话名，可自己定义)</li>
+<li>离开会话并让程序继续运行：<code>ctrl a d</code> (按住ctrl不放，分别按 a 和 d)</li>
+<li>恢复后台运行的会话：<code>screen -r lnmp</code>（lnmp为自己定义的会话名）</li>
+<li>显示所有screen创建的会话：<code>screen -ls</code></li>
+<li>在会话里执行 <code>exit</code> 命令会话是结束运行并退到 shell 中</li>
+</ul>
+</li>
+<li><p>也可以使用 <code>nohup</code> 命令：<code>nohup R CMD BATCH wenjian.R wenjian.out</code></p>
+</li>
+</ul>
+<h4 id="Project-Management"><a href="#Project-Management" class="headerlink" title="Project Management"></a><font color="#2874A6">Project Management</font></h4><ul>
+<li>Get data out of R: <a href="https://www.stat.ubc.ca/~jenny/STAT545A/block05_getNumbersOut.html" target="_blank" rel="external">1</a>    <a href="http://stackoverflow.com/questions/13206876/saving-and-loading-data-frames" target="_blank" rel="external">2</a></li>
+<li><strong>从另一个 R Project 中读取对象的方法</strong>：<ul>
+<li>先保存一个项目中的对象：<code>saveRDS(df, file=&quot;mytweets.rds&quot;)</code></li>
+<li>再到另一个项目中读取：<code>df2 &lt;- readRDS(&quot;mytweets.rds&quot;)</code></li>
+</ul>
+</li>
+<li>getwd(): 查看当前工作目录 </li>
+<li>ls(): 列出所有对象的名字 </li>
+<li>ls.str(): 列出所有对象的详细信息 </li>
+<li>save.image(): 保存工程！ </li>
+</ul>
+<h4 id="Update-R"><a href="#Update-R" class="headerlink" title="Update R"></a><font color="#2874A6">Update R</font></h4><ul>
+<li>所有包均安装在 R 安装路径的 Library 目录中，直接拷贝转移即可！</li>
+<li>当然，也可以通过下列命令恢复已安装的包</li>
+<li>启动当前版本，输入以下命令<ul>
+<li>oldip &lt;- installed.packages()[,1]</li>
+<li>save(oldip, file=”installedPackages.Rdata”)</li>
+</ul>
+</li>
+<li>卸载旧版本</li>
+<li>下载安装新版本，启动新版本输入以下命令<ul>
+<li>load(“installedPackages.Rdata”)</li>
+<li>newip &lt;- installed.packages()[,1]</li>
+<li>for(i in setdiff(oldip, newip)) install.packages(i)</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;持续更新：R 语言的实用语法和常用资源&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Resource Navigation" scheme="http://jasonlian.tech/categories/Resource-Navigation/"/>
+    
+    
+      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
+    
+      <category term="Navigation" scheme="http://jasonlian.tech/tags/Navigation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Machine Learning 算法学习心得和代码实现</title>
+    <link href="http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/"/>
+    <id>http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/</id>
+    <published>2017-02-08T02:05:34.000Z</published>
+    <updated>2017-04-17T08:50:23.038Z</updated>
+    
+    <content type="html"><![CDATA[<center>持续更新：Machine Learning 和 Data Mining 的算法学习心得和代码实现</center>
+
+<a id="more"></a>
+<h3 id="Awesome-Website"><a href="#Awesome-Website" class="headerlink" title="Awesome Website"></a><font color="#C70039">Awesome Website</font></h3><ul>
+<li><a href="https://mlr-org.github.io/mlr-tutorial/devel/html/index.html" target="_blank" rel="external">Machine Learning in R: mlr</a></li>
+</ul>
+<hr>
+<h3 id="Basic-Concept"><a href="#Basic-Concept" class="headerlink" title="Basic Concept"></a><font color="#C70039">Basic Concept</font></h3><h4 id="Coefficient-of-Variation"><a href="#Coefficient-of-Variation" class="headerlink" title="Coefficient of Variation"></a><font color="#2874A6">Coefficient of Variation</font></h4><ul>
+<li>Also known as Relative Standard Deviation (RSD), is a standardized measure of dispersion of a probability distribution or frequency distribution. $CV=Standard \ Deviation/Mean$</li>
+</ul>
+<hr>
+<h3 id="Feature-Engineering"><a href="#Feature-Engineering" class="headerlink" title="Feature Engineering"></a><font color="#C70039">Feature Engineering</font></h3><h4 id="Feature-Selection"><a href="#Feature-Selection" class="headerlink" title="Feature Selection"></a><font color="#2874A6">Feature Selection</font></h4><ul>
+<li><font color="blue"><code>Blog:</code></font> <a href="/2017/03/13/ML2-Feature-Selection/">A Summary of Feature Selection in Machine Learning</a></li>
+</ul>
+<hr>
+<h3 id="Time-Series-Prediction"><a href="#Time-Series-Prediction" class="headerlink" title="Time Series Prediction"></a><font color="#C70039">Time Series Prediction</font></h3><h4 id="Gaussian-Process-Regression"><a href="#Gaussian-Process-Regression" class="headerlink" title="Gaussian Process Regression"></a><font color="#2874A6">Gaussian Process Regression</font></h4><ul>
+<li><font color="blue"><code>Blog:</code></font> <a href="/2017/03/08/ML1-GPR-for-Prediction/">Time Series Prediction by Gaussian Process Regression</a></li>
+</ul>
+<h4 id="Bayesian-Structural-Time-Series"><a href="#Bayesian-Structural-Time-Series" class="headerlink" title="Bayesian Structural Time Series"></a><font color="#2874A6">Bayesian Structural Time Series</font></h4><ul>
+<li><font color="Green"><code>Paper:</code></font> Scott, S. L., &amp; Varian, H. R. (2014). <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.377.7677&amp;rep=rep1&amp;type=pdf" target="_blank" rel="external">Predicting the present with bayesian structural time series</a>. <a href="http://www.inderscienceonline.com/doi/abs/10.1504/IJMMNO.2014.059942" target="_blank" rel="external"><em>International Journal of Mathematical Modelling and Numerical Optimisation</em></a>, 5(1-2), 4-23.</li>
+<li><font color="orange"><code>Rmd:</code></font> <a href="/Rmarkdown/Tutorial_for_BSTS.html">A Tutorial for Bayesian Structural Time Series</a></li>
+</ul>
+<hr>
+<h3 id="Model-Evaluation-and-Seletion"><a href="#Model-Evaluation-and-Seletion" class="headerlink" title="Model Evaluation and Seletion"></a><font color="#C70039">Model Evaluation and Seletion</font></h3><h4 id="Regression"><a href="#Regression" class="headerlink" title="Regression"></a><font color="#2874A6">Regression</font></h4><ul>
+<li><font color="blue"><code>Blog:</code></font> <a href="/2017/04/03/ML3-Prediction-Accuracy/">Measures of Univariate Prediction Accuracy</a></li>
+</ul>
+<h4 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a><font color="#2874A6">Classification</font></h4><ul>
+<li><font color="blue"><code>Blog:</code></font> <a href="/2017/04/12/ML4-Prediction-Accuracy-2/">Classification Model Evaluation and Seletion</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;持续更新：Machine Learning 和 Data Mining 的算法学习心得和代码实现&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="Resource Navigation" scheme="http://jasonlian.tech/categories/Resource-Navigation/"/>
+    
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
+    
+      <category term="Navigation" scheme="http://jasonlian.tech/tags/Navigation/"/>
+    
+  </entry>
+  
+</feed>

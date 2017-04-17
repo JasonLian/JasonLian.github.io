@@ -1,0 +1,1257 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="yCkhQBi4EMUao1k6fRadod76QXXMCY2Cbu9rqCy5n54" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="1PsQQDqYWD" />
+
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0dd5ec4c19208d4c2a8a0358fb07f567";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Data Mania" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 Windows 上利用 Github Page 快速搭建 Hexo 博客">
+<meta property="og:url" content="http://jasonlian.tech/2017/02/18/Tech1-Windows-Hexo1/index.html">
+<meta property="og:site_name" content="Data Mania">
+<meta property="og:description" content="Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上">
+<meta property="og:image" content="http://omsiwk8es.bkt.clouddn.com/Hexo.png">
+<meta property="og:updated_time" content="2017-02-18T16:10:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 Windows 上利用 Github Page 快速搭建 Hexo 博客">
+<meta name="twitter:description" content="Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上">
+<meta name="twitter:image" content="http://omsiwk8es.bkt.clouddn.com/Hexo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'N2N28G9V4H',
+      apiKey: 'e5abe4942c09d4f633aee35a77d1ecef',
+      indexName: 'Data Mania',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jasonlian.tech/2017/02/18/Tech1-Windows-Hexo1/"/>
+
+
+
+
+
+  <title> 在 Windows 上利用 Github Page 快速搭建 Hexo 博客 | Data Mania </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c546841c720b63201893e1244ae2872";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Data Mania</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jasonlian.tech/2017/02/18/Tech1-Windows-Hexo1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Lian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Data Mania">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在 Windows 上利用 Github Page 快速搭建 Hexo 博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Created</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-18T00:04:30+08:00">
+                2017-02-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2017-02-19T00:10:30+08:00">
+                2017-02-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technical-Tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">Technical Tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/02/18/Tech1-Windows-Hexo1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/18/Tech1-Windows-Hexo1/" class="leancloud_visitors" data-flag-title="在 Windows 上利用 Github Page 快速搭建 Hexo 博客">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count</span>
+                
+                <span title="Words count">
+                  1,356
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center><img src="http://omsiwk8es.bkt.clouddn.com/Hexo.png" alt=""></center>
+
+<p><center> Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上 <center></center></center></p>
+<a id="more"></a>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a><font color="#C70039">准备工作</font></h3><ul>
+<li>安装 Node.js：到 <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a> 的官网下载最新版本并安装</li>
+<li>安装 Git：到 <a href="https://git-scm.com/downloads" target="_blank" rel="external">Git</a> 官网下载最新版本安装，然后配置本地 Github 的账户密码并生成密钥</li>
+<li>安装 Hexo：在命令行使用 <code>npm install -g hexo</code> 命令安装 Hexo，然后运行 <code>hexo -v</code>，如果输出版本号即为安装成功</li>
+<li>在 Github 上创建用于托管博客的仓库：<code>JasonLian.github.io</code></li>
+</ul>
+<hr>
+<h3 id="初始化并生成静态页面"><a href="#初始化并生成静态页面" class="headerlink" title="初始化并生成静态页面"></a><font color="#C70039">初始化并生成静态页面</font></h3><ul>
+<li>初始化：在本地新建一个项目文件夹（比如 Blog），进入 Blog 目录，运行 <code>hexo init</code> 进行初始化</li>
+<li>生成静态页面：运行 <code>hexo generate</code> 将文章编译为静态页面</li>
+<li>本地启动：运行 <code>hexo server</code>，然后在浏览器中输入 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 查看生成的页面效果</li>
+</ul>
+<hr>
+<h3 id="部署到-Github"><a href="#部署到-Github" class="headerlink" title="部署到 Github"></a><font color="#C70039">部署到 Github</font></h3><ul>
+<li><p>部署之前先修改配置文件</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">    <span class="attribute">type</span>: git</div><div class="line">    <span class="attribute">repository</span>:git<span class="variable">@github</span>.<span class="attribute">com</span>:JasonLian/JasonLian.github.io.git</div><div class="line">    <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后，通过 <code>npm install hexo-deployer-git --save</code> 安装部署插件，并进行部署 <code>hexo deploy</code></p>
+</li>
+<li>部署成功之后，稍等片刻就能通过 <a href="http://jasonlian.github.io" target="_blank" rel="external">jasonlian.github.io</a> 查看博客了，效果和本地预览相同</li>
+</ul>
+<hr>
+<h3 id="多终端同步管理"><a href="#多终端同步管理" class="headerlink" title="多终端同步管理"></a><font color="#C70039">多终端同步管理</font></h3><ul>
+<li>在一台新终端上建立 Blog 文件夹并初始化 Hexo （init &amp; generate）</li>
+<li><p>在 Blog 下新建 <code>.deploy_git</code> 文件夹，进入并运行</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git remote add origin git@github<span class="selector-class">.com</span>:JasonLian/JasonLian<span class="selector-class">.github</span><span class="selector-class">.io</span><span class="selector-class">.git</span></div><div class="line">git fetch --all</div><div class="line">git reset --hard origin/master</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>一种更简单的方式是：直接使用  Resilio Sync 等同步工具将整个 Blog 文件夹在不同终端之间备份即可</strong></p>
+</li>
+</ul>
+<hr>
+<h3 id="发表文章并添加分类和标签"><a href="#发表文章并添加分类和标签" class="headerlink" title="发表文章并添加分类和标签"></a><font color="#C70039">发表文章并添加分类和标签</font></h3><ul>
+<li>新建一篇文章：运行 <code>hexo new &quot;title&quot;</code>，然后就可以在 source/_post 文件夹下看到新建的 markdown 文件</li>
+<li>发布一篇文章：编辑新建的 md 文件后，generate + deploy 即可</li>
+<li><strong>添加标签页面</strong>：<code>hexo new page tags</code> 新建标签页面，在标签 md 文件中添加 <code>type: &quot;tags&quot;</code>，然后在主题配置文件的 menu 下添加 <code>tags: /tags</code></li>
+<li><strong>添加分类页面</strong>：<code>hexo new page categories</code> 新建标签页面，在标签 md 文件中添加 <code>type: &quot;categories&quot;</code>，然后在主题配置文件的 menu 下添加 <code>categories: /categories</code></li>
+<li><strong>为文章添加分类和标签</strong>：在文章的 front-matter 中添加如下代码，注意 Hexo 中每篇文章可以指定多个标签，但是只能指定一个分类，如果需要关闭评论功能，可以将 <code>comments</code> 设置为 false<figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">categories: Diary</div><div class="line"><span class="keyword">tags:</span></div><div class="line">  - PS3</div><div class="line">  - Games</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="将-Hexo-同时托管到-Github-和-Coding"><a href="#将-Hexo-同时托管到-Github-和-Coding" class="headerlink" title="将 Hexo 同时托管到 Github 和 Coding"></a><font color="#C70039">将 Hexo 同时托管到 Github 和 Coding</font></h3><ul>
+<li>Github 在国内的访问速度有时会很慢，甚至出现打不开的情况，而且受 Github 屏蔽百度爬虫所限，托管在 Github Page 的博客在百度上是搜索不到的，除非想百度手动推送你的链接，很是麻烦</li>
+<li>因此，可以考虑将 Hexo 托管到 <a href="https://coding.net/user" target="_blank" rel="external">Coding Page</a> 上，步骤和 Github 大致相同，在 Coding 上部署公钥，然后在 Git Bash 中输入命令 <code>ssh -T git@git.coding.net</code> 即可</li>
+<li>更进一步，如果想同时托管到 Github Page 和 Coding Page，只需要在<a href="https://wanwang.aliyun.com/" target="_blank" rel="external">万网</a>买一个域名，同时绑定两个网址，并设置国内 ip 指向 Coding，国际 ip 指向 Github 即可，详细步骤参见 Reference</li>
+</ul>
+<hr>
+<h3 id="实现简单的文章加密访问"><a href="#实现简单的文章加密访问" class="headerlink" title="实现简单的文章加密访问"></a><font color="#C70039">实现简单的文章加密访问</font></h3><ul>
+<li><p>如果使用 next 主题，则找到 <code>themes-&gt;next-&gt;layout-&gt;_partials-&gt;head.swig</code> 文件，在文件末尾加入以下代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">    (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>,<span class="string">''</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</div><div class="line">                alert(<span class="string">'密码错误！'</span>);</div><div class="line">                history.back();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)();</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>加入上述代码后，只需在需要加密的文章头部添加 password 变量即可，变量值设置为自己设定的密码</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">title: Hexo文章简单加密访问</div><div class="line">date: 2016<span class="string">-12</span><span class="string">-01</span> 10:45:29</div><div class="line"><span class="keyword">tags:</span> hexo</div><div class="line">categories: 博客</div><div class="line">keywords:</div><div class="line">    - Hexo</div><div class="line">    - 加密</div><div class="line">description: 阅读本文，请输入密码</div><div class="line">password: youpassword</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果你开启了 RSS 订阅功能，或者本地搜索功能，那么在执行 <code>Hexo generate</code> 之后，加密文章的内容也会自动写入 public 文件夹下的 search.xml 文件和 atom.xml 文件中</p>
+</li>
+<li>为了去除这些文件中的敏感内容，在博客根目录新建一个 rm_secret.py 文件，添加如下代码，在每次 generate 和 deploy 之间，将加密文章名添加到 delete_article_names 数组中，然后执行即可<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf8</span></div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="comment"># 设置需要去除的文章名</span></div><div class="line">delete_article_names = [<span class="string">"article1"</span>, <span class="string">"article2"</span>]</div><div class="line">delete_files = [<span class="string">'./public/atom.xml'</span>, <span class="string">'./public/search.xml'</span>]</div><div class="line"></div><div class="line"><span class="keyword">for</span> delete_file <span class="keyword">in</span> delete_files:</div><div class="line">    fr = open(delete_file)</div><div class="line">    content = fr.read()</div><div class="line">    <span class="comment"># print content</span></div><div class="line">    fr.close()</div><div class="line"></div><div class="line">    checks = re.findall(<span class="string">r'&lt;entry&gt;(.*?)&lt;/entry&gt;'</span>, content, re.S) </div><div class="line">    <span class="keyword">for</span> check <span class="keyword">in</span> checks:</div><div class="line">        delete = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> delete_article_name <span class="keyword">in</span> delete_article_names:</div><div class="line">            <span class="keyword">if</span> delete_article_name <span class="keyword">in</span> check:</div><div class="line">                delete = <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> delete==<span class="number">1</span>:</div><div class="line">            content = content.replace(<span class="string">'&lt;entry&gt;'</span> + check + <span class="string">'&lt;/entry&gt;'</span>, <span class="string">''</span>)</div><div class="line"></div><div class="line">    fw = open(delete_file, <span class="string">'w'</span>)</div><div class="line">    fw.write(content)</div><div class="line">    fw.close()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="常见错误及解决方案"><a href="#常见错误及解决方案" class="headerlink" title="常见错误及解决方案"></a><font color="#C70039">常见错误及解决方案</font></h3><h4 id="hexo-deploy-部署失败"><a href="#hexo-deploy-部署失败" class="headerlink" title="hexo deploy 部署失败"></a><font color="#2874A6">hexo deploy 部署失败</font></h4><ul>
+<li>部署时提示如下错误，解决方法为<strong>删除 .deploy_git 文件夹后重新部署</strong><figure class="highlight subunit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">error: </span>bad signature</div><div class="line">fatal: index file corrupt</div><div class="line">FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</div><div class="line"><span class="keyword">Error: </span>error: bad signature</div><div class="line">fatal: index file corrupt</div><div class="line"></div><div class="line">    at ChildProcess.&lt;anonymous&gt; (C:\Users\Lian\Blog\node_modules\hexo-util\lib\spawn.js:37:17)</div><div class="line">    at emitTwo (events.js:106:13)</div><div class="line">    at ChildProcess.emit (events.js:191:7)</div><div class="line">    at ChildProcess.cp.emit (C:\Users\Lian\Blog\node_modules\cross-spawn\lib\enoent.js:40:29)</div><div class="line">    at maybeClose (internal/child_process.js:877:16)</div><div class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<blockquote>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><strong><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo 官网</a></strong></li>
+<li><a href="http://blog.csdn.net/scythe666/article/details/51956821" target="_blank" rel="external">Hexo vs. Jekyll：配置 Hexo</a></li>
+<li><a href="http://www.jianshu.com/p/e99ed60390a8" target="_blank" rel="external">20 分钟教你使用 hexo 搭建 github 博客：配置 + 发布文章</a></li>
+<li><a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/#more" target="_blank" rel="external">Github Page + Hexo 搭建博客</a></li>
+<li><a href="http://www.cnblogs.com/tengj/p/5352572.html" target="_blank" rel="external">将hexo博客同时托管到github和coding</a></li>
+<li><a href="https://lancelot_lewis.coding.me/2016/12/01/blog/hexo-password/" target="_blank" rel="external">Hexo 文章简单加密访问</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/16/Navi3-Visualization/" rel="next" title="常用的可视化资源导航">
+                <i class="fa fa-chevron-left"></i> 常用的可视化资源导航
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/22/Tech2-Windows-Hexo2/" rel="prev" title="Hexo 博客的 Next 主题配置">
+                Hexo 博客的 Next 主题配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Lian" />
+          <p class="site-author-name" itemprop="name">Jason Lian</p>
+           
+              <p class="site-description motion-element" itemprop="description">享受简单而专注的快乐</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JasonLian" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/331889888/home?topnav=1&wvr=5" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:shlian16@fudan.edu.cn" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/08/Navi1-Machine-Learning/" title="Machine Learning" target="_blank">Machine Learning</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/14/Navi2-R-Manual/" title="R Manual" target="_blank">R Manual</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/16/Navi3-Visualization/" title="Visualization" target="_blank">Visualization</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/04/01/Tech3-Git-Command/" title="Git" target="_blank">Git</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化并生成静态页面"><span class="nav-number">2.</span> <span class="nav-text">初始化并生成静态页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署到-Github"><span class="nav-number">3.</span> <span class="nav-text">部署到 Github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多终端同步管理"><span class="nav-number">4.</span> <span class="nav-text">多终端同步管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发表文章并添加分类和标签"><span class="nav-number">5.</span> <span class="nav-text">发表文章并添加分类和标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将-Hexo-同时托管到-Github-和-Coding"><span class="nav-number">6.</span> <span class="nav-text">将 Hexo 同时托管到 Github 和 Coding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现简单的文章加密访问"><span class="nav-number">7.</span> <span class="nav-text">实现简单的文章加密访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见错误及解决方案"><span class="nav-number">8.</span> <span class="nav-text">常见错误及解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo-deploy-部署失败"><span class="nav-number">8.1.</span> <span class="nav-text">hexo deploy 部署失败</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-mortar-board"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Lian</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"> 您是第</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"> 总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "66b93912b152403a8848ceb2242428ff",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("TFMC9GSLvmlfR2vWv6EtvQyX-gzGzoHsz", "RS3BaosNcBvBVMJKLSqWRCmm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

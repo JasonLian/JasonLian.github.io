@@ -1,0 +1,1449 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="yCkhQBi4EMUao1k6fRadod76QXXMCY2Cbu9rqCy5n54" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="1PsQQDqYWD" />
+
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0dd5ec4c19208d4c2a8a0358fb07f567";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="R,Navigation," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Data Mania" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="持续更新：R 语言的实用语法和常用资源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R 语言实用语法和常用资源速查手册">
+<meta property="og:url" content="http://jasonlian.tech/2017/02/14/Navi2-R-Manual/index.html">
+<meta property="og:site_name" content="Data Mania">
+<meta property="og:description" content="持续更新：R 语言的实用语法和常用资源">
+<meta property="og:image" content="http://robjhyndman.com/hyndsight/files/2016/12/cv1-1.png">
+<meta property="og:updated_time" content="2017-04-17T08:50:23.044Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R 语言实用语法和常用资源速查手册">
+<meta name="twitter:description" content="持续更新：R 语言的实用语法和常用资源">
+<meta name="twitter:image" content="http://robjhyndman.com/hyndsight/files/2016/12/cv1-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'N2N28G9V4H',
+      apiKey: 'e5abe4942c09d4f633aee35a77d1ecef',
+      indexName: 'Data Mania',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jasonlian.tech/2017/02/14/Navi2-R-Manual/"/>
+
+
+
+
+
+  <title> R 语言实用语法和常用资源速查手册 | Data Mania </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c546841c720b63201893e1244ae2872";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Data Mania</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jasonlian.tech/2017/02/14/Navi2-R-Manual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Lian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Data Mania">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                R 语言实用语法和常用资源速查手册
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Created</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-14T10:05:48+08:00">
+                2017-02-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2017-04-17T16:50:23+08:00">
+                2017-04-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Resource-Navigation/" itemprop="url" rel="index">
+                    <span itemprop="name">Resource Navigation</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/02/14/Navi2-R-Manual/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/14/Navi2-R-Manual/" class="leancloud_visitors" data-flag-title="R 语言实用语法和常用资源速查手册">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count</span>
+                
+                <span title="Words count">
+                  2,822
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>持续更新：R 语言的实用语法和常用资源</center>
+
+<a id="more"></a>
+<h3 id="Awesome-Website"><a href="#Awesome-Website" class="headerlink" title="Awesome Website"></a><font color="#C70039">Awesome Website</font></h3><ul>
+<li><a href="https://awesome-r.com/index.html" target="_blank" rel="external">Awesome R: A list of awesome R packages and tools</a></li>
+<li><a href="https://www.r-pkg.org/" target="_blank" rel="external">METACRAN: Search and browse all CRAN/R packages</a></li>
+<li><a href="https://www.rdocumentation.org/trends" target="_blank" rel="external">RDocumentation: Search all CRAN, BioConductor and Github packages</a></li>
+<li><a href="https://rdrr.io/" target="_blank" rel="external">R Packages: A comprehensive index of R packages and documentation</a></li>
+<li><a href="https://cran.r-project.org/web/views/" target="_blank" rel="external">CRAN Task Views</a></li>
+</ul>
+<h3 id="Useful-Command"><a href="#Useful-Command" class="headerlink" title="Useful Command"></a><font color="#C70039">Useful Command</font></h3><ul>
+<li>搜索某个包下的指定函数：<code>?proxy::dist</code></li>
+<li>查看包的帮助手册：<code>browseVignettes(package = &quot;dplyr&quot;)</code></li>
+<li>读取文件夹下的所有指定类型的文件：<code>list.files(&quot;../data_survey/&quot;, pattern=&quot;*.xls&quot;)</code></li>
+<li>打开新窗口用于存储新图形：<code>dev.new()</code></li>
+<li>查看变量类型：<code>mode()</code></li>
+<li>查看变量的种类个数：<code>table()</code></li>
+<li>变量 0-1 标准化：<code>scale()</code></li>
+<li>删除所有包含 temp 的对象：<code>rm(list=ls()[grepl(&#39;temp&#39;,ls())])</code></li>
+<li>查看和清空内存：<code>gc(reset=TRUE)</code></li>
+<li>分类汇总，根据 position 对 a1\a2\a3 分别求和：<code>aggregate(datos[,c(&quot;a1&quot;,&quot;a2&quot;,&quot;a3&quot;)], by=list(datos$Position), &quot;sum&quot;)</code></li>
+<li>根据多列取不重复的子集：<code>df[!duplicated(df[,1:2]),]</code></li>
+</ul>
+<h4 id="Array"><a href="#Array" class="headerlink" title="Array"></a><font color="#2874A6">Array</font></h4><ul>
+<li>去除数组两端的 0 值：<code>x[min(which(x!=0)) : max(which(x!=0))]</code></li>
+<li><strong>计算一个向量的累积求和或累积求积</strong><ul>
+<li><code>cumsum(c(1,2,3))</code> →<code>1,3,6</code></li>
+<li><code>cumprod(c(1,2,3))</code>→<code>1,2,6</code></li>
+</ul>
+</li>
+<li>比较两个向量是否完全相同：identical(vector1, vector2)</li>
+<li>自动产生向量的下标：<code>seq_along()</code></li>
+</ul>
+<h4 id="List"><a href="#List" class="headerlink" title="List"></a><font color="#2874A6">List</font></h4><ul>
+<li>选择列表的多个元素：<code>mylist[c(1,3,5)]</code>，而双中括号选择的是再下一层</li>
+<li><strong>R 中字典的概念</strong><ul>
+<li><code>list(a = 1,b = &quot;foo&quot;,c = 1:5)</code></li>
+<li><code>list[[&#39;a&#39;]]</code> 返回 1</li>
+</ul>
+</li>
+</ul>
+<h4 id="Data-Frame"><a href="#Data-Frame" class="headerlink" title="Data Frame"></a><font color="#2874A6">Data Frame</font></h4><ul>
+<li>将 data.frame 的所有 NA 替换为 0：<code>d[is.na(d)] &lt;- 0</code></li>
+<li>更改数据框或矩阵的列名：<code>colnames(dt)[1] &lt;- &quot;cn&quot;</code></li>
+<li>去除包含 NA 的行 / 去除某些列包含 NA 的行 / 去除头尾包含 NA 的行<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">dt[<span class="built_in">complete</span>.cases(dt),]</div><div class="line">dt[<span class="built_in">complete</span>.cases(dt[,<span class="number">5</span>:<span class="number">6</span>]),]</div><div class="line"></div><div class="line"># 如果一定要用 <span class="keyword">is</span>.na()</div><div class="line">dt[rowSums(<span class="keyword">is</span>.na(dt[,<span class="number">5</span>:<span class="number">6</span>]))==<span class="number">0</span>,]</div><div class="line"></div><div class="line"># 去除头尾包含 NA 的行，中间行包含 NA 则不去除</div><div class="line">df[<span class="built_in">min</span>(which(<span class="built_in">complete</span>.cases(df)==<span class="number">1</span>)):<span class="built_in">max</span>(which(<span class="built_in">complete</span>.cases(df)==<span class="number">1</span>)) ,]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Factor"><a href="#Factor" class="headerlink" title="Factor"></a><font color="#2874A6">Factor</font></h4><ul>
+<li><a href="http://blog.csdn.net/jiluben/article/details/40222229" target="_blank" rel="external">Factor 转换为 numeric</a><ul>
+<li>as.numeric(as.character(factorname))</li>
+<li>as.numeric(levels(factorname)[factorname])</li>
+</ul>
+</li>
+</ul>
+<h4 id="Statistics"><a href="#Statistics" class="headerlink" title="Statistics"></a><font color="#2874A6">Statistics</font></h4><ul>
+<li>set.seed()：是用于产生随机数的，编号设定基本可以随意</li>
+<li>根据 t 值求 p 值：<code>p.value = 2*pt(-abs(t.value), df=length(data)-1)</code></li>
+<li>从模型中抽取 Log-Liklihood 值：<code>logLik(mylogit)</code></li>
+<li>抽取模型的拟合值：<code>fitted()</code></li>
+<li>创建两个分类的 Dummy：<code>as.numeric(gear_box==&quot;手自一体&quot;)</code></li>
+<li>计算四分位数间距：<code>IQR()</code></li>
+<li>计算百分位数：<code>quantile(x, probs=c(0.25, 0.75))</code></li>
+</ul>
+<hr>
+<h3 id="Advanced-Function"><a href="#Advanced-Function" class="headerlink" title="Advanced Function"></a><font color="#C70039">Advanced Function</font></h3><h4 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a><font color="#2874A6">Reduce</font></h4><ul>
+<li><code>Reduce</code> takes a binary function and a list of data items and successively applies the function to the list elements in a recursive fashion. For example:<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Reduce(<span class="built_in">intersect</span>,list(<span class="keyword">a</span>,b,c))` is <span class="keyword">the</span> same <span class="keyword">as</span> `<span class="built_in">intersect</span>((<span class="built_in">intersect</span>(<span class="keyword">a</span>,b),c)</div><div class="line">Reduce(<span class="function"><span class="keyword">function</span>(<span class="title">x</span>,<span class="title">y</span>) <span class="title">merge</span>(<span class="title">x</span>,<span class="title">y</span>,<span class="title">by</span>=<span class="string">"cust_no"</span>), <span class="title">list</span>(<span class="title">vege_loyal</span>,<span class="title">fruit_loyal</span>,<span class="title">meat_loyal</span>))</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Apply-Family"><a href="#Apply-Family" class="headerlink" title="Apply Family"></a><font color="#2874A6">Apply Family</font></h4><ul>
+<li><a href="https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#gs.34X_W=4" target="_blank" rel="external">datacamp_tutorial</a></li>
+<li><strong>apply(x, margin, fun)</strong>：x is an <strong>array or matrix</strong>, margin = 1 for row / 2 for column, such as <code>apply(matrix, 2, sum)</code></li>
+<li><strong>lapply</strong>：和 apply 的不同是也可以应用于 <strong>dataframes, lists or vectors</strong>，并且 <strong>return list</strong><ul>
+<li><code>lapply(MyList,&quot;[&quot;, , 2)</code>：从列表的每一个矩阵中选取第二列元素，返回一个向量列表</li>
+<li>The <code>[</code> notation is the select operator</li>
+<li>The <code>[[ ]]</code> notation expresses the fact that the we are dealing with lists</li>
+</ul>
+</li>
+<li><strong>sapply</strong>：和 lapply 类似，但不同是 sapply 返回最基础的数据结构，而不是列表<ul>
+<li><code>sapply(MyList,&quot;[&quot;, 2, 1 )</code>:选取列表每一个矩阵中的第二行第一列的元素，返回一个向量</li>
+<li><code>unlist(lapply(MyList,&quot;[&quot;, 2, 1 ))</code>:lapply 的结果 <code>unlist</code> 之后才返回向量</li>
+</ul>
+</li>
+<li><code>rep()</code>: sapply 返回结果配合 rep 函数使用，比如 <code>rep(c(1,4,8),c(3,1,2))</code> 返回 <code>c(1,1,1,4,4,8)</code></li>
+<li><strong>mapply</strong>: applies a Function to Multiple List or multiple Vector Arguments, such as <code>mapply(rep,1:4,4)</code>，相当于 <code>rep(c(1,2,3,4),c(4,4,4,4))</code> 或者 <code>c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4))</code></li>
+<li><strong>sweep</strong>:比如矩阵每一列减去各列均值<code>data &lt;- sweep(data, 2, data_means,&quot;-&quot;)</code>，均值可以先通过 apply 求出</li>
+</ul>
+<h4 id="Eval-amp-Assign"><a href="#Eval-amp-Assign" class="headerlink" title="Eval &amp; Assign"></a><font color="#2874A6">Eval &amp; Assign</font></h4><ul>
+<li><code>Eval()</code> 函数可以将字符串转变为变量名<ul>
+<li>如果用字符串表示的变量无需被赋值，只是表示变量，则用 eval 函数转换：<code>var &lt;- eval ( parse ( text = &quot;string&quot; ) )</code> </li>
+</ul>
+</li>
+<li><code>Assign()</code> 函数可以为以字符串命名的变量赋值<ul>
+<li>如果用字符串表示的变量是被赋值对象，则使用 assign 函数 <code>assign(paste(str1,str2,sep=&quot;&quot;), value)</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="DateTime-Transfermation"><a href="#DateTime-Transfermation" class="headerlink" title="DateTime Transfermation"></a><font color="#C70039">DateTime Transfermation</font></h3><ul>
+<li><strong><a href="http://blog.mollietaylor.com/2013/08/date-formats-in-r.html" target="_blank" rel="external">将字符串转换为 Date 类型</a></strong><ul>
+<li><code>as.Date(&#39;20140325&#39;,&quot;%Y%m%d&quot;)</code></li>
+<li><code>strptime(&#39;2012-09-16 19:35:58&#39;,&quot;%Y-%m-%d %H:%M:%S&quot;)</code></li>
+</ul>
+</li>
+<li><strong><code>lubridate</code></strong><ul>
+<li>获取年份：<code>year(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+<li>获取月份：<code>month(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+<li>获取周数<ul>
+<li>从1月1日开始计算： <code>week(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+<li>从星期一开始计算：<code>isoweek()</code></li>
+</ul>
+</li>
+<li>获取该月第几天：<code>mday(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+<li>获取该年第几天：<code>yday(as.Date(&#39;20130204&#39;,&quot;%Y%m%d&quot;))</code></li>
+</ul>
+</li>
+<li><strong>将 Excel 中的数字型日期时间转换为日期</strong><ul>
+<li><code>as.Date(41310.11, origin = &quot;1899-12-30&quot;)</code>  41310 的单位是天</li>
+<li><code>as.POSIXct(41310*24*3600, origin = &quot;1899-12-30&quot;)</code> POSIXct 函数的单位是秒</li>
+</ul>
+</li>
+<li>求两个日期之间的差<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">difftime(<span class="keyword">as</span>.Date(<span class="keyword">as</span>.<span class="keyword">integer</span>(<span class="number">41310.12</span>), origin = <span class="string">"1899-12-30"</span>), <span class="keyword">as</span>.Date(<span class="string">'20130204'</span>,<span class="string">"%Y%m%d"</span>), units=<span class="string">'days'</span>)</div><div class="line"><span class="keyword">as</span>.<span class="keyword">integer</span>(difftime(<span class="built_in">max</span>(t1,t2,t3,t4), <span class="built_in">min</span>(t1,t2,t3,t4), units=<span class="string">"mins"</span>))</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="Time-Series"><a href="#Time-Series" class="headerlink" title="Time Series"></a><font color="#C70039">Time Series</font></h3><ul>
+<li>获取时间序列的日期：<code>as.Date(time(ts))</code></li>
+<li>获取时间序列的起止时间：<code>start(ts) end(ts)</code>，返回的都是 numeric 数组，通过下标获取年月</li>
+<li>根据起始时间产生连续的时间<code>seq.Date</code>，然后创建 zoo 对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from &lt;- as.Date(&quot;1974-01-01&quot;)</div><div class="line">to &lt;- as.Date(&quot;1989-12-31&quot;)</div><div class="line">months &lt;- seq.Date(from=from,to=to,by=&quot;month&quot;)</div><div class="line"></div><div class="line">values &lt;- rep.int(0,length(months))</div><div class="line">Zooserie &lt;- zoo(values, months)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="String-Processing"><a href="#String-Processing" class="headerlink" title="String Processing"></a><font color="#C70039">String Processing</font></h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># 分割字符串</span></div><div class="line">strsplit(<span class="string">'abc-ds'</span>,<span class="string">'-'</span>)[[<span class="number">1</span>]][<span class="number">2</span>]</div><div class="line"></div><div class="line"><span class="meta"># 判断一个字符串是否包含在另一个字符串中</span></div><div class="line">grepl(<span class="string">'-'</span>,<span class="string">'dadas-'</span>)</div><div class="line"></div><div class="line"><span class="meta"># 统计长度</span></div><div class="line">length() # 对象 object 的长度</div><div class="line">nchar() # 字符串的长度</div><div class="line"></div><div class="line"><span class="meta"># 获取一个字符串的子串</span></div><div class="line">substr(<span class="keyword">string</span>, start_index, end_index)</div><div class="line"></div><div class="line"><span class="meta"># 替换字符串中的字符</span></div><div class="line">gsub(<span class="string">'e'</span>, <span class="string">''</span>, <span class="string">'e123'</span>) # 返回 <span class="number">123</span></div><div class="line"></div><div class="line"><span class="meta"># 判断一个字符串的开头结尾是否为特定字符</span></div><div class="line">startsWith(<span class="string">"2013-01"</span>, <span class="string">"2013-"</span>)</div><div class="line">endsWith(<span class="string">"2013-11"</span>, <span class="string">"11"</span>)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="Set-Operation"><a href="#Set-Operation" class="headerlink" title="Set Operation"></a><font color="#C70039">Set Operation</font></h3><ul>
+<li><code>a &lt;- c(&quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;)  b &lt;- c(&quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;)</code><ul>
+<li>交集：intersect(a,b) = d,e</li>
+<li>并集：union(a,b) = b,c,d,e,f,g</li>
+<li>差集：setdiff(a,b) = b,c / setdiff(b,a) = f,g</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="R-Packages"><a href="#R-Packages" class="headerlink" title="R Packages"></a><font color="#C70039">R Packages</font></h3><ul>
+<li><code>require()</code> 和 <code>library()</code> 最大的不同是前者返回一个 Logical Value，如果包不存在则继续运行<figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!<span class="keyword">require</span>(<span class="string">"abc"</span>, character.only=<span class="literal">T</span>, quietly=<span class="literal">T</span>)) &#123;</div><div class="line">    install.packages(<span class="string">"abc"</span>)</div><div class="line">    <span class="keyword">library</span>(<span class="string">"abc, character.only=T)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="Data-Manipulation-amp-Input-amp-Output"><a href="#Data-Manipulation-amp-Input-amp-Output" class="headerlink" title="Data Manipulation &amp; Input &amp; Output"></a><font color="#2874A6">Data Manipulation &amp; Input &amp; Output</font></h4><ul>
+<li>Excel File<ul>
+<li><strong>openxlsx</strong>: <code>data &lt;- read.xlsx(&quot;abc.xlsx&quot;, sheet = 1, startRow = 2, colNames = TRUE)</code> 只能读取 .xlsx</li>
+<li><strong>XLConnect</strong>:<code>wb = loadWorkbook(&quot;../data_survey/A1.xls&quot;)</code> <code>df = readWorksheet(wb, sheet = &quot;Sheet1&quot;, startRow = 2, header = FALSE)</code></li>
+</ul>
+</li>
+<li><strong><a href="http://garrettgman.github.io/tidying/" target="_blank" rel="external">tidyr</a></strong><ul>
+<li><code>gather()</code>：将除了 iteration 的所有列转变为 <strong>key-value</strong> 的形式：<code>recall &lt;- gather(recall_i, key=&#39;keyname&#39;, value=&#39;valuename&#39;, -iteration)</code></li>
+<li><code>spread()</code>：将 key:value 的形式重新转变为 column 的形式 <code>spread(recall,key,value)</code></li>
+<li><code>seperate()</code>：将一列通过分隔符分拆为多列</li>
+<li><code>unite()</code>：多列合并为一列</li>
+</ul>
+</li>
+<li><strong>dplyr</strong><ul>
+<li><code>window()</code>：比如截取时间序列 <code>window(ts, start=c(1949, 1), end=c(1959,12))</code></li>
+<li>Ranking functions:<code>min_rank() percent_rank() dense_rank()</code></li>
+<li><code>lead()</code> &amp; <code>lag()</code>：不同包的 lag 函数用法不同，必须指定 <code>dplyr::lag(ts,1)</code></li>
+</ul>
+</li>
+<li><strong>sqldf</strong>: <code>df &lt;- sqldf(&#39;select * from dataframe&#39;)</code></li>
+<li><strong>texreg</strong>：<a href="http://mirrors.ustc.edu.cn/CRAN/web/packages/texreg/index.html" target="_blank" rel="external">Conversion of R Regression Output to LaTeX or HTML Tables</a></li>
+<li><strong>stargazer</strong>：<a href="http://mirrors.ustc.edu.cn/CRAN/web/packages/stargazer/index.html" target="_blank" rel="external">Well-Formatted Regression and Summary Statistics Tables</a></li>
+<li><strong>formatR</strong>: <a href="https://cran.r-project.org/web/packages/formatR/" target="_blank" rel="external">Format R Code Automatically</a>、<a href="http://yihui.name/formatR/" target="_blank" rel="external">Introduction</a></li>
+<li><strong>gridExtra</strong>：<code>grid.table()</code> 将表格输出为图片</li>
+</ul>
+<h4 id="Big-Data-amp-Optimization"><a href="#Big-Data-amp-Optimization" class="headerlink" title="Big Data &amp; Optimization"></a><font color="#2874A6">Big Data &amp; Optimization</font></h4><ul>
+<li><strong>optim</strong>:<a href="http://www.magesblog.com/2013/03/how-to-use-optim-in-r.html" target="_blank" rel="external">How to use optim() in R</a></li>
+<li><strong>Rcpp</strong>: <a href="http://adv-r.had.co.nz/Rcpp.html" target="_blank" rel="external">High Performance Functions with Rcpp</a></li>
+<li><strong>data.table</strong><ul>
+<li><a href="https://github.com/Rdatatable/data.table/wiki/Getting-started" target="_blank" rel="external">Getting Started_Github Tutorial</a>  ， <a href="http://youngspring1.github.io/categories/data.table%E6%95%99%E7%A8%8B/" target="_blank" rel="external">中文教程</a></li>
+<li><strong>data.table 的计算语法规则</strong>：`DT[i, j, by] 使用 i 来 subset 行，然后计算 j ，最后用 by 分组</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># 计算指定行的变量均值：</span></div><div class="line">test[GROUP_ID==<span class="number">1</span> &amp; CLASS_ID==<span class="number">100</span>, .(m_qty=mean(QTY))]</div><div class="line"></div><div class="line"><span class="meta"># 统计各个分组满足条件的行数, .N 是一个内建的变量，它表示当前的分组中对象的数目</span></div><div class="line">test[GROUP_ID==<span class="number">1</span>, .N, by=group_id]</div><div class="line"></div><div class="line"><span class="meta"># 按照分组变量排序并计算平均值</span></div><div class="line">flights[carrier == <span class="string">"AA"</span>, .(mean(arr_delay), mean(dep_delay)),  keyby=.(origin, dest, month)]</div><div class="line"></div><div class="line"><span class="meta"># keyby 默认按升序排序，如果想改变排序</span></div><div class="line">flights[carrier == <span class="string">"AA"</span>, .N, by=.(origin, dest)][order(origin, -dest)]</div><div class="line"></div><div class="line"><span class="meta"># by 也可以指定表达式，比如计算起飞延误和到达延误的航班各有多少（生成4行）</span></div><div class="line">flights[, .N, .(dep_delay&gt;<span class="number">0</span>, arr_delay&gt;<span class="number">0</span>)]</div><div class="line"></div><div class="line"><span class="meta"># 同时对多列进行计算,.SD 包含了除分组变量之外的所有列</span></div><div class="line">DT[, lapply(.SD, mean), by=ID]</div><div class="line"><span class="meta"># 返回每个分组的前两行</span></div><div class="line">ans &lt;- flights[, head(.SD, <span class="number">2</span>), by=month]</div><div class="line"><span class="meta"># 根据 ID 连接某个变量的所有字符串</span></div><div class="line">dt[, lapply(.SD, paste0, collapse=<span class="string">" "</span>), by = ID]</div><div class="line"><span class="meta"># .SDcols 可以指定 .SD 中包含哪些列，而不是除分组变量之外的所有列</span></div><div class="line">flights[carrier == <span class="string">"AA"</span>, lapply(.SD, mean), by=.(origin, dest, month), .SDcols=c(<span class="string">"arr_delay"</span>, <span class="string">"dep_delay"</span>)]</div><div class="line"></div><div class="line"><span class="meta"># 快速读取大文件</span></div><div class="line">fread(<span class="string">'example.csv'</span>, sep=<span class="string">','</span>, header=TRUE, integer64=<span class="string">"character"</span>, encoding=<span class="string">'UTF-8'</span>)</div><div class="line"></div><div class="line"><span class="meta"># 数据选取：选取行</span></div><div class="line">flight[<span class="number">1</span>:<span class="number">10</span>]</div><div class="line"><span class="meta"># 数据选取：选取列（返回 vector）</span></div><div class="line">flight[, arr_delay]</div><div class="line"><span class="meta"># 数据选取：选取列（返回 data.table）,对 data.table 赋值时使用！</span></div><div class="line">flight[, list(arr_delay)]</div><div class="line">flights[, .(arr_delay, dep_delay)]</div><div class="line">flight[, <span class="string">"arr_delay"</span>]</div><div class="line"><span class="meta"># with=FALSE，myvector 才会被看做列名，并返回 data.table，否则返回向量</span></div><div class="line">mtcarsDT[, myVector, with=FALSE]</div><div class="line"></div><div class="line"><span class="meta"># := operator 添加新列/移除一列/更改指定行某一列的值</span></div><div class="line">DT[,new_colname:=<span class="number">42</span>]</div><div class="line">DT[,extant_colname:=NULL]</div><div class="line">trade[date==<span class="string">"2013-12-31"</span>, year_week := <span class="string">"2014-01"</span>]</div><div class="line"><span class="meta"># := operator 性能对比</span></div><div class="line">system.time(<span class="keyword">for</span> (i in <span class="number">1</span>:<span class="number">1000</span>) DF[i,<span class="number">1</span>] &lt;- i)  # Elapsed <span class="number">591</span></div><div class="line">system.time(<span class="keyword">for</span> (i in <span class="number">1</span>:<span class="number">1000</span>) DT[i,V1:=i])  # Elapsed <span class="number">1.158</span>  (<span class="number">511</span> times faster)</div></pre></td></tr></table></figure>
+<h4 id="Time-Series-1"><a href="#Time-Series-1" class="headerlink" title="Time Series"></a><font color="#2874A6">Time Series</font></h4><ul>
+<li><strong><a href="https://rdrr.io/cran/kernlab/man/gausspr.html" target="_blank" rel="external">kernlab</a></strong>：Gaussian Process Regression</li>
+<li><strong>bsts</strong>： Baayesian Structural Time Series</li>
+<li>tseries： Time Series Analysis and Computational Finance</li>
+<li><strong>fUnitRoots</strong>: Trends and Unit Roots</li>
+<li>urca: Unit root and cointegration tests for time series data</li>
+<li><strong>forecast</strong>： Forecasting Functions for Time Series and Linear Models<ul>
+<li><a href="http://robjhyndman.com/hyndsight/" target="_blank" rel="external">Plot Examples</a></li>
+<li><a href="http://robjhyndman.com/hyndsight/tscv/" target="_blank" rel="external">Cross validation example</a><br><img src="http://robjhyndman.com/hyndsight/files/2016/12/cv1-1.png" alt="cv1-1"></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">checkresiduals</span>(model)  # 模型残差正态性和纯随机性检验图</div><div class="line"><span class="selector-tag">gghistogram</span>(ts)  # 时间序列取值柱状图</div><div class="line"><span class="selector-tag">ggseasonplot</span>(ts, polar=TRUE)  # 时间序列季节性雷达图</div><div class="line"><span class="selector-tag">autoplot</span>(temp_ts, series=<span class="string">"Data"</span>) + <span class="selector-tag">autolayer</span>(forecast, series=<span class="string">"Forecast"</span>) + <span class="selector-tag">autolayer</span>(fitted(model), series=<span class="string">"Fitted"</span>)  # 真实值+拟合值+预测值 （当然也可以通过数据框存储数据然后自己作图）</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>WaveletComp</strong>：小波分析和时间序列重构，Wavelet analysis and reconstruction of time series, cross-wavelets and phase-difference (with filtering options), significance with simulation algorithms.</li>
+</ul>
+<h4 id="Algorithm-amp-Modeling"><a href="#Algorithm-amp-Modeling" class="headerlink" title="Algorithm &amp; Modeling"></a><font color="#2874A6">Algorithm &amp; Modeling</font></h4><ul>
+<li><strong>lmtest</strong>： <a href="http://mirrors.ustc.edu.cn/CRAN/web/packages/lmtest/index.html" target="_blank" rel="external">Testing Linear Regression Models</a></li>
+</ul>
+<hr>
+<h3 id="RStudio"><a href="#RStudio" class="headerlink" title="RStudio"></a><font color="#C70039">RStudio</font></h3><h4 id="Shortcut-Key-in-RStudio"><a href="#Shortcut-Key-in-RStudio" class="headerlink" title="Shortcut Key in RStudio"></a><font color="#2874A6"><a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts" target="_blank" rel="external">Shortcut Key in RStudio</a></font></h4><ul>
+<li>Clear console: <code>Ctrl + L</code></li>
+<li>Insert a chunk in Rmd: <code>Ctrl + Alt + I</code></li>
+<li>Add comment: <code>Ctrl + Shift + C</code></li>
+</ul>
+<h4 id="R-markdown"><a href="#R-markdown" class="headerlink" title="R markdown"></a><font color="#2874A6">R markdown</font></h4><ul>
+<li><strong><a href="http://rmarkdown.rstudio.com/html_document_format.html" target="_blank" rel="external">HTML Documents</a></strong></li>
+<li><a href="http://rmarkdown.rstudio.com/authoring_knitr_engines.html" target="_blank" rel="external">knitr language engines</a></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="attr">output:</span></div><div class="line"><span class="attr">  html_document:</span></div><div class="line"><span class="attr">    toc:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    toc_depth:</span> <span class="number">6</span></div><div class="line"><span class="attr">    number_sections:</span> <span class="literal">false</span></div><div class="line"><span class="attr">    toc_float:</span></div><div class="line"><span class="attr">      collapsed:</span> <span class="literal">false</span></div><div class="line"><span class="attr">      smooth_scroll:</span> <span class="literal">false</span></div><div class="line"><span class="attr">    theme:</span> readable</div><div class="line"><span class="attr">    highlight:</span> tango</div><div class="line"><span class="attr">    code_folding:</span> show</div><div class="line"><span class="attr">    df_print:</span> paged</div></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" target="_blank" rel="external">Cheet Sheet</a></li>
+<li>生成 HTML 时，如果找不到对象，先 <code>load(file=&quot;.RData&quot;)</code></li>
+<li>屏蔽代码提示和警告信息：<code>{r message=FALSE, warning=FALSE}</code></li>
+</ul>
+<hr>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a><font color="#C70039">Others</font></h3><h4 id="Run-R-in-CentOS"><a href="#Run-R-in-CentOS" class="headerlink" title="Run R in CentOS"></a><font color="#2874A6">Run R in CentOS</font></h4><ul>
+<li><p><a href="http://superuser.com/questions/841270/installing-r-on-rhel-7" target="_blank" rel="external"><strong>在 Centos 中安装 R</strong></a></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo yum <span class="keyword">install</span> -y epel-<span class="keyword">release</span> </div><div class="line">sudo yum <span class="keyword">update</span> -y </div><div class="line">sudo yum <span class="keyword">install</span> -y R</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行 R 脚本并输出信息到终端: <code>Rscript a.R</code></p>
+</li>
+<li><p>运行 R 脚本并输出到文件（默认 a.Rout）： <code>R CMD BATCH a.R</code></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">R <span class="keyword">CMD</span><span class="bash"> BATCH a.R</span></div><div class="line"><span class="comment"># Check the output</span></div><div class="line">cat a.Rout</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>断开终端后离线运行 R 脚本</strong></p>
+<ul>
+<li>安装 screen：<code>yum install screen</code></li>
+<li>新建一个会话：<code>screen -S lnmp</code> (lnmp为会话名，可自己定义)</li>
+<li>离开会话并让程序继续运行：<code>ctrl a d</code> (按住ctrl不放，分别按 a 和 d)</li>
+<li>恢复后台运行的会话：<code>screen -r lnmp</code>（lnmp为自己定义的会话名）</li>
+<li>显示所有screen创建的会话：<code>screen -ls</code></li>
+<li>在会话里执行 <code>exit</code> 命令会话是结束运行并退到 shell 中</li>
+</ul>
+</li>
+<li><p>也可以使用 <code>nohup</code> 命令：<code>nohup R CMD BATCH wenjian.R wenjian.out</code></p>
+</li>
+</ul>
+<h4 id="Project-Management"><a href="#Project-Management" class="headerlink" title="Project Management"></a><font color="#2874A6">Project Management</font></h4><ul>
+<li>Get data out of R: <a href="https://www.stat.ubc.ca/~jenny/STAT545A/block05_getNumbersOut.html" target="_blank" rel="external">1</a>    <a href="http://stackoverflow.com/questions/13206876/saving-and-loading-data-frames" target="_blank" rel="external">2</a></li>
+<li><strong>从另一个 R Project 中读取对象的方法</strong>：<ul>
+<li>先保存一个项目中的对象：<code>saveRDS(df, file=&quot;mytweets.rds&quot;)</code></li>
+<li>再到另一个项目中读取：<code>df2 &lt;- readRDS(&quot;mytweets.rds&quot;)</code></li>
+</ul>
+</li>
+<li>getwd(): 查看当前工作目录 </li>
+<li>ls(): 列出所有对象的名字 </li>
+<li>ls.str(): 列出所有对象的详细信息 </li>
+<li>save.image(): 保存工程！ </li>
+</ul>
+<h4 id="Update-R"><a href="#Update-R" class="headerlink" title="Update R"></a><font color="#2874A6">Update R</font></h4><ul>
+<li>所有包均安装在 R 安装路径的 Library 目录中，直接拷贝转移即可！</li>
+<li>当然，也可以通过下列命令恢复已安装的包</li>
+<li>启动当前版本，输入以下命令<ul>
+<li>oldip &lt;- installed.packages()[,1]</li>
+<li>save(oldip, file=”installedPackages.Rdata”)</li>
+</ul>
+</li>
+<li>卸载旧版本</li>
+<li>下载安装新版本，启动新版本输入以下命令<ul>
+<li>load(“installedPackages.Rdata”)</li>
+<li>newip &lt;- installed.packages()[,1]</li>
+<li>for(i in setdiff(oldip, newip)) install.packages(i)</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/R/" rel="tag"># R</a>
+          
+            <a href="/tags/Navigation/" rel="tag"># Navigation</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/08/Navi1-Machine-Learning/" rel="next" title="Machine Learning 算法学习心得和代码实现">
+                <i class="fa fa-chevron-left"></i> Machine Learning 算法学习心得和代码实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/16/Navi3-Visualization/" rel="prev" title="常用的可视化资源导航">
+                常用的可视化资源导航 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Lian" />
+          <p class="site-author-name" itemprop="name">Jason Lian</p>
+           
+              <p class="site-description motion-element" itemprop="description">享受简单而专注的快乐</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JasonLian" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/331889888/home?topnav=1&wvr=5" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:shlian16@fudan.edu.cn" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/08/Navi1-Machine-Learning/" title="Machine Learning" target="_blank">Machine Learning</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/14/Navi2-R-Manual/" title="R Manual" target="_blank">R Manual</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/16/Navi3-Visualization/" title="Visualization" target="_blank">Visualization</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/04/01/Tech3-Git-Command/" title="Git" target="_blank">Git</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Awesome-Website"><span class="nav-number">1.</span> <span class="nav-text">Awesome Website</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Useful-Command"><span class="nav-number">2.</span> <span class="nav-text">Useful Command</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Array"><span class="nav-number">2.1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List"><span class="nav-number">2.2.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Frame"><span class="nav-number">2.3.</span> <span class="nav-text">Data Frame</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Factor"><span class="nav-number">2.4.</span> <span class="nav-text">Factor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Statistics"><span class="nav-number">2.5.</span> <span class="nav-text">Statistics</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-Function"><span class="nav-number">3.</span> <span class="nav-text">Advanced Function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reduce"><span class="nav-number">3.1.</span> <span class="nav-text">Reduce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apply-Family"><span class="nav-number">3.2.</span> <span class="nav-text">Apply Family</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Eval-amp-Assign"><span class="nav-number">3.3.</span> <span class="nav-text">Eval & Assign</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DateTime-Transfermation"><span class="nav-number">4.</span> <span class="nav-text">DateTime Transfermation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Series"><span class="nav-number">5.</span> <span class="nav-text">Time Series</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Processing"><span class="nav-number">6.</span> <span class="nav-text">String Processing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-Operation"><span class="nav-number">7.</span> <span class="nav-text">Set Operation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#R-Packages"><span class="nav-number">8.</span> <span class="nav-text">R Packages</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Manipulation-amp-Input-amp-Output"><span class="nav-number">8.1.</span> <span class="nav-text">Data Manipulation & Input & Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Big-Data-amp-Optimization"><span class="nav-number">8.2.</span> <span class="nav-text">Big Data & Optimization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Time-Series-1"><span class="nav-number">8.3.</span> <span class="nav-text">Time Series</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Algorithm-amp-Modeling"><span class="nav-number">8.4.</span> <span class="nav-text">Algorithm & Modeling</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RStudio"><span class="nav-number">9.</span> <span class="nav-text">RStudio</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Shortcut-Key-in-RStudio"><span class="nav-number">9.1.</span> <span class="nav-text">Shortcut Key in RStudio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#R-markdown"><span class="nav-number">9.2.</span> <span class="nav-text">R markdown</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Others"><span class="nav-number">10.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Run-R-in-CentOS"><span class="nav-number">10.1.</span> <span class="nav-text">Run R in CentOS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Project-Management"><span class="nav-number">10.2.</span> <span class="nav-text">Project Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Update-R"><span class="nav-number">10.3.</span> <span class="nav-text">Update R</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-mortar-board"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Lian</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"> 您是第</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"> 总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "66b93912b152403a8848ceb2242428ff",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("TFMC9GSLvmlfR2vWv6EtvQyX-gzGzoHsz", "RS3BaosNcBvBVMJKLSqWRCmm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>

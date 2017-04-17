@@ -1,0 +1,1341 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="yCkhQBi4EMUao1k6fRadod76QXXMCY2Cbu9rqCy5n54" />
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="1PsQQDqYWD" />
+
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0dd5ec4c19208d4c2a8a0358fb07f567";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Plotly,Visualization,R,ggplot2," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Data Mania" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="持续更新：R 中常用的可视化资源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用的可视化资源导航">
+<meta property="og:url" content="http://jasonlian.tech/2017/02/16/Navi3-Visualization/index.html">
+<meta property="og:site_name" content="Data Mania">
+<meta property="og:description" content="持续更新：R 中常用的可视化资源">
+<meta property="og:image" content="http://omsiwk8es.bkt.clouddn.com/ggplot2-shape-identity.png">
+<meta property="og:updated_time" content="2017-04-17T08:50:23.051Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用的可视化资源导航">
+<meta name="twitter:description" content="持续更新：R 中常用的可视化资源">
+<meta name="twitter:image" content="http://omsiwk8es.bkt.clouddn.com/ggplot2-shape-identity.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'N2N28G9V4H',
+      apiKey: 'e5abe4942c09d4f633aee35a77d1ecef',
+      indexName: 'Data Mania',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jasonlian.tech/2017/02/16/Navi3-Visualization/"/>
+
+
+
+
+
+  <title> 常用的可视化资源导航 | Data Mania </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1c546841c720b63201893e1244ae2872";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Data Mania</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://jasonlian.tech/2017/02/16/Navi3-Visualization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Lian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Data Mania">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常用的可视化资源导航
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Created</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-16T21:50:13+08:00">
+                2017-02-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Modified</span>
+              
+              <time title="Modified" itemprop="dateModified" datetime="2017-04-17T16:50:23+08:00">
+                2017-04-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Resource-Navigation/" itemprop="url" rel="index">
+                    <span itemprop="name">Resource Navigation</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/02/16/Navi3-Visualization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/16/Navi3-Visualization/" class="leancloud_visitors" data-flag-title="常用的可视化资源导航">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count</span>
+                
+                <span title="Words count">
+                  1,326
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <center>持续更新：R 中常用的可视化资源</center>
+
+<a id="more"></a>
+<h3 id="Awesome-Website"><a href="#Awesome-Website" class="headerlink" title="Awesome Website"></a><font color="#C70039">Awesome Website</font></h3><ul>
+<li><a href="http://ggplot.yhathq.com/docs/index.html" title="ggplot Docs" target="_blank" rel="external">ggplot2 Docs</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf" target="_blank" rel="external">ggplot2 Cheatsheet</a></li>
+</ul>
+<hr>
+<h3 id="ggplot2"><a href="#ggplot2" class="headerlink" title="ggplot2"></a><font color="#C70039"><a href="http://docs.ggplot2.org/current/" target="_blank" rel="external">ggplot2</a></font></h3><ul>
+<li><font color="orange"><code>Rmd:</code></font> <a href="/Rmarkdown/Tutorial_for_ggplot2.html">A Tutorial for R ggplot2</a></li>
+</ul>
+<h4 id="ggplot2-Plotting-System"><a href="#ggplot2-Plotting-System" class="headerlink" title="ggplot2 Plotting System"></a><font color="#2874A6">ggplot2 Plotting System</font></h4><ul>
+<li><code>ggplot()</code> 中控制的是总体设置，比如 <code>ggplot()</code> 中的 <code>color</code> 决定了所有 <code>geom</code> 的颜色，而 <code>geom</code> 中的设置只是针对各个图</li>
+<li>凡是涉及到与变量相关的设置，必须用 <code>aes()</code></li>
+</ul>
+<h4 id="Geoms"><a href="#Geoms" class="headerlink" title="Geoms"></a><font color="#2874A6">Geoms</font></h4><h5 id="geom-bar-x-is-discrete"><a href="#geom-bar-x-is-discrete" class="headerlink" title="geom_bar (x is discrete)"></a>geom_bar (x is discrete)</h5><ul>
+<li><a href="http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2" target="_blank" rel="external">Bar and Line Graph_Cookbook for R</a>/)</li>
+<li><a href="http://docs.ggplot2.org/0.9.3.1/geom_bar.html" target="_blank" rel="external">Bars, rectangles with bases on x-axis</a></li>
+<li><a href="http://mp.weixin.qq.com/s/hutcLQBi7mnDvr9BsIlKCw" target="_blank" rel="external">使用 ggplot2 绘制条形图</a></li>
+<li>按照y轴<strong>从大到小的顺序排列bar</strong>的分布：<code>aes(x=reorder(x_name, -value), y=value, fill=name</code></li>
+<li><code>geom_bar(stat=&quot;identity&quot;, position=position_dodge(0.7))</code> 默认的 position 是堆叠 <code>stack</code>，百分比堆叠是 <code>position=&quot;fill&quot;</code>, 而按政府值区分开是 <code>position=&quot;identity&quot;</code></li>
+<li>使用明细数据计数之后绘制条形图：<code>ggplot(data, aes(x=gender)) + geom_bar(stat=&quot;count&quot;, width=.3, col=&quot;orange&quot;)</code> stat 的默认值是 count</li>
+<li>对于汇总好的数据：<code>geom_bar(stat = &quot;identity&quot;)</code></li>
+<li>添加标签：<code>geom_text(stat=&#39;count&#39;, aes(label=..count..), vjust=-0.5, hjust=0.5, size=3, colour=&quot;orange&quot;)</code> 如果是堆叠式，则加入 <code>position=position_stack()</code></li>
+</ul>
+<h5 id="geom-histogram-x-is-continuous"><a href="#geom-histogram-x-is-continuous" class="headerlink" title="geom_histogram (x is continuous)"></a>geom_histogram (x is continuous)</h5><ul>
+<li><a href="https://www.datacamp.com/community/tutorials/make-histogram-ggplot2#gs.9szdFt0" target="_blank" rel="external">Make a histogram with ggplot2</a></li>
+<li><code>qplot(chol$AGE, geom=&quot;histogram&quot;, binwidth = 5, main = &quot;Histogram for Age&quot;, xlab = &quot;Age&quot;, fill=I(&quot;blue&quot;), col=I(&quot;red&quot;), alpha=I(.2), xlim=c(20,50))</code></li>
+<li><code>ggplot(data, aes(x=duration)) + geom_histogram(binwidth=60)</code></li>
+<li><a href="https://www.datacamp.com/community/tutorials/make-histogram-ggplot2" target="_blank" rel="external">How to make a histogram</a></li>
+<li>添加计数的标签：<code>+ stat_bin(binwidth=0.5, geom=&quot;text&quot;, aes(label=..count..), vjust=-0.5, size=3)</code></li>
+</ul>
+<h5 id="geom-density"><a href="#geom-density" class="headerlink" title="geom_density"></a>geom_density</h5><h5 id="geom-line"><a href="#geom-line" class="headerlink" title="geom_line"></a>geom_line</h5><h5 id="geom-point"><a href="#geom-point" class="headerlink" title="geom_point"></a>geom_point</h5><ul>
+<li><a href="http://mp.weixin.qq.com/s/Q4U1Sr1-MvQDTFiCchKKkg" target="_blank" rel="external">使用 ggplot2 绘制散点图</a></li>
+<li>使用GGally包中的ggpairs()函数绘制散点图矩阵：<code>library(GGally) ggpairs(tips[, 1:3])</code></li>
+</ul>
+<h5 id="geom-boxplot"><a href="#geom-boxplot" class="headerlink" title="geom_boxplot"></a>geom_boxplot</h5><ul>
+<li>画箱形图，x 为分组变量，y 为值：<code>ggplot(result_all, aes(x=factor(cluster), y=WAPE_min)) + geom_boxplot()</code></li>
+<li>添加均值：<code>stat_summary(fun.y=mean, colour=&quot;blue&quot;, geom=&quot;point&quot;, size=2) + stat_summary(fun.y=mean, colour=&quot;red&quot;, geom=&quot;text&quot;, vjust=0.3, hjust=-0.5, size=3, aes( label=round(..y.., digits=2)))</code></li>
+</ul>
+<h5 id="geom-text"><a href="#geom-text" class="headerlink" title="geom_text"></a>geom_text</h5><ul>
+<li>添加标签，避免文字重叠：<code>geom_text(aes(label=value), position=position_dodge(width=0.9), vjust=-0.25)</code></li>
+<li><code>geom_text(aes(label = Frequency), size = 3, hjust = 0.5, vjust = 3, position = &quot;stack&quot;)</code> stack 表示堆叠显示</li>
+</ul>
+<h5 id="geom-vline"><a href="#geom-vline" class="headerlink" title="geom_vline"></a>geom_vline</h5><ul>
+<li>添加一条垂直线：<code>geom_vline(xintercept=as.numeric(as.Date(&quot;1959-12-01&quot;)), linetype=2)</code></li>
+</ul>
+<h5 id="geom-hline"><a href="#geom-hline" class="headerlink" title="geom_hline"></a>geom_hline</h5><ul>
+<li>添加一条水平线：<code>geom_hline(yintercept=200)</code></li>
+</ul>
+<h5 id="geom-ribbon"><a href="#geom-ribbon" class="headerlink" title="geom_ribbon"></a>geom_ribbon</h5><ul>
+<li>作缎带图：<code>geom_ribbon(aes(ymin=LL, ymax=UL), fill=&quot;grey&quot;, alpha=0.5)</code></li>
+</ul>
+<h5 id="geom-rug"><a href="#geom-rug" class="headerlink" title="geom_rug"></a>geom_rug</h5><ul>
+<li>向散点图添加坐标轴边际地毯：<code>geom_rug(position = &#39;jitter&#39;, size = 0.1)</code></li>
+</ul>
+<h5 id="geom-label-repel-amp-amp-geom-text-repel"><a href="#geom-label-repel-amp-amp-geom-text-repel" class="headerlink" title="geom_label_repel &amp;&amp; geom_text_repel"></a>geom_label_repel &amp;&amp; geom_text_repel</h5><ul>
+<li>来自 ggrepel 包，添加标签，<code>geom_label_repel(aes(label=method),size=3)</code></li>
+</ul>
+<h5 id="geom-dl"><a href="#geom-dl" class="headerlink" title="geom_dl"></a>geom_dl</h5><ul>
+<li>来自 directlabels 包，在线的两端标注分类名称，<code>geom_dl(aes(label = method), method = list(dl.combine(&quot;first.points&quot;, &quot;last.points&quot;), cex = 0.8))</code></li>
+<li>自动选择最优位置标注：<code>method=&quot;smart.grid&quot;</code></li>
+</ul>
+<h5 id="annotate"><a href="#annotate" class="headerlink" title="annotate"></a><a href="http://docs.ggplot2.org/0.9.3/annotate.html" target="_blank" rel="external">annotate</a></h5><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加文字</span></div><div class="line">annotate(<span class="string">"text"</span>, <span class="attr">x</span> = <span class="number">4</span>, <span class="attr">y</span> = <span class="number">25</span>, <span class="attr">label</span> = <span class="string">"Some text"</span>)</div><div class="line">annotate(<span class="string">"text"</span>, <span class="attr">x</span> = <span class="number">2</span>:<span class="number">5</span>, <span class="attr">y</span> = <span class="number">25</span>, <span class="attr">label</span> = <span class="string">"Some text"</span>)</div><div class="line">annotate(<span class="string">"text"</span>, <span class="attr">x</span> = <span class="number">2</span>:<span class="number">3</span>, <span class="attr">y</span> = <span class="number">20</span>:<span class="number">21</span>, <span class="attr">label</span> = c(<span class="string">"my label"</span>, <span class="string">"label 2"</span>))</div><div class="line"></div><div class="line"><span class="comment"># 添加矩形框</span></div><div class="line">annotate(<span class="string">"rect"</span>, <span class="attr">xmin</span> = <span class="number">3</span>, <span class="attr">xmax</span> = <span class="number">4.2</span>, <span class="attr">ymin</span> = <span class="number">12</span>, <span class="attr">ymax</span> = <span class="number">21</span>, <span class="attr">alpha</span> = .<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment"># 根据起始点画直线</span></div><div class="line">annotate(<span class="string">"segment"</span>, <span class="attr">x</span> = <span class="number">2.5</span>, <span class="attr">xend</span> = <span class="number">4</span>, <span class="attr">y</span> = <span class="number">15</span>, <span class="attr">yend</span> = <span class="number">25</span>, <span class="attr">colour</span> = <span class="string">"blue"</span>)</div></pre></td></tr></table></figure>
+<h4 id="Stats"><a href="#Stats" class="headerlink" title="Stats"></a><font color="#2874A6">Stats</font></h4><h5 id="stat-smooth"><a href="#stat-smooth" class="headerlink" title="stat_smooth"></a>stat_smooth</h5><ul>
+<li>向散点图添加拟合线：<code>stat_smooth(method=&quot;lm / loess&quot;)</code></li>
+</ul>
+<h4 id="Facets"><a href="#Facets" class="headerlink" title="Facets"></a><font color="#2874A6">Facets</font></h4><h5 id="facet-wrap"><a href="#facet-wrap" class="headerlink" title="facet_wrap"></a>facet_wrap</h5><ul>
+<li><code>facet_wrap(~group_variable，scales=&#39;free&#39;, nrow=2)</code><ul>
+<li><code>scales=&#39;free&#39;</code> 表示允许不同的 facet 有不同的 x/y axis limit，如果只允许 x axis，则 <code>scale=‘free_x’</code></li>
+<li>nrow 设置 plot 的行数</li>
+</ul>
+</li>
+</ul>
+<h5 id="facet-grid"><a href="#facet-grid" class="headerlink" title="facet_grid"></a>facet_grid</h5><ul>
+<li>在同一个 facet 上作不同类型的图形：<code>ggplot() + geom_line(data=temp[measure %in% c(&quot;MAPE_in&quot;,&quot;MAPE_out&quot;,&quot;CV&quot;)], aes(x=atc_class,y=value,group=measure,color=measure), size=1) + geom_bar(data=temp[measure==&quot;volume&quot;],aes(atc_class,value),stat=&quot;identity&quot;) + facet_grid(group~.,scales=&quot;free_y&quot;)</code></li>
+</ul>
+<h4 id="Scales"><a href="#Scales" class="headerlink" title="Scales"></a><font color="#2874A6">Scales</font></h4><ul>
+<li>Aesthetic mapping (i.e., with aes()) only says that a variable should be mapped to an aesthetic. It doesn’t say how that should happen.<h5 id="scale-fill-brewer-amp-scale-fill-manual"><a href="#scale-fill-brewer-amp-scale-fill-manual" class="headerlink" title="scale_fill_brewer &amp; scale_fill_manual"></a>scale_fill_brewer &amp; scale_fill_manual</h5></li>
+<li><a href="http://www.cookbook-r.com/Graphs/Bar_and_line_graphs_(ggplot2" target="_blank" rel="external">颜色填充</a>/)<ul>
+<li><code>scale_fill_brewer(palette=&quot;Set1&quot;)</code></li>
+<li><code>scale_fill_manual(values=c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="scale-shape-manual"><a href="#scale-shape-manual" class="headerlink" title="scale_shape_manual"></a>scale_shape_manual</h5><ul>
+<li>自动指定点形状的上限是6，超过则需要手动指定点的形状：<code>scale_shape_manual(values=1:10)</code></li>
+</ul>
+<h5 id="scale-color-brewer-amp-scale-color-manual"><a href="#scale-color-brewer-amp-scale-color-manual" class="headerlink" title="scale_color_brewer &amp; scale_color_manual"></a>scale_color_brewer &amp; scale_color_manual</h5><ul>
+<li>设置连续颜色变化：<code>scale_colour_gradient(low = &#39;lightblue&#39;, high = &#39;darkblue&#39;)</code></li>
+</ul>
+<h5 id="scale-size"><a href="#scale-size" class="headerlink" title="scale_size"></a>scale_size</h5><ul>
+<li><code>scale_size_continuous(breaks = c(100,150,200,300,350,400), guide = guide_legend())</code></li>
+<li>连续变量的大小与形状的大小成比例：<code>scale_size_area(max_size = 10)</code></li>
+</ul>
+<h5 id="scale-x-continuous"><a href="#scale-x-continuous" class="headerlink" title="scale_x_continuous"></a>scale_x_continuous</h5><ul>
+<li>改变X轴的坐标间隔：<code>scale_x_continuous(breaks=seq(0, max(abc$cum_volume), by=max(abc$cum_volume)/5))</code></li>
+</ul>
+<h5 id="scale-size-manual"><a href="#scale-size-manual" class="headerlink" title="scale_size_manual"></a>scale_size_manual</h5><ul>
+<li>将大小分成两组，并手动改变线条粗细：<code>geom_line(aes(col=method, size=(method==&quot;volume&quot;))) + scale_size_manual(values = c(1, 2), name = &quot;&quot;, labels = c())</code></li>
+</ul>
+<h5 id="Point-Shape"><a href="#Point-Shape" class="headerlink" title="Point Shape"></a>Point Shape</h5><center><img src="http://omsiwk8es.bkt.clouddn.com/ggplot2-shape-identity.png" alt=""></center>
+
+<h5 id="Color-Names"><a href="#Color-Names" class="headerlink" title="Color Names"></a><a href="http://omsiwk8es.bkt.clouddn.com/ggplot2-colour-names.png" target="_blank" rel="external">Color Names</a></h5><h4 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a><font color="#2874A6">Themes</font></h4><ul>
+<li>更改 facet 中坐标轴 label 文字的大小：<code>theme(strip.text.y = element_text(size=8))</code></li>
+<li>文字竖向：<code>theme(axis.text.x=element_text(angle=45,hjust=1,vjust=1))</code></li>
+<li>标题：labs(list(title = “Cluster Result”, x = “Clustering Variables”, y = “Centroid”))</li>
+<li>标题居中：<code>theme(plot.title = element_text(hjust = 0.5))</code></li>
+<li><p>将 Theme 的各元素设置为空：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">theme</span><span class="params">(axis.line=element_blank()</span></span>,</div><div class="line">      axis<span class="selector-class">.text</span><span class="selector-class">.x</span>=element_blank(),</div><div class="line">      axis<span class="selector-class">.text</span><span class="selector-class">.y</span>=element_blank(),</div><div class="line">      axis.ticks=element_blank(),</div><div class="line">      axis<span class="selector-class">.title</span><span class="selector-class">.x</span>=element_blank(),</div><div class="line">      axis<span class="selector-class">.title</span><span class="selector-class">.y</span>=element_blank(),</div><div class="line">      <span class="selector-tag">legend</span>.<span class="attribute">position</span>=<span class="string">"none"</span>,</div><div class="line">      panel.<span class="attribute">background</span>=element_blank(),</div><div class="line">      panel.<span class="attribute">border</span>=element_blank(),</div><div class="line">      panel<span class="selector-class">.grid</span><span class="selector-class">.major</span>=element_blank(),</div><div class="line">      panel<span class="selector-class">.grid</span><span class="selector-class">.minor</span>=element_blank(),</div><div class="line">      plot.<span class="attribute">background</span>=element_blank())</div></pre></td></tr></table></figure>
+</li>
+<li><p>白色背景：<code>theme_bw()</code></p>
+</li>
+<li>设置图标题：<code>ggtitle(paste0(&quot;BSTS Holdout MAPE = &quot;, round(100*MAPE,2), &quot;%&quot;))</code></li>
+<li>更改标题文字大小：<code>theme(plot.title = element_text(size=10))</code></li>
+<li>转换坐标轴：<code>coord_flip()</code></li>
+</ul>
+<h4 id="Other"><a href="#Other" class="headerlink" title="Other"></a><font color="#2874A6">Other</font></h4><h5 id="Legend"><a href="#Legend" class="headerlink" title="Legend"></a>Legend</h5><ul>
+<li><a href="http://docs.ggplot2.org/0.9.3.1/guide_legend.html" target="_blank" rel="external">Legend Guide</a></li>
+<li><a href="http://docs.ggplot2.org/0.9.3.1/guides.html" target="_blank" rel="external">Guide</a>：legend 文字更改或者<strong>分类维数合并</strong>参见 guide</li>
+<li>Legend 中的分类变量排序：<code>ts$category &lt;- factor(ts$category, levels=c(&quot;vegetable&quot;,&quot;fruit&quot;,&quot;meat&quot;,&quot;total&quot;))</code></li>
+<li>修改 legend 的标题：<code>scale_color_discrete(guide = guide_legend(title = &quot;Cluster&quot;))</code>，注意 scale 要对应 legend 的维度！比如 aes(color= ) 的 legend 要对应 scale_color_discrete！</li>
+</ul>
+<h5 id="Save-plot-to-disk"><a href="#Save-plot-to-disk" class="headerlink" title="Save plot to disk"></a>Save plot to disk</h5><ul>
+<li>注意 for 循环内的 plot 要加上 print() 才能输出<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">png</span><span class="params">(filename=paste(<span class="string">'./png/'</span>,i,<span class="string">'.png'</span>,sep=<span class="string">''</span>)</span></span>)</div><div class="line"><span class="function"><span class="title">print</span><span class="params">(qplot(na.omit(result_boot[,i])</span></span>, geom=<span class="string">'histogram'</span>, binwidth=<span class="number">0.1</span>, xlim=c(-<span class="number">20</span>,<span class="number">20</span>), col=<span class="string">'red'</span>))</div><div class="line">dev.off()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="ggfortify"><a href="#ggfortify" class="headerlink" title="ggfortify"></a><font color="#C70039">ggfortify</font></h3><ul>
+<li>Define fortify and autoplot functions to allow ggplot2 to handle some popular R packages.</li>
+<li><a href="https://github.com/sinhrks/ggfortify" target="_blank" rel="external">github</a></li>
+<li><a href="https://github.com/sinhrks/ggfortify/blob/master/vignettes/intro_Chinese.Rmd" target="_blank" rel="external">Chinese introducton</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxNzcyMTk5NA==&amp;mid=2654042393&amp;idx=1&amp;sn=c6ce8f23aeaa91a7ab7b74c0a97d0fbc&amp;chksm=8024e6fcb7536fea6828d779106cb811be8d51b12066074c188f5c80ef5464d3966550ccdefd&amp;scene=0#wechat_redirect" target="_blank" rel="external">wechat introduction article</a></li>
+</ul>
+<hr>
+<h3 id="corrplot"><a href="#corrplot" class="headerlink" title="corrplot"></a><font color="#C70039">corrplot</font></h3><ul>
+<li><a href="http://rstudio-pubs-static.s3.amazonaws.com/2107_4eb1adc1e4d44b93b6fde7eb801519fe.html" target="_blank" rel="external">An Introduction to Corrplot Package</a></li>
+<li><code>corrplot(cor(dataframe), method = &quot;pie&quot;, type = &quot;lower&quot;, tl.col=&quot;black&quot;, tl.cex=0.7, tl.srt = 20, order=&#39;hclust&#39;)</code></li>
+</ul>
+<hr>
+<h3 id="Time-Series-Plot"><a href="#Time-Series-Plot" class="headerlink" title="Time Series Plot"></a><font color="#C70039">Time Series Plot</font></h3><ul>
+<li><code>plot.ts()</code>：时序图</li>
+<li><code>ts.plot()</code>：在同一张图上作多个时序图，<code>ts.plot(ts,train_fit,test_fit, gpars = list(col=c(&quot;black&quot;, &quot;blue&quot;, &quot;red&quot;)))</code></li>
+<li><strong>forecast package</strong><ul>
+<li><code>tsdisplay()</code> ：时序图+ACF+PACF</li>
+<li><code>plot.forecast()</code>：作预测图</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Table-Plot"><a href="#Table-Plot" class="headerlink" title="Table Plot"></a><font color="#C70039"><a href="ftp://cran.r-project.org/pub/R/web/packages/gridExtra/vignettes/tableGrob.html" target="_blank" rel="external">Table Plot</a></font></h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">library</span><span class="params">(gridExtra)</span></span></div><div class="line"><span class="function"><span class="title">library</span><span class="params">(grid)</span></span></div><div class="line">d &lt;- head(iris[,<span class="number">1</span>:<span class="number">3</span>])</div><div class="line">grid.table(d)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="Plotly"><a href="#Plotly" class="headerlink" title="Plotly"></a><font color="#C70039"><a href="https://plot.ly/" target="_blank" rel="external">Plotly</a></font></h3><ul>
+<li><font color="blue"><code>Blog:</code></font> <a href="/2017/03/06/Data1-Plotly/">Use Plotly to Create Interactive Graph in R</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Plotly/" rel="tag"># Plotly</a>
+          
+            <a href="/tags/Visualization/" rel="tag"># Visualization</a>
+          
+            <a href="/tags/R/" rel="tag"># R</a>
+          
+            <a href="/tags/ggplot2/" rel="tag"># ggplot2</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/14/Navi2-R-Manual/" rel="next" title="R 语言实用语法和常用资源速查手册">
+                <i class="fa fa-chevron-left"></i> R 语言实用语法和常用资源速查手册
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/18/Tech1-Windows-Hexo1/" rel="prev" title="在 Windows 上利用 Github Page 快速搭建 Hexo 博客">
+                在 Windows 上利用 Github Page 快速搭建 Hexo 博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jason Lian" />
+          <p class="site-author-name" itemprop="name">Jason Lian</p>
+           
+              <p class="site-description motion-element" itemprop="description">享受简单而专注的快乐</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JasonLian" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/331889888/home?topnav=1&wvr=5" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:shlian16@fudan.edu.cn" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/08/Navi1-Machine-Learning/" title="Machine Learning" target="_blank">Machine Learning</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/14/Navi2-R-Manual/" title="R Manual" target="_blank">R Manual</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/02/16/Navi3-Visualization/" title="Visualization" target="_blank">Visualization</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="/2017/04/01/Tech3-Git-Command/" title="Git" target="_blank">Git</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Awesome-Website"><span class="nav-number">1.</span> <span class="nav-text">Awesome Website</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ggplot2"><span class="nav-number">2.</span> <span class="nav-text">ggplot2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ggplot2-Plotting-System"><span class="nav-number">2.1.</span> <span class="nav-text">ggplot2 Plotting System</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Geoms"><span class="nav-number">2.2.</span> <span class="nav-text">Geoms</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-bar-x-is-discrete"><span class="nav-number">2.2.1.</span> <span class="nav-text">geom_bar (x is discrete)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-histogram-x-is-continuous"><span class="nav-number">2.2.2.</span> <span class="nav-text">geom_histogram (x is continuous)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-density"><span class="nav-number">2.2.3.</span> <span class="nav-text">geom_density</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-line"><span class="nav-number">2.2.4.</span> <span class="nav-text">geom_line</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-point"><span class="nav-number">2.2.5.</span> <span class="nav-text">geom_point</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-boxplot"><span class="nav-number">2.2.6.</span> <span class="nav-text">geom_boxplot</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-text"><span class="nav-number">2.2.7.</span> <span class="nav-text">geom_text</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-vline"><span class="nav-number">2.2.8.</span> <span class="nav-text">geom_vline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-hline"><span class="nav-number">2.2.9.</span> <span class="nav-text">geom_hline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-ribbon"><span class="nav-number">2.2.10.</span> <span class="nav-text">geom_ribbon</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-rug"><span class="nav-number">2.2.11.</span> <span class="nav-text">geom_rug</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-label-repel-amp-amp-geom-text-repel"><span class="nav-number">2.2.12.</span> <span class="nav-text">geom_label_repel && geom_text_repel</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#geom-dl"><span class="nav-number">2.2.13.</span> <span class="nav-text">geom_dl</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#annotate"><span class="nav-number">2.2.14.</span> <span class="nav-text">annotate</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Stats"><span class="nav-number">2.3.</span> <span class="nav-text">Stats</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#stat-smooth"><span class="nav-number">2.3.1.</span> <span class="nav-text">stat_smooth</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Facets"><span class="nav-number">2.4.</span> <span class="nav-text">Facets</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#facet-wrap"><span class="nav-number">2.4.1.</span> <span class="nav-text">facet_wrap</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#facet-grid"><span class="nav-number">2.4.2.</span> <span class="nav-text">facet_grid</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scales"><span class="nav-number">2.5.</span> <span class="nav-text">Scales</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#scale-fill-brewer-amp-scale-fill-manual"><span class="nav-number">2.5.1.</span> <span class="nav-text">scale_fill_brewer & scale_fill_manual</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#scale-shape-manual"><span class="nav-number">2.5.2.</span> <span class="nav-text">scale_shape_manual</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#scale-color-brewer-amp-scale-color-manual"><span class="nav-number">2.5.3.</span> <span class="nav-text">scale_color_brewer & scale_color_manual</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#scale-size"><span class="nav-number">2.5.4.</span> <span class="nav-text">scale_size</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#scale-x-continuous"><span class="nav-number">2.5.5.</span> <span class="nav-text">scale_x_continuous</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#scale-size-manual"><span class="nav-number">2.5.6.</span> <span class="nav-text">scale_size_manual</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Point-Shape"><span class="nav-number">2.5.7.</span> <span class="nav-text">Point Shape</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Color-Names"><span class="nav-number">2.5.8.</span> <span class="nav-text">Color Names</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Themes"><span class="nav-number">2.6.</span> <span class="nav-text">Themes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Other"><span class="nav-number">2.7.</span> <span class="nav-text">Other</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Legend"><span class="nav-number">2.7.1.</span> <span class="nav-text">Legend</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Save-plot-to-disk"><span class="nav-number">2.7.2.</span> <span class="nav-text">Save plot to disk</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ggfortify"><span class="nav-number">3.</span> <span class="nav-text">ggfortify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#corrplot"><span class="nav-number">4.</span> <span class="nav-text">corrplot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Series-Plot"><span class="nav-number">5.</span> <span class="nav-text">Time Series Plot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-Plot"><span class="nav-number">6.</span> <span class="nav-text">Table Plot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plotly"><span class="nav-number">7.</span> <span class="nav-text">Plotly</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-mortar-board"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Lian</span>
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"> 您是第</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"> 总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "66b93912b152403a8848ceb2242428ff",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("TFMC9GSLvmlfR2vWv6EtvQyX-gzGzoHsz", "RS3BaosNcBvBVMJKLSqWRCmm");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+</body>
+</html>
