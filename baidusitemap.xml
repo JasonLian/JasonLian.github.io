@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/</loc>
+    <lastmod>2017-04-23T09:08:41.319Z</lastmod>
+    <data>
+        <display>
+        <title>Machine Learning 算法学习心得和代码实现</title>
+        <pubTime>2017-02-08T02:05:34.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>Navigation</tag>
+         
+         
+           
+             
+              <breadCrumb title="Resource Navigation" url="http://jasonlian.tech/categories/Resource-Navigation/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://jasonlian.tech/2017/04/01/Tech3-Git-Command/</loc>
     <lastmod>2017-04-23T09:00:39.126Z</lastmod>
     <data>
@@ -78,28 +100,6 @@
         <pubTime>2017-02-14T02:05:48.000Z</pubTime>
         
         <tag>R</tag>
-         
-        <tag>Navigation</tag>
-         
-         
-           
-             
-              <breadCrumb title="Resource Navigation" url="http://jasonlian.tech/categories/Resource-Navigation/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/</loc>
-    <lastmod>2017-04-23T09:00:39.105Z</lastmod>
-    <data>
-        <display>
-        <title>Machine Learning 算法学习心得和代码实现</title>
-        <pubTime>2017-02-08T02:05:34.000Z</pubTime>
-        
-        <tag>Machine Learning</tag>
          
         <tag>Navigation</tag>
          
@@ -191,9 +191,9 @@
         <title>机器学习中的特征选择方法概述</title>
         <pubTime>2017-03-13T08:58:48.000Z</pubTime>
         
-        <tag>Machine Learning</tag>
-         
         <tag>Feature Selection</tag>
+         
+        <tag>Machine Learning</tag>
          
          
            
@@ -215,9 +215,9 @@
         
         <tag>R</tag>
          
-        <tag>Prediction</tag>
-         
         <tag>Machine Learning</tag>
+         
+        <tag>Prediction</tag>
          
         <tag>Gaussian Regression</tag>
          

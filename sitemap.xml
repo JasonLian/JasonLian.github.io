@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/</loc>
+    
+    <lastmod>2017-04-23T09:08:41.319Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jasonlian.tech/2017/04/01/Tech3-Git-Command/</loc>
     
     <lastmod>2017-04-23T09:00:39.126Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://jasonlian.tech/2017/02/14/Navi2-R-Manual/</loc>
     
     <lastmod>2017-04-23T09:00:39.112Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/</loc>
-    
-    <lastmod>2017-04-23T09:00:39.105Z</lastmod>
     
   </url>
   

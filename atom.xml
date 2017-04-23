@@ -1004,9 +1004,9 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
       <category term="Machine Learning" scheme="http://jasonlian.tech/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
-    
       <category term="Feature Selection" scheme="http://jasonlian.tech/tags/Feature-Selection/"/>
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -1123,9 +1123,9 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     
       <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
     
-      <category term="Prediction" scheme="http://jasonlian.tech/tags/Prediction/"/>
-    
       <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
+    
+      <category term="Prediction" scheme="http://jasonlian.tech/tags/Prediction/"/>
     
       <category term="Gaussian Regression" scheme="http://jasonlian.tech/tags/Gaussian-Regression/"/>
     
@@ -1909,7 +1909,7 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     <link href="http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/"/>
     <id>http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/</id>
     <published>2017-02-08T02:05:34.000Z</published>
-    <updated>2017-04-23T09:00:39.105Z</updated>
+    <updated>2017-04-23T09:08:41.319Z</updated>
     
     <content type="html"><![CDATA[<center>持续更新：Machine Learning 和 Data Mining 的算法学习心得和代码实现</center>
 
@@ -1939,6 +1939,10 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
 </ul>
 <h4 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a><font color="#2874A6">Classification</font></h4><ul>
 <li><font color="blue"><code>Blog:</code></font> <a href="/2017/04/12/ML4-Prediction-Accuracy-2/">Classification Model Evaluation and Seletion</a></li>
+</ul>
+<hr>
+<h3 id="Text-Mining"><a href="#Text-Mining" class="headerlink" title="Text Mining"></a><font color="#C70039">Text Mining</font></h3><h4 id="Topic-Modeling"><a href="#Topic-Modeling" class="headerlink" title="Topic Modeling"></a><font color="#2874A6">Topic Modeling</font></h4><ul>
+<li><font color="blue"><code>Blog:</code></font> <a href="/2017/04/19/ML5-Topic-Model/">An Introduction to LDA and Other Topic Models</a></li>
 </ul>
 ]]></content>
     
