@@ -4,30 +4,8 @@
 
     
   <url>
-    <loc>http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/</loc>
-    <lastmod>2017-04-23T09:08:41.319Z</lastmod>
-    <data>
-        <display>
-        <title>Machine Learning 算法学习心得和代码实现</title>
-        <pubTime>2017-02-08T02:05:34.000Z</pubTime>
-        
-        <tag>Machine Learning</tag>
-         
-        <tag>Navigation</tag>
-         
-         
-           
-             
-              <breadCrumb title="Resource Navigation" url="http://jasonlian.tech/categories/Resource-Navigation/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://jasonlian.tech/2017/04/01/Tech3-Git-Command/</loc>
-    <lastmod>2017-04-23T09:00:39.126Z</lastmod>
+    <lastmod>2017-04-25T06:57:34.605Z</lastmod>
     <data>
         <display>
         <title>Git 版本控制系统常用命令汇总</title>
@@ -47,7 +25,7 @@
     
   <url>
     <loc>http://jasonlian.tech/2017/02/22/Tech2-Windows-Hexo2/</loc>
-    <lastmod>2017-04-23T09:00:39.120Z</lastmod>
+    <lastmod>2017-04-25T06:57:34.598Z</lastmod>
     <data>
         <display>
         <title>Hexo 博客的 Next 主题配置</title>
@@ -67,7 +45,7 @@
     
   <url>
     <loc>http://jasonlian.tech/2017/02/16/Navi3-Visualization/</loc>
-    <lastmod>2017-04-23T09:00:39.117Z</lastmod>
+    <lastmod>2017-04-25T06:57:34.591Z</lastmod>
     <data>
         <display>
         <title>常用的可视化资源导航</title>
@@ -93,7 +71,7 @@
     
   <url>
     <loc>http://jasonlian.tech/2017/02/14/Navi2-R-Manual/</loc>
-    <lastmod>2017-04-23T09:00:39.112Z</lastmod>
+    <lastmod>2017-04-25T06:57:34.584Z</lastmod>
     <data>
         <display>
         <title>R 语言实用语法和常用资源速查手册</title>
@@ -114,11 +92,33 @@
 
     
   <url>
-    <loc>http://jasonlian.tech/2017/04/19/ML5-Topic-Model/</loc>
-    <lastmod>2017-04-23T09:00:39.103Z</lastmod>
+    <loc>http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/</loc>
+    <lastmod>2017-04-25T06:57:34.577Z</lastmod>
     <data>
         <display>
-        <title>常用的降维技术和主题模型简介（附 LDA 在 R 中的实现方法）</title>
+        <title>Machine Learning 算法学习心得和代码实现</title>
+        <pubTime>2017-02-08T02:05:34.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>Navigation</tag>
+         
+         
+           
+             
+              <breadCrumb title="Resource Navigation" url="http://jasonlian.tech/categories/Resource-Navigation/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://jasonlian.tech/2017/04/19/ML5-Topic-Model/</loc>
+    <lastmod>2017-04-25T06:57:34.576Z</lastmod>
+    <data>
+        <display>
+        <title>常用的降维技术和主题模型简介</title>
         <pubTime>2017-04-19T10:50:16.000Z</pubTime>
         
         <tag>R</tag>
@@ -143,7 +143,7 @@
     
   <url>
     <loc>http://jasonlian.tech/2017/04/12/ML4-Prediction-Accuracy-2/</loc>
-    <lastmod>2017-04-23T09:00:39.096Z</lastmod>
+    <lastmod>2017-04-25T06:57:34.570Z</lastmod>
     <data>
         <display>
         <title>模型评估与选择概述</title>
@@ -165,7 +165,7 @@
     
   <url>
     <loc>http://jasonlian.tech/2017/04/03/ML3-Prediction-Accuracy-1/</loc>
-    <lastmod>2017-04-23T09:00:39.090Z</lastmod>
+    <lastmod>2017-04-25T06:57:34.565Z</lastmod>
     <data>
         <display>
         <title>连续型变量的预测误差度量方法</title>
@@ -185,15 +185,15 @@
     
   <url>
     <loc>http://jasonlian.tech/2017/03/13/ML2-Feature-Selection/</loc>
-    <lastmod>2017-04-23T09:00:39.089Z</lastmod>
+    <lastmod>2017-04-25T06:57:34.563Z</lastmod>
     <data>
         <display>
         <title>机器学习中的特征选择方法概述</title>
         <pubTime>2017-03-13T08:58:48.000Z</pubTime>
         
-        <tag>Feature Selection</tag>
-         
         <tag>Machine Learning</tag>
+         
+        <tag>Feature Selection</tag>
          
          
            
@@ -207,7 +207,7 @@
     
   <url>
     <loc>http://jasonlian.tech/2017/03/08/ML1-GPR-for-Prediction/</loc>
-    <lastmod>2017-04-23T09:00:39.087Z</lastmod>
+    <lastmod>2017-04-25T06:57:34.561Z</lastmod>
     <data>
         <display>
         <title>利用高斯过程回归进行时间序列预测</title>
@@ -215,9 +215,9 @@
         
         <tag>R</tag>
          
-        <tag>Machine Learning</tag>
-         
         <tag>Prediction</tag>
+         
+        <tag>Machine Learning</tag>
          
         <tag>Gaussian Regression</tag>
          
@@ -233,7 +233,7 @@
     
   <url>
     <loc>http://jasonlian.tech/2017/03/06/Data1-Plotly/</loc>
-    <lastmod>2017-04-23T09:00:39.083Z</lastmod>
+    <lastmod>2017-04-25T06:57:34.555Z</lastmod>
     <data>
         <display>
         <title>在 R 中使用 Plotly 创建交互式动态图表</title>

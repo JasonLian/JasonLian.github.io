@@ -13,8 +13,22 @@
 
 
 
+
+
+
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0dd5ec4c19208d4c2a8a0358fb07f567";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -31,18 +45,6 @@
 
 
 
-
-
-
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?0dd5ec4c19208d4c2a8a0358fb07f567";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 
 
 
@@ -90,7 +92,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="R,Dimension Reduction,Topic Model,LDA,Text Mining," />
@@ -99,12 +101,10 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Data Mania" type="application/atom+xml" />
 
 
 
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
 
@@ -113,9 +113,9 @@
 
 <meta name="description" content="本文主要介绍了 LDA 主题模型及其在 R 语言中的实现方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常用的降维技术和主题模型简介（附 LDA 在 R 中的实现方法）">
+<meta property="og:title" content="常用的降维技术和主题模型简介">
 <meta property="og:url" content="http://jasonlian.tech/2017/04/19/ML5-Topic-Model/index.html">
-<meta property="og:site_name" content="Data Mania">
+<meta property="og:site_name" content="Lian's WorkNotes">
 <meta property="og:description" content="本文主要介绍了 LDA 主题模型及其在 R 语言中的实现方法">
 <meta property="og:image" content="http://img.blog.csdn.net/20141118233121976">
 <meta property="og:image" content="http://img.blog.csdn.net/20141118234201515">
@@ -143,9 +143,9 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20141121135716671">
 <meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/6965486aa1cb2224779289ab99f9c4cb761aad77">
 <meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/15a9977312000bbdd4bcb839e1a6ee3c1afd0414">
-<meta property="og:updated_time" content="2017-04-23T09:00:39.103Z">
+<meta property="og:updated_time" content="2017-04-25T06:57:34.576Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常用的降维技术和主题模型简介（附 LDA 在 R 中的实现方法）">
+<meta name="twitter:title" content="常用的降维技术和主题模型简介">
 <meta name="twitter:description" content="本文主要介绍了 LDA 主题模型及其在 R 语言中的实现方法">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20141118233121976">
 
@@ -181,7 +181,7 @@
 
 
 
-  <title> 常用的降维技术和主题模型简介（附 LDA 在 R 中的实现方法） | Data Mania </title>
+  <title>常用的降维技术和主题模型简介 | Lian's WorkNotes</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -227,7 +227,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Data Mania</span>
+        <span class="site-title">Lian's WorkNotes</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -353,7 +353,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Data Mania">
+      <meta itemprop="name" content="Lian's WorkNotes">
     </span>
 
     
@@ -365,7 +365,7 @@
             
             
               
-                常用的降维技术和主题模型简介（附 LDA 在 R 中的实现方法）
+                常用的降维技术和主题模型简介
               
             
           </h1>
@@ -396,8 +396,8 @@
               
                 <span class="post-meta-item-text">Modified</span>
               
-              <time title="Modified" itemprop="dateModified" datetime="2017-04-23T17:00:39+08:00">
-                2017-04-23
+              <time title="Modified" itemprop="dateModified" datetime="2017-04-25T14:57:34+08:00">
+                2017-04-25
               </time>
             
           </span>
@@ -442,7 +442,7 @@
 
           
           
-             <span id="/2017/04/19/ML5-Topic-Model/" class="leancloud_visitors" data-flag-title="常用的降维技术和主题模型简介（附 LDA 在 R 中的实现方法）">
+             <span id="/2017/04/19/ML5-Topic-Model/" class="leancloud_visitors" data-flag-title="常用的降维技术和主题模型简介">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -457,43 +457,12 @@
           
 
           
-            <div class="post-wordcount">
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count</span>
-                
-                <span title="Words count">
-                  8,437
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time</span>
-                
-                <span title="Reading time">
-                  33
-                </span>
-              
-            </div>
-          
 
           
 
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -504,6 +473,7 @@
         <center>本文主要介绍了 LDA 主题模型及其在 R 语言中的实现方法</center>
 
 <a id="more"></a>
+<hr>
 <p>在机器学习中，LDA 是两个常用模型的简称：<strong>Linear Discriminant Analysis</strong> 和 <strong>Latent Dirichlet Allocation</strong>，这篇文章主要介绍后者。LDA (Latent Dirichlet Allocation) 是一种很常用的主题模型，类似于 LSA 和 PLSA 等模型，可以用于浅层语义分析，为了避免混淆，首先说明这些概念的区别。</p>
 <hr>
 <h3 id="Dimension-Reduction-Techniques"><a href="#Dimension-Reduction-Techniques" class="headerlink" title="Dimension Reduction Techniques"></a><font color="#C70039">Dimension Reduction Techniques</font></h3><p>降维技术是很多主题模型的基础，常用的降维技术包括：PCA、FA、SVD 和 Linear Discriminant Analysis。其中 PCA、FA 和 SVD 主要关注<strong>未标记数据上的降维技术</strong>，但也可同时应用于已标记的数据，而 <strong>Linear Discriminant Analysis 则是针对已标记数据的降维技术</strong></p>
@@ -541,10 +511,10 @@
 <ul>
 <li>$w$ 表示词，$V$ 表示所有词的个数</li>
 <li>$z$ 表示主题，$k$ 表示主题的个数</li>
-<li>$D=(W<em>{1},W</em>{2},…,W_{M})$表示语料库，M表示语料库中的文档数。</li>
-<li>$W=(w<em>{1},w</em>{2},…,w_{N})$表示文档，N表示文档中词的个数。</li>
+<li>$D=(W_1,W_2,…,W_M)$表示语料库，M表示语料库中的文档数。</li>
+<li>$W=(w_1,w_2,…,w_N)$表示文档，N表示文档中词的个数。</li>
 </ul>
-<h4 id="Unigram-Model"><a href="#Unigram-Model" class="headerlink" title="Unigram Model"></a><font color="#2874A6">Unigram Model</font></h4><p>在一元模型中，对于文档 $W=(w<em>{1},w</em>{2},…,w<em>{N})$ ，用 $p(w</em>{n})$ 表示 $w_{n}$ 的先验概率，生成文档 $W$ 的概率为：</p>
+<h4 id="Unigram-Model"><a href="#Unigram-Model" class="headerlink" title="Unigram Model"></a><font color="#2874A6">Unigram Model</font></h4><p>在一元模型中，对于文档 $W=(w_1,w_2,…,w_N)$ ，用 $p(w_n)$ 表示 $w_n$ 的先验概率，生成文档 $W$ 的概率为：</p>
 <p>$$P(W)=\prod_{n=1}^n p(w_n)$$</p>
 <p>其图模型为（图中被涂色的 w 表示可观测变量，N 表示一篇文档中总共 N 个单词，M 表示 M 篇文档）</p>
 <center><img src="http://img.blog.csdn.net/20141118233121976" alt=""></center>
@@ -565,13 +535,13 @@
 <p>利用看到的文档推断其隐藏的主题（分布）的过程，就是主题建模的目的：自动地发现文档集中的主题（分布）。文档 d 和单词 w 是可被观察到的，但主题 z 却是隐藏的。如下图所示（图中被涂色的 d、w 表示可观测变量，未被涂色的 z 表示未知的隐变量，N 表示一篇文档中总共 N 个单词，M 表示 M 篇文档）。</p>
 <center><img src="http://img.blog.csdn.net/20141118234229125" alt=""></center>
 
-<p>对于任意一篇文档，$P(w<em>{j}|d</em>{i})$ 是已知的，根据这个概率可以训练得到“文档-主题”概率以及“主题-词项”概率，即：</p>
+<p>对于任意一篇文档，$P(w_j|d_i)$ 是已知的，根据这个概率可以训练得到“文档-主题”概率以及“主题-词项”概率，即：</p>
 <center><img src="http://img.blog.csdn.net/20141124221914437" alt=""></center>
 
 <p>每篇文档中每个词的生成概率为：</p>
 <center><img src="http://img.blog.csdn.net/20141119005004510" alt=""></center>
 
-<p><strong>$P(d<em>{i})$ 可以直接得出，而 $P(z</em>{k}|d<em>{i})$ 和 $P(w</em>{j}|z<em>{k})$ 未知，所以 $\theta=(P(z</em>{k}|d<em>{i}),P(w</em>{j}|z_{k}))$就是我们要估计的参数，我们要最大化这个参数。因为该待估计的参数中含有隐变量 z，所以我们可以用 EM 算法来估计这个参数。</strong></p>
+<p><strong>$P(d_i)$ 可以直接得出，而 $P(z_k|d_i)$ 和 $P(w_j|z_k)$ 未知，所以 $\theta=(P(z_k|d_i),P(w_j|z_k))$就是我们要估计的参数，我们要最大化这个参数。因为该待估计的参数中含有隐变量 z，所以我们可以用 EM 算法来估计这个参数。</strong></p>
 <p>PLSA 把 LSA 变成从概率的角度理解，把 LSA 的 2 个矩阵做归一化处理后，就可以看成 PLSA 的 Word 对于 Topic 的概率分布和 Document 对于 Topic 的概率分布。然后采用 EM 算法，先随机初始化这 2 个分布，计算其后验概率，然后反过来利用最大似然来计算这 2 个分布，不断迭代直到收敛，但 PLSA 已经基本上被 LDA 所取代。</p>
 <hr>
 <h3 id="LDA-Topic-Model"><a href="#LDA-Topic-Model" class="headerlink" title="LDA Topic Model"></a><font color="#C70039">LDA Topic Model</font></h3><p>LDA（Latent Dirichlet Allocation, 潜狄利克雷分布）是一种概率主题模型，它在 PLSA 的基础上，利用贝叶斯估计，引入 Topic 的 Dirichlet 先验分布后得到贝叶斯模型，相当于多了一个条件，而后采用 Gibbs sampling 的方式来学习参数，收敛后计算得到 Word 对于 Topic 的概率分布和 Topic 对于 Document 的概率分布。</p>
@@ -669,7 +639,7 @@
 <p>基于上述 LDA 模型的文档生成过程，<strong>整个模型所有可见变量以及隐藏变量的联合分布</strong>是</p>
 <center><img src="http://upload.wikimedia.org/math/6/b/1/6b14ac4b7dc76e9228a3da3ef271c66d.png" alt=""></center>
 
-<p>最终一篇文档的单词分布的最大似然估计可以通过将上式的 $\theta <em>{i}$ 以及 $\Phi$ 进行积分和对 $z</em>{i}$ 进行求和得到。然后，根据 $p(w_{i}|\alpha ,\beta )$ 的最大似然估计，最终可以通过吉布斯采样等方法估计出模型中的参数。</p>
+<p>最终一篇文档的单词分布的最大似然估计可以通过将上式的 $\theta_i$ 以及 $\Phi$ 进行积分和对 $z_i$ 进行求和得到。然后，根据 $p(w_i|\alpha ,\beta )$ 的最大似然估计，最终可以通过吉布斯采样等方法估计出模型中的参数。</p>
 <center><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/b9428d253f936e6e47905e2b83c7fdc5fb8ac459" alt=""></center>
 
 <p>因为 $\alpha$ 产生主题分布 $\theta$，主题分布 $\theta$ 确定具体主题，且 $\beta$ 产生词分布 $\varphi$、词分布 $\varphi$ 确定具体词，所以所有变量的联合概率分布其实等价于：</p>
@@ -692,7 +662,7 @@
 <li>全局变量：$n_m^{(k)}$ 文档 m 中 主题 k 出现的次数；$n_m$ 文档 m 中的主题总数；$n_k^{(t)}$ 主题 k 中单词 t 出现的次数；$n_k$ 主题 k 中的单词总数。将这四个全局变量全部初始化为 0。</li>
 <li>对所有文档 $m\in [1,M]$：<ul>
 <li>对文档 $m$ 中的所有单词 $n$：<ul>
-<li>采样每个单词对应的主题 $z_{m,n}=k∼Mult(1/K)$</li>
+<li>采样每个单词对应的主题 $z_{m,n}=k~Mult(1/K)$</li>
 <li>增加“文档-主题”计数：$n_m^{(k)}+=1$</li>
 <li>增加“文档-主题”总数：$n_m+=1$</li>
 <li>增加“主题-词项”计数：$n_k^{(t)}+=1$</li>
@@ -941,13 +911,6 @@
         </nav>
 
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
 
         <div class="links-of-author motion-element">
           
@@ -958,15 +921,6 @@
                     <i class="fa fa-fw fa-globe"></i>
                   
                   Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/331889888/home?topnav=1&wvr=5" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
                 </a>
               </span>
             
@@ -1054,7 +1008,7 @@
   &copy; 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-mortar-board"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Jason Lian</span>
 </div>
@@ -1117,6 +1071,14 @@
 
 
 
+
+
+
+
+
+
+
+
   
   <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
@@ -1139,30 +1101,29 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
 
 
 
   
+  
 
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
 
 
   
 
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
 
 
   
@@ -1205,18 +1166,30 @@
     var isfetched = false;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length == 0) {
+    if (search_path.length === 0) {
       search_path = "search.xml";
     }
     var path = "/" + search_path;
     // monitor main search box;
 
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
     function proceedsearch() {
       $("body")
         .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
         .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
       $('.popup').toggle();
+      $('#local-search-input').focus();
     }
+
     // search function;
     var searchFunc = function(path, search_id, content_id) {
       'use strict';
@@ -1235,73 +1208,226 @@
               url: $( "url" , this).text()
             };
           }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
               // perform local searching
               datas.forEach(function(data) {
                 var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
                       }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
                     }
 
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
                   });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
                 }
+
                 // show search results
+
                 if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
                     // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
+                    var start = position - 20;
+                    var end = position + 80;
                     if(start < 0){
                       start = 0;
                     }
-                    if(start == 0){
-                      end = 50;
+                    if (end < position + word.length) {
+                      end = position + word.length;
                     }
                     if(end > content.length){
                       end = content.length;
                     }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
-
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
                   }
-                  str += "</li>";
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
           proceedsearch();
         }
       });}
@@ -1309,20 +1435,23 @@
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched == false) {
+      if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
     });
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
+    $('.popup-btn-close').click(onPopupClose);
     $('.popup').click(function(e){
       e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
     });
   </script>
 
@@ -1440,21 +1569,6 @@
 
 
   
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
 
   
   
@@ -1479,6 +1593,8 @@
     <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
+
+  
 
   
 
