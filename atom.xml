@@ -1004,9 +1004,9 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
       <category term="Machine Learning" scheme="http://jasonlian.tech/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
-    
       <category term="Feature Selection" scheme="http://jasonlian.tech/tags/Feature-Selection/"/>
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -1122,9 +1122,9 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     
       <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
     
-      <category term="Prediction" scheme="http://jasonlian.tech/tags/Prediction/"/>
-    
       <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
+    
+      <category term="Prediction" scheme="http://jasonlian.tech/tags/Prediction/"/>
     
       <category term="Gaussian Regression" scheme="http://jasonlian.tech/tags/Gaussian-Regression/"/>
     
