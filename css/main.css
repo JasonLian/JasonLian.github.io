@@ -1694,7 +1694,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f0ffd7;
+  background: #3954be;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2793,7 +2793,7 @@ hr {
   -moz-box-shadow: 0 0 14px rgba(202,203,204,0.5);
 }
 body {
-  line-height: 1.5;
+  line-height: 1.8;
 }
 .logo-line-before,
 .logo-line-after {
@@ -2841,4 +2841,7 @@ body {
 .posts-expand .post-title,
 .posts-expand .post-meta {
   text-align: center;
+}
+.site-author-image {
+  border: none;
 }
