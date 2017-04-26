@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jasonlian.tech/"/>
-  <updated>2017-04-25T15:25:39.766Z</updated>
+  <updated>2017-04-26T07:44:21.626Z</updated>
   <id>http://jasonlian.tech/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jasonlian.tech/2017/04/19/ML5-Topic-Model/"/>
     <id>http://jasonlian.tech/2017/04/19/ML5-Topic-Model/</id>
     <published>2017-04-19T10:50:16.000Z</published>
-    <updated>2017-04-25T15:25:39.766Z</updated>
+    <updated>2017-04-26T07:44:21.626Z</updated>
     
     <content type="html"><![CDATA[<center>本文主要介绍了 LDA 主题模型及其在 R 语言中的实现方法</center>
 
@@ -328,7 +328,7 @@
     <link href="http://jasonlian.tech/2017/04/12/ML4-Prediction-Accuracy-2/"/>
     <id>http://jasonlian.tech/2017/04/12/ML4-Prediction-Accuracy-2/</id>
     <published>2017-04-12T12:15:16.000Z</published>
-    <updated>2017-04-25T15:25:39.759Z</updated>
+    <updated>2017-04-26T07:44:21.612Z</updated>
     
     <content type="html"><![CDATA[<center>本文总结讨论了模型（主要针对二分类问题）评估与选择常用方法</center>
 
@@ -463,7 +463,7 @@
     <link href="http://jasonlian.tech/2017/04/03/ML3-Prediction-Accuracy-1/"/>
     <id>http://jasonlian.tech/2017/04/03/ML3-Prediction-Accuracy-1/</id>
     <published>2017-04-03T04:15:16.000Z</published>
-    <updated>2017-04-25T15:25:39.753Z</updated>
+    <updated>2017-04-26T07:44:21.600Z</updated>
     
     <content type="html"><![CDATA[<center>本文总结讨论了针对连续型、单变量的预测误差度量方法</center>
 
@@ -700,7 +700,7 @@ table th:nth-of-type(2) {
     <link href="http://jasonlian.tech/2017/04/01/Tech3-Git-Command/"/>
     <id>http://jasonlian.tech/2017/04/01/Tech3-Git-Command/</id>
     <published>2017-04-01T07:28:53.000Z</published>
-    <updated>2017-04-25T15:25:39.802Z</updated>
+    <updated>2017-04-26T07:44:21.678Z</updated>
     
     <content type="html"><![CDATA[<center>Git是目前世界上最先进的分布式版本控制系统（没有之一）</center>
 
@@ -902,7 +902,7 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     <link href="http://jasonlian.tech/2017/03/13/ML2-Feature-Selection/"/>
     <id>http://jasonlian.tech/2017/03/13/ML2-Feature-Selection/</id>
     <published>2017-03-13T08:58:48.000Z</published>
-    <updated>2017-04-25T15:25:39.749Z</updated>
+    <updated>2017-04-26T07:44:21.573Z</updated>
     
     <content type="html"><![CDATA[<center>Feature Selection 是在模型构建过程中选择最相关、最有利于提高预测效果的特征子集的过程</center>
 
@@ -1015,7 +1015,7 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     <link href="http://jasonlian.tech/2017/03/08/ML1-GPR-for-Prediction/"/>
     <id>http://jasonlian.tech/2017/03/08/ML1-GPR-for-Prediction/</id>
     <published>2017-03-08T14:12:46.000Z</published>
-    <updated>2017-04-25T15:25:39.747Z</updated>
+    <updated>2017-04-26T07:44:21.553Z</updated>
     
     <content type="html"><![CDATA[<center>本文介绍了高斯回归的基本概念，并在 R 中利用高斯回归实现对时间序列的预测</center>
 
@@ -1135,7 +1135,7 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     <link href="http://jasonlian.tech/2017/03/06/Data1-Plotly/"/>
     <id>http://jasonlian.tech/2017/03/06/Data1-Plotly/</id>
     <published>2017-03-06T11:19:34.000Z</published>
-    <updated>2017-04-25T15:25:39.740Z</updated>
+    <updated>2017-04-26T07:44:21.514Z</updated>
     
     <content type="html"><![CDATA[<center><a href="https://plot.ly/" target="_blank" rel="external">Plotly</a> 是一款在线分析和数据可视化工具，并为 Python、R、MATLAB 等主流编程语言提供 API 接口</center>
 
@@ -1211,7 +1211,7 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     <link href="http://jasonlian.tech/2017/02/22/Tech2-Windows-Hexo2/"/>
     <id>http://jasonlian.tech/2017/02/22/Tech2-Windows-Hexo2/</id>
     <published>2017-02-22T04:45:30.000Z</published>
-    <updated>2017-04-25T15:25:39.795Z</updated>
+    <updated>2017-04-26T07:44:21.673Z</updated>
     
     <content type="html"><![CDATA[<center>NexT 主题拥有丰富而简单的配置，结合第三方服务，可以方便快捷地打造个性化的 Hexo 博客</center>
 
@@ -1333,7 +1333,11 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     <published>2017-02-17T16:04:30.000Z</published>
     <updated>2017-02-18T16:10:30.000Z</updated>
     
-    <content type="html"><![CDATA[<center> Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上 <center><br><br><a id="more"></a><br><br>—<br><center><img src="http://omsiwk8es.bkt.clouddn.com/Hexo.png" alt=""></center>
+    <content type="html"><![CDATA[<center> Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上 </center>
+
+<a id="more"></a>
+<hr>
+<center><img src="http://omsiwk8es.bkt.clouddn.com/Hexo.png" alt=""></center>
 
 <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a><font color="#C70039">准备工作</font></h3><ul>
 <li>安装 Node.js：到 <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a> 的官网下载最新版本并安装</li>
@@ -1408,11 +1412,11 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
 <li><a href="https://lancelot_lewis.coding.me/2016/12/01/blog/hexo-password/" target="_blank" rel="external">Hexo 文章简单加密访问</a></li>
 </ul>
 </blockquote>
-</center></center>]]></content>
+]]></content>
     
     <summary type="html">
     
-      &lt;center&gt; Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上 &lt;center&gt;&lt;br&gt;&lt;br&gt;
+      &lt;center&gt; Hexo 是一个快速、简单且功能强大的 Node.js 静态博客框架，可以方便地生成静态网页并托管在 Github 等平台上 &lt;/center&gt;
     
     </summary>
     
@@ -1428,7 +1432,7 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     <link href="http://jasonlian.tech/2017/02/16/Navi3-Visualization/"/>
     <id>http://jasonlian.tech/2017/02/16/Navi3-Visualization/</id>
     <published>2017-02-16T13:50:13.000Z</published>
-    <updated>2017-04-25T15:25:39.780Z</updated>
+    <updated>2017-04-26T07:44:21.654Z</updated>
     
     <content type="html"><![CDATA[<center>持续更新：R 中常用的可视化资源</center>
 
@@ -1612,7 +1616,7 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     <link href="http://jasonlian.tech/2017/02/14/Navi2-R-Manual/"/>
     <id>http://jasonlian.tech/2017/02/14/Navi2-R-Manual/</id>
     <published>2017-02-14T02:05:48.000Z</published>
-    <updated>2017-04-25T15:25:39.773Z</updated>
+    <updated>2017-04-26T07:44:21.646Z</updated>
     
     <content type="html"><![CDATA[<center>持续更新：R 语言的实用语法和常用资源</center>
 
@@ -1904,7 +1908,7 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
     <link href="http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/"/>
     <id>http://jasonlian.tech/2017/02/08/Navi1-Machine-Learning/</id>
     <published>2017-02-08T02:05:34.000Z</published>
-    <updated>2017-04-25T15:25:39.768Z</updated>
+    <updated>2017-04-26T07:44:21.635Z</updated>
     
     <content type="html"><![CDATA[<center>持续更新：Machine Learning 和 Data Mining 的算法学习心得和代码实现</center>
 
