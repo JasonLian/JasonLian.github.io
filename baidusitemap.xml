@@ -51,11 +51,11 @@
         <title>常用的可视化资源导航</title>
         <pubTime>2017-02-16T13:50:13.000Z</pubTime>
         
-        <tag>R</tag>
-         
         <tag>Plotly</tag>
          
         <tag>Visualization</tag>
+         
+        <tag>R</tag>
          
         <tag>ggplot2</tag>
          
@@ -191,9 +191,9 @@
         <title>机器学习中的特征选择方法概述</title>
         <pubTime>2017-03-13T08:58:48.000Z</pubTime>
         
-        <tag>Machine Learning</tag>
-         
         <tag>Feature Selection</tag>
+         
+        <tag>Machine Learning</tag>
          
          
            
@@ -213,11 +213,11 @@
         <title>利用高斯过程回归进行时间序列预测</title>
         <pubTime>2017-03-08T14:12:46.000Z</pubTime>
         
-        <tag>Prediction</tag>
+        <tag>R</tag>
          
         <tag>Machine Learning</tag>
          
-        <tag>R</tag>
+        <tag>Prediction</tag>
          
         <tag>Gaussian Regression</tag>
          
@@ -239,11 +239,11 @@
         <title>在 R 中使用 Plotly 创建交互式动态图表</title>
         <pubTime>2017-03-06T11:19:34.000Z</pubTime>
         
-        <tag>R</tag>
-         
         <tag>Plotly</tag>
          
         <tag>Visualization</tag>
+         
+        <tag>R</tag>
          
         <tag>ggplot2</tag>
          
