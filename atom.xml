@@ -1004,9 +1004,9 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
       <category term="Machine Learning" scheme="http://jasonlian.tech/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
-    
       <category term="Feature Selection" scheme="http://jasonlian.tech/tags/Feature-Selection/"/>
+    
+      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -1120,11 +1120,11 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
       <category term="Machine Learning" scheme="http://jasonlian.tech/categories/Machine-Learning/"/>
     
     
-      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
+      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
     
       <category term="Prediction" scheme="http://jasonlian.tech/tags/Prediction/"/>
     
-      <category term="Machine Learning" scheme="http://jasonlian.tech/tags/Machine-Learning/"/>
+      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
     
       <category term="Gaussian Regression" scheme="http://jasonlian.tech/tags/Gaussian-Regression/"/>
     
@@ -1196,11 +1196,11 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
       <category term="Data Science" scheme="http://jasonlian.tech/categories/Data-Science/"/>
     
     
+      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
+    
       <category term="Plotly" scheme="http://jasonlian.tech/tags/Plotly/"/>
     
       <category term="Visualization" scheme="http://jasonlian.tech/tags/Visualization/"/>
-    
-      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
     
       <category term="ggplot2" scheme="http://jasonlian.tech/tags/ggplot2/"/>
     
@@ -1601,11 +1601,11 @@ url = https://git.oschina.net/free/Mapper.git</code></li>
       <category term="Resource Navigation" scheme="http://jasonlian.tech/categories/Resource-Navigation/"/>
     
     
+      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
+    
       <category term="Plotly" scheme="http://jasonlian.tech/tags/Plotly/"/>
     
       <category term="Visualization" scheme="http://jasonlian.tech/tags/Visualization/"/>
-    
-      <category term="R" scheme="http://jasonlian.tech/tags/R/"/>
     
       <category term="ggplot2" scheme="http://jasonlian.tech/tags/ggplot2/"/>
     
